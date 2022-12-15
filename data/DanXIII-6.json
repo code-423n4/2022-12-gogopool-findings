@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "DanXIII",
+  "risk": "3",
+  "title": "NO REENTRANCE GUARD ON THE MINT() FUNCTION WHICH HAS A CALLBACK",
+  "issueId": 6,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/6"
+}
