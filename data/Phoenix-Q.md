@@ -20,3 +20,26 @@ function setGuardian(address newAddress) external {
 		newGuardian = newAddress;
 }
 ```
+
+
+function setAddress(bytes32 key, address value) external onlyRegisteredNetworkContract {
+		addressStorage[key] = value;
+	}
+
+
+https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Ocyticus.sol
+
+	function addDefender(address defender) external onlyGuardian {
+		defenders[defender] = true;
+	}
+
+
+Emit event
+https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Ocyticus.sol
+	function pauseEverything() external onlyDefender {
+		ProtocolDAO dao = ProtocolDAO(getContractAddress("ProtocolDAO"));
+		dao.pauseContract("TokenggAVAX");
+		dao.pauseContract("MinipoolManager");
+		dao.pauseContract("Staking");
+		disableAllMultisigs();
+	}
