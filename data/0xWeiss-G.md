@@ -27,6 +27,7 @@ SAME optimization can be done in lines: https://github.com/code-423n4/2022-12-go
 https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/RewardsPool.sol#L74
 https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/RewardsPool.sol#L215
 https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/RewardsPool.sol#L230
+https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/Ocyticus.sol#L61
 It is cheaper to add unchecked when it does not over/underflow
 Just like this:
 
@@ -41,4 +42,9 @@ for (uint256 i = 0; i < inflationIntervalsElapsed; ) {
     unchecked {   ++ i ; }        
 }
 
+
+4 DOBLE OPTIMIZATION IN https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/MinipoolManager.sol#L619-L623
+
+4.1 Use unchecked in the for loop in line: https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/MinipoolManager.sol#L619, the same as issue number 3 instantiated before.
+4.2 It is cheaper to use ++total than total++ in line https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/MinipoolManager.sol#L623
 
