@@ -21,3 +21,13 @@ As said, not sure if the bits are correct for every variable, but there can be r
 It is cheaper to write: stakingTotalAssets = stakingTotalAssets  + assets;  than stakingTotalAssets += assets;
 
 SAME optimization can be done in lines: https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/tokens/TokenggAVAX.sol#L245 and https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/tokens/TokenggAVAX.sol#L252
+
+
+3 FOR LOOP GAS OPTIMIZATION in lines:
+https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/RewardsPool.sol#L74
+https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/RewardsPool.sol#L215
+https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/RewardsPool.sol#L230
+It is cheaper to add unchecked when it does not over/underflow
+Just like this:
+BEFORE:
+AFTER:
