@@ -46,16 +46,27 @@ https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Ocyt
 
 
 ---
-## [GAS] Tautology in boolean comparison
+## [GAS] Tautology in boolean comparisons
 
-The boolean comparison can be checked as `true` or `false`directly. There is no need to compare with a `true` or `false` value. The comparison simplified can reduce gas costs.
+Boolean comparisons can be checked as `true` or `false`directly. There is no need to compare them with a `true` or `false` value. A simplified comparison can reduce gas costs.
 
 [`BaseAbstract.sol#L25`](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/BaseAbstract.sol#L25)
+[`BaseAbstract.sol#L74`](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/BaseAbstract.sol#L74)
+[`Storage.sol#L29`](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Storage.sol#L29)
 
-*Recommendation:* Consider removing tautology comparison, e.g.:
+*Recommendation:* Consider removing tautology comparisons, for example, refactoring in `BaseAbstract` contract's functions:
 
 ```solidity
 if (!getBool(keccak256(abi.encodePacked("contract.exists", msg.sender)))) {
      revert InvalidOrOutdatedContract();
 }
+
+if (!enabled) {
+     revert MustBeMultisig();
+}
 ```
+
+
+---
+## `version` state variable can be set as immutable *** >>> BaseAbstract.sol
+
