@@ -43,3 +43,19 @@ https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Ocyt
 		dao.pauseContract("Staking");
 		disableAllMultisigs();
 	}
+
+
+---
+## [GAS] Tautology in boolean comparison
+
+The boolean comparison can be checked as `true` or `false`directly. There is no need to compare with a `true` or `false` value. The comparison simplified can reduce gas costs.
+
+[`BaseAbstract.sol#L25`](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/BaseAbstract.sol#L25)
+
+*Recommendation:* Consider removing tautology comparison, e.g.:
+
+```solidity
+if (!getBool(keccak256(abi.encodePacked("contract.exists", msg.sender)))) {
+     revert InvalidOrOutdatedContract();
+}
+```
