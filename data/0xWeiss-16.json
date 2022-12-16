@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "0xWeiss",
+  "risk": "3",
+  "title": "Non-protected inflate() function can provoke any arbitrary contract to call it and inflate the supply",
+  "issueId": 16,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/16"
+}
