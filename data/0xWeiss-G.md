@@ -29,5 +29,16 @@ https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c3
 https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/RewardsPool.sol#L230
 It is cheaper to add unchecked when it does not over/underflow
 Just like this:
+
 BEFORE:
+	for (uint256 i = 0; i < inflationIntervalsElapsed; i++) {
+			newTotalSupply = newTotalSupply.mulWadDown(inflationRate);
+		}
+
 AFTER:
+for (uint256 i = 0; i < inflationIntervalsElapsed; ) {
+	newTotalSupply = newTotalSupply.mulWadDown(inflationRate);
+    unchecked {   ++ i ; }        
+}
+
+
