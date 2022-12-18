@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "jasonxiale",
+  "risk": "",
+  "title": "Missing paramter validation in ERC20Upgradeable.sol",
+  "issueId": 34,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/34"
+}
