@@ -548,3 +548,19 @@ uint256 d = a << 3;
 ```
 #### Tools used
 Manual code review
+
+
+### 6th Bug
+USING BOOLS FOR STORAGE INCURS OVERHEAD
+
+#### Impact:
+when changing from false to true it costs Gwarmaccess (100 gas) for the extra SLOAD
+
+### Description:
+Use uint256(1) and uint256(2) for true/false to avoid a Gwarmaccess (100 gas) for the extra SLOAD, and to avoid Gsset (20000 gas) when changing from false to true, after having been true in the past.
+
+#### Findings:
+https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MultisigManager.sol#L61
+
+####Tools Used
+Manual code review
