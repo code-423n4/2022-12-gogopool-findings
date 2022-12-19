@@ -7,7 +7,7 @@ Why import from erc4626 erc20?
 THEY ARE TAKING THE PRICE FROM A DEX, ISN'T THAT A FLASHLOAN OPPORTUNITY?
 https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/Oracle.sol#L36-L40
 
-
+### Anyone can send GGP tokens or any other erc20 to the contract and the balances would be off. Not super important, but we should be aware of that. https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/Vault.sol#L155
 
 ### Instance not needed already done in the function argument
 https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/Vault.sol#L157
