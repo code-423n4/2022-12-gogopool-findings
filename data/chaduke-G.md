@@ -1,0 +1,68 @@
+G1. https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/BaseAbstract.sol#L25
+NO need to compare a bool value with ``false``
+```
+if (!booleanStorage[keccak256(abi.encodePacked("contract.exists", msg.sender))] && msg.sender != guardian) {
+			revert InvalidOrOutdatedContract();
+		}
+```
+
+G2. https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/BaseAbstract.sol#L40-L48
+Applying the short-circuit can save gas - the second condition might not need to be evaluated sometimes
+```
+modifier guardianOrRegisteredContract() {
+		bool isContract = getBool(keccak256(abi.encodePacked("contract.exists", msg.sender)));
+                if (!isContract)) {
+			revert MustBeGuardianOrValidContract();
+		}
+
+		bool isGuardian = msg.sender == gogoStorage.getGuardian();
+		if (!isGuardian) {
+			revert MustBeGuardianOrValidContract();
+		}
+		_;
+	}
+```
+
+G3. https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/BaseAbstract.sol#L51-L59
+Applying the short-circuit can save gas - the second condition might not need to be evaluated sometimes
+```
+modifier guardianOrSpecificRegisteredContract(string memory contractName, address contractAddress) {
+		bool isContract = contractAddress == getAddress(keccak256(abi.encodePacked("contract.address", contractName)));
+		if (!isContract) {
+			revert MustBeGuardianOrValidContract();
+		}
+
+		bool isGuardian = msg.sender == gogoStorage.getGuardian();
+
+		if (!isGuardian) {
+			revert MustBeGuardianOrValidContract();
+		}
+		_;
+	}
+
+```
+
+G4. https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/MinipoolManager.sol#L152-L175
+Moving revert stmt to the default case can save gas:
+```
+function requireValidStateTransition(int256 minipoolIndex, MinipoolStatus to) private view {
+		bytes32 statusKey = keccak256(abi.encodePacked("minipool.item", minipoolIndex, ".status"));
+		MinipoolStatus currentStatus = MinipoolStatus(getUint(statusKey));
+		bool isValid;
+
+		if (currentStatus == MinipoolStatus.Prelaunch) {
+			isValid = (to == MinipoolStatus.Launched || to == MinipoolStatus.Canceled);
+		} else if (currentStatus == MinipoolStatus.Launched) {
+			isValid = (to == MinipoolStatus.Staking || to == MinipoolStatus.Error);
+		} else if (currentStatus == MinipoolStatus.Staking) {
+			isValid = (to == MinipoolStatus.Withdrawable || to == MinipoolStatus.Error);
+		} else if (currentStatus == MinipoolStatus.Withdrawable || currentStatus == MinipoolStatus.Error) {
+			isValid = (to == MinipoolStatus.Finished || to == MinipoolStatus.Prelaunch);
+		} else if (currentStatus == MinipoolStatus.Finished || currentStatus == MinipoolStatus.Canceled) {
+			// Once a node is finished/canceled, if they re-validate they go back to beginning state
+			isValid = (to == MinipoolStatus.Prelaunch);
+		} else {
+			revert InvalidStateTransition();
+		}
+	}
+```
