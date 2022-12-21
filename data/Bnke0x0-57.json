@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "Bnke0x0",
+  "risk": "",
+  "title": "ERC4626 does not work with fee-on-transfer tokens",
+  "issueId": 57,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/57"
+}
