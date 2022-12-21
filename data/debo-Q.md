@@ -91,3 +91,35 @@ PoC
 if (max > totalMinipools || limit == 0) {
 			max = totalMinipools;
 		}
+
+## [L-09]
+https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/Oracle.sol#L40 
+
+Block timestamp:
+Use of "block.timestamp": "block.timestamp" can be influenced by miners to a certain degree. That means that a miner can "choose" the block.timestamp, to a certain degree, to change the outcome of a transaction in the mined block.
+Pos: 40:14:
+
+PoC
+function getGGPPriceInAVAXFromOneInch() external view returns (uint256 price, uint256 timestamp) {
+		TokenGGP ggp = TokenGGP(getContractAddress("TokenGGP"));
+		IOneInch oneinch = IOneInch(getAddress(keccak256("Oracle.OneInch")));
+		price = oneinch.getRateToEth(ggp, false);
+		timestamp = block.timestamp -1;
+	}
+
+## [L-10]
+https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/Oracle.sol#L59 
+
+Block timestamp:
+Use of "block.timestamp": "block.timestamp" can be influenced by miners to a certain degree. That means that a miner can "choose" the block.timestamp, to a certain degree, to change the outcome of a transaction in the mined block.
+Pos: 59:47:
+
+PoC
+function setGGPPriceInAVAX(uint256 price, uint256 timestamp) external onlyMultisig {
+		uint256 lastTimestamp = getUint(keccak256("Oracle.GGPTimestamp"));
+		if (timestamp < lastTimestamp || timestamp > block.timestamp -1) {
+			revert InvalidTimestamp();
+		}
+		if (price == 0) {
+			revert InvalidGGPPrice();
+		}
