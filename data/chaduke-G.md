@@ -94,4 +94,8 @@ unchecked{
 G7. https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/BaseAbstract.sol#L107-L197
 eliminating these unnecessary getters and setters can save gas, one can simply call gogoStorage.getX(), gogoStorage.setX(), gogoStorage.deleteX(), and gogoStorage.addX(), and only increase readability of the contracts
 
-
+G8. https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/Vault.sol#L157-L159
+No need to introduce another variable ``tokenContract``, here, a type casing is sufficent:
+```
+ERC20(tokenAddress).safeTransfer(withdrawalAddress, amount);
+```
