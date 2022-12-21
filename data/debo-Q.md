@@ -163,3 +163,23 @@ Pos: 84:45:
 
 PoC
 uint256 inflationIntervalElapsedSeconds = (block.timestamp -1 - getInflationIntervalStartTime());
+
+## [L-15]
+https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/RewardsPool.sol#L128 
+
+Block timestamp:
+Use of "block.timestamp": "block.timestamp" can be influenced by miners to a certain degree. That means that a miner can "choose" the block.timestamp, to a certain degree, to change the outcome of a transaction in the mined block.
+Pos: 128:10
+
+PoC
+return (block.timestamp -1 - startTime) / dao.getRewardsCycleSeconds();
+
+## [L-16]
+https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/RewardsPool.sol#L164 
+
+Block timestamp:
+Use of "block.timestamp": "block.timestamp" can be influenced by miners to a certain degree. That means that a miner can "choose" the block.timestamp, to a certain degree, to change the outcome of a transaction in the mined block.
+Pos: 164:58:
+
+PoC
+setUint(keccak256("RewardsPool.RewardsCycleStartTime"), block.timestamp -1);
