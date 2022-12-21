@@ -75,3 +75,18 @@ unchecked{
 		avaxBalances[toContractName] = avaxBalances[toContractName] + amount;
 }
 ```
+
+G6. https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/Vault.sol#L155
+Impossible to underflow due to previous check, so we can put it inside the ``unchecked`` to reduce gas.
+```
+unchecked{
+           tokenBalances[contractKey] = tokenBalances[contractKey] - amount;
+}
+```
+G7. https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/Vault.sol#L187
+Impossible to underflow due to previous check, so we can put it inside the ``unchecked`` to reduce gas.
+```
+unchecked{
+         tokenBalances[contractKeyFrom] = tokenBalances[contractKeyFrom] - amount;
+}
+```
