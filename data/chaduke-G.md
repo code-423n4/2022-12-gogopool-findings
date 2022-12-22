@@ -99,3 +99,20 @@ No need to introduce another variable ``tokenContract``, here, a type casing is 
 ```
 ERC20(tokenAddress).safeTransfer(withdrawalAddress, amount);
 ```
+G8. https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/Staking.sol#L346-L352
+Revising the order of statements can save gas.
+```
+if (stakerIndex == -1) {
+			// create index for the new staker
+			addUint(keccak256("staker.count"); // we exchanged the order of these two stmts here
+			stakerIndex = int256(getUint(keccak256("staker.count")));
+			setUint(keccak256(abi.encodePacked("staker.index", stakerAddr)), uint256(stakerIndex)); // @no need to add 1 here
+			setAddress(keccak256(abi.encodePacked("staker.item", stakerIndex, ".stakerAddr")), stakerAddr);
+		}
+```
+
+G8. https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/Staking.sol#L353
+Replacing this line with the following line can save gas since there is no need to check AGAIN check the validity of the ``stakerIndex``:
+```
+addUint(keccak256(abi.encodePacked("staker.item", stakerIndex, ".ggpStaked")), amount);
+```
