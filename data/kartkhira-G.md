@@ -62,7 +62,7 @@ Fix :  Change Code to as below :
 
 ------------------------------------------------------------------------------------------------------------------------------
 
-Issue : Internal Variable Storage is being set only in constructor. Can be made immutable
+Issue : Internal Variable gogoStorage is being set only in constructor. Can be made immutable
 
 Code: https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/BaseAbstract.sol#L21
 
