@@ -47,6 +47,10 @@ SO CLEARLY AFTER THE CHANGE THE EXECUTION COST IS REDUCED .
 
          19:   uint8 public version;
 
+[2022-12-gogopool/contracts/contract/tokens/upgradeable/ERC20Upgradeable.sol](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/tokens/upgradeable/ERC20Upgradeable.sol)
+
+       27:   uint8 public decimals;
+
 ##
 
 ## [GAS-3]  BYTES VARIABLES ARE MORE EFFICIENT THAN STRING VARIBLES 
@@ -158,6 +162,10 @@ Make it outside and only use it inside.
 
 ## [GAS-9]  Instead of using operator && on single REQUIRE or IF statements  . Using multiple REQUIRE or  IF checks can save more gas. Its possible to save 8 gas . 
 
+[2022-12-gogopool/contracts/contract/tokens/upgradeable/ERC20Upgradeable.sol](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/tokens/upgradeable/ERC20Upgradeable.sol)
+
+          154:  require(recoveredAddress != address(0) && recoveredAddress == owner, "INVALID_SIGNER");
+
 [FILE: 2022-12-gogopool/contracts/contract/RewardsPool.sol](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/RewardsPool.sol)
 
           142:  if (claimContractPct > 0 && currentCycleRewardsTotal > 0) {   
@@ -166,6 +174,59 @@ Make it outside and only use it inside.
 
           29:    if (booleanStorage[keccak256(abi.encodePacked("contract.exists", msg.sender))] == false && msg.sender != guardian) {
 
+[FILE: 2022-12-gogopool/contracts/contract/tokens/TokenggAVAX.sol](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/tokens/TokenggAVAX.sol)
+
+         59:   if (amt > 0 && getBool(keccak256(abi.encodePacked("contract.paused", "TokenggAVAX")))) {
+
+##
+
+## [GAS-10]  ADD UNCHECKED {} FOR SUBTRACTIONS WHERE THE OPERANDS CANNOT UNDERFLOW BECAUSE OF A PREVIOUS REQUIRE() OR IF-STATEMENT . This saves 30-40 gas
+
+[FILE: 2022-12-gogopool/contracts/contract/Vault.sol](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Vault.sol)
+
+           71:   if (avaxBalances[contractName] < amount) {
+           75:   avaxBalances[contractName] = avaxBalances[contractName] - amount;  //@AUDIT UNCHECKED {} FOR SUBTRACTIONS
+
+           95:   if (avaxBalances[fromContractName] < amount) {
+           99:   avaxBalances[fromContractName] = avaxBalances[fromContractName] - amount;   //@AUDIT UNCHECKED {} FOR SUBTRACTIONS
+
+          151:  if (tokenBalances[contractKey] < amount) {
+          152:  tokenBalances[contractKey] = tokenBalances[contractKey] - amount;    //@AUDIT UNCHECKED {} FOR SUBTRACTIONS
+
+          183:  if (tokenBalances[contractKeyFrom] < amount) {
+           187: tokenBalances[contractKeyFrom] = tokenBalances[contractKeyFrom] - amount;    //@AUDIT UNCHECKED {} FOR SUBTRACTIONS
+
+##
+
+## [ GAS-11]  <X> += <Y> AND <X>-=<Y> COSTS MORE GAS THAN <X> = <X> + <Y> AND <X>=<X>-<Y> FOR STATE VARIABLES . FOR EVERY CALL CAN SAVE 13 GAS 
+
+[FILE: 2022-12-gogopool/contracts/contract/tokens/TokenggAVAX.sol](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/tokens/TokenggAVAX.sol)
+
+          149:     stakingTotalAssets -= baseAmt;
+
+          160:     stakingTotalAssets += assets;
+
+          245:     totalReleasedAssets -= amount;
+
+         252:     totalReleasedAssets += amount;
+
+[2022-12-gogopool/contracts/contract/tokens/upgradeable/ERC20Upgradeable.sol](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/tokens/upgradeable/ERC20Upgradeable.sol)
+
+       79:  balanceOf[msg.sender] -= amount;
+
+       84:  balanceOf[to] += amount;
+
+      101:  balanceOf[from] -= amount;
+
+      106:  balanceOf[to] += amount;
+
+      184:  totalSupply += amount;
+ 
+      189:  balanceOf[to] += amount;
+
+      196:   balanceOf[from] -= amount;
+
+      201:   totalSupply -= amount;
 
 
 
@@ -180,8 +241,6 @@ Make it outside and only use it inside.
 
 
 
-
-[2022-12-gogopool/contracts/contract/Staking.sol](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Staking.sol)
 
 
 
