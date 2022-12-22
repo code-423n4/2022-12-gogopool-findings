@@ -59,3 +59,13 @@ Fix :  Change Code to as below :
 
 		if (2*msg.value  < dao.getMinipoolMinAVAXStakingAmt()) {
 '''
+
+------------------------------------------------------------------------------------------------------------------------------
+
+Issue : Internal Variable Storage is being set only in constructor. Can be made immutable
+
+Code: https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/BaseAbstract.sol#L21
+
+Fix :  Change this piece of code to "Storage internal immutable gogoStorage;"
+
+------------------------------------------------------------------------------------------------------------------------------
