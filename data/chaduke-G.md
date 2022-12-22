@@ -114,5 +114,21 @@ if (stakerIndex == -1) {
 G8. https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/Staking.sol#L353
 Replacing this line with the following line can save gas since there is no need to check AGAIN check the validity of the ``stakerIndex``:
 ```
-addUint(keccak256(abi.encodePacked("staker.item", stakerIndex, ".ggpStaked")), amount);
+if (stakerIndex == -1) {
+			// create index for the new staker
+			addUint(keccak256("staker.count"), 1); // @exchanged the order of these two stms
+			stakerIndex = int256(getUint(keccak256("staker.count")));
+			setUint(keccak256(abi.encodePacked("staker.index", stakerAddr)), uint256(stakerIndex)); // no need to add 1
+			setAddress(keccak256(abi.encodePacked("staker.item", stakerIndex, ".stakerAddr")), stakerAddr);
+}
+
+addUint(keccak256(abi.encodePacked("staker.item", stakerIndex, ".ggpStaked")), amount); // save some gas here
+```
+G9. https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/MinipoolManager.sol#L216-L218
+Changing it to a shifting statment can save gas:
+```
+if (avaxAssignmentRequest << 1 < dao.getMinipoolMinAVAXStakingAmt()) {
+			revert InsufficientAVAXForMinipoolCreation();
+}
+
 ```
