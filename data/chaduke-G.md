@@ -95,40 +95,19 @@ G7. https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f
 eliminating these unnecessary getters and setters can save gas, one can simply call gogoStorage.getX(), gogoStorage.setX(), gogoStorage.deleteX(), and gogoStorage.addX(), and only increase readability of the contracts
 
 G8. https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/Vault.sol#L157-L159
-No need to introduce another variable ``tokenContract``, here, a type casing is sufficent:
+No need to introduce another variable ``tokenContract``, here, a type casing is sufficient:
 ```
 ERC20(tokenAddress).safeTransfer(withdrawalAddress, amount);
 ```
-G8. https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/Staking.sol#L346-L352
-Revising the order of statements can save gas.
-```
-if (stakerIndex == -1) {
-			// create index for the new staker
-			addUint(keccak256("staker.count"); // we exchanged the order of these two stmts here
-			stakerIndex = int256(getUint(keccak256("staker.count")));
-			setUint(keccak256(abi.encodePacked("staker.index", stakerAddr)), uint256(stakerIndex)); // @no need to add 1 here
-			setAddress(keccak256(abi.encodePacked("staker.item", stakerIndex, ".stakerAddr")), stakerAddr);
-		}
-```
-
-G8. https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/Staking.sol#L353
+G9. https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/Staking.sol#L353
 Replacing this line with the following line can save gas since there is no need to check AGAIN check the validity of the ``stakerIndex``:
 ```
-if (stakerIndex == -1) {
-			// create index for the new staker
-			addUint(keccak256("staker.count"), 1); // @exchanged the order of these two stms
-			stakerIndex = int256(getUint(keccak256("staker.count")));
-			setUint(keccak256(abi.encodePacked("staker.index", stakerAddr)), uint256(stakerIndex)); // no need to add 1
-			setAddress(keccak256(abi.encodePacked("staker.item", stakerIndex, ".stakerAddr")), stakerAddr);
-}
+addUint(keccak256(abi.encodePacked("staker.item", stakerIndex, ".ggpStaked")), amount);
+```
 
-addUint(keccak256(abi.encodePacked("staker.item", stakerIndex, ".ggpStaked")), amount); // save some gas here
-```
-G9. https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/MinipoolManager.sol#L216-L218
-Changing it to a shifting statment can save gas:
-```
-if (avaxAssignmentRequest << 1 < dao.getMinipoolMinAVAXStakingAmt()) {
-			revert InsufficientAVAXForMinipoolCreation();
-}
+G10 https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/Staking.sol#L398-L400
+Much gas is wasted because the stored index of a staker is added by 1 in the storage. AS a result, both reading and updating need to make adjustment and waste gas. To save gas, gettting rid of this add-by-1/subtract-by-1 operation and let the first staker have index 1 instead. We will not use the INDEX 0. 
 
-```
+G11. https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/MinipoolManager.sol#L566
+Much gas is wasted because the stored index of a ``minipool``  is added by 1 in the storage. AS a result, both reading and updating need to make adjustment and waste gas. To save gas, gettting rid of this add-by-1/subtract-by-1 operation and the first ``minipool`` will have index 1 instead. We will not use the INDEX 0. 
+
