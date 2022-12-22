@@ -22,6 +22,12 @@ Here are the instances entailed:
 - import "./BaseAbstract.sol";
 + import { BaseAbstract} from "./BaseAbstract.sol";
 ```
+[File: ClaimNodeOp.sol](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/ClaimNodeOp.sol)
+
+```diff
+- import "./Base.sol";
++ import {Base} from "./Base.sol";
+```
 ## Inadequate NatSpec
 Solidity contracts can use a special form of comments, i.e., the Ethereum Natural Language Specification Format (NatSpec) to provide rich documentation for functions, return variables and more. Please visit the following link for further details:
 
