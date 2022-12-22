@@ -171,8 +171,6 @@ NatSpec is missing for the following functions , constructor and events:
 	event EnabledMultisig(address indexed multisig, address actor);
 	event RegisteredMultisig(address indexed multisig, address actor);
 
-
-
 ##
 
 ## [NC-3]  EMPTY BLOCKS SHOULD BE REMOVED OR EMIT SOMETHING
@@ -180,6 +178,39 @@ NatSpec is missing for the following functions , constructor and events:
 [FILE: 12-gogopool/contracts/contract/MinipoolManager.sol](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol)
 
    106:  function receiveWithdrawalAVAX() external payable {}
+
+[FILE: 2022-12-gogopool/contracts/contract/tokens/TokenggAVAX.sol](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/tokens/TokenggAVAX.sol)
+
+    255:   function _authorizeUpgrade(address newImplementation) internal override onlyGuardian {}
+
+[FILE: 2022-12-gogopool/contracts/contract/tokens/upgradeable/ERC4626Upgradeable.sol](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/tokens/upgradeable/ERC4626Upgradeable.sol)
+
+        176:  function beforeWithdraw(uint256 assets, uint256 shares) internal virtual {}
+
+	178:  function afterDeposit(uint256 assets, uint256 shares) internal virtual {}
+
+##
+## [NC-4]  USE SAME SOLIDITY VERSIONS FOR ALL CONTRACTS . SOME CONTRACTS USING LOWER VERSIONS AND OTHER CONTRACTS USING LATEST STABLE VERSION. THIS IS NOT A BEST CODE PRACTICE.
+
+[2022-12-gogopool/contracts/contract/tokens/upgradeable/ERC20Upgradeable.sol](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/tokens/upgradeable/ERC20Upgradeable.sol)
+
+     2:  pragma solidity >=0.8.0;
+
+[FILE: 2022-12-gogopool/contracts/contract/tokens/upgradeable/ERC4626Upgradeable.sol](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/tokens/upgradeable/ERC4626Upgradeable.sol)
+
+   2:  pragma solidity >=0.8.0;
+
+[FILE: 2022-12-gogopool/contracts/contract/tokens/TokenggAVAX.sol](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/tokens/TokenggAVAX.sol)
+
+     2. pragma solidity 0.8.17;
+
+##
+
+## [NC-5]  NON-LIBRARY/INTERFACE FILES SHOULD USE FIXED COMPILER VERSIONS, NOT FLOATING ONES
+
+INSTANCES(2) :
+
+pragma solidity >=0.8.0 <0.9.0;
 
 
 
