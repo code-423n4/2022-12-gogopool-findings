@@ -42,3 +42,20 @@ Fix :  Remove the else block in Line#168. It's redundant. That is, change Code t
 		}
 '''
 -------------------------------------------------------------------------------------------------------------------------------
+
+Issue :  In minipool manager in function createMinipool, msg.value + assignmentRequest are summed. Both must be equal as per revert in MiniPoolManager.sol#213. Thus, this can be replaced with 2*msg.value. This will take less gas. Addition would invoke 2 MLOAD and 1 ADD opcode. ADD opcode takes 3 gas. And Mload aslo takes 3 gas. Totaling to 9 gas. Whereas If we multiply, It would invoke 1MLOAD and 1 MUL(5 Gas) Opcode totaling to 8 gas.
+
+Code: https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol#L216
+
+Fix :  Change Code to as below :
+
+'''
+
+		if (msg.value + avaxAssignmentRequest < dao.getMinipoolMinAVAXStakingAmt()) {
+'''
+                         TO
+'''
+
+
+		if (2*msg.value  < dao.getMinipoolMinAVAXStakingAmt()) {
+'''
