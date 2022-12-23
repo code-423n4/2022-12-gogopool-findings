@@ -162,22 +162,8 @@ abi.encodePacked(
 							)
 ```
 
-G17. https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/tokens/upgradeable/ERC4626Upgradeable.sol#L44
-Replacing it with ``convertToShares()`` can save gas.
-```
-require((shares = convertToShares(assets)) != 0, "ZERO_SHARES");
 
-```
-
-G18. https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/tokens/TokenggAVAX.sol#L193
-Replacing it with ``convertToAssets()`` can save gas:
-```
-		if ((assets = convertToAssets(shares)) == 0) {
-			revert ZeroAssets();
-		}
-```
-
-G19. https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/tokens/TokenggAVAX.sol#L139
+G17. https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/tokens/TokenggAVAX.sol#L139
 Adding unchecked can save gas here, impossible for underflow
 ```
 unchecked{
