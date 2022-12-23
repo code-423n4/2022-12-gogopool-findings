@@ -124,3 +124,41 @@ unchecked{
       uint256 unlockedRewards = (lastRewardsAmt_ * (block.timestamp - lastSync_)) / (rewardsCycleEnd_ - lastSync_);
 }
 ```
+
+G14: https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/tokens/upgradeable/ERC20Upgradeable.sol#L166-L177
+abi.encodePacked() can be used here, which saves gas.
+```
+function computeDomainSeparator() internal view virtual returns (bytes32) {
+		return
+			keccak256(
+				abi.encodePacked(        // @use abi.encodePacked() saves gas here
+					keccak256("EIP712Domain(string name,string version,uint256 chainId,address verifyingContract)"),
+					keccak256(bytes(name)),
+					keccak256("1"),
+					block.chainid,
+					address(this)
+				)
+			);
+	}
+```
+
+G15. https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/tokens/upgradeable/ERC20Upgradeable.sol#L154-L166
+Dropping the first condition can save gas since the second condition implies the first condition, in addition, owner cannot be address 0x0 since ox0 cannot sign anything)
+
+```
+require(recoveredAddress == owner, "INVALID_SIGNER");
+```
+
+G16. https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/tokens/upgradeable/ERC20Upgradeable.sol#L138-L145
+abi.encodePacked() can be used here, which saves gas.
+```
+abi.encodePacked(
+								keccak256("Permit(address owner,address spender,uint256 value,uint256 nonce,uint256 deadline)"),
+								owner,
+								spender,
+								value,
+								nonces[owner]++,
+								deadline
+							)
+```
+
