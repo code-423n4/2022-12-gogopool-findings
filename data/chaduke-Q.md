@@ -8,3 +8,10 @@ QA3: https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45
 The check of if-paused for ``TokenggAVAX`` should be done for the following important functions as well: 
 ``depositAVAX()``, ``withdrawAVAX()``, ``redeemAVAX()``, ``depositFromStaking()``, and ``withdrawForStaking()``. 
 
+QA4: https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/MinipoolManager.sol#L106
+We need to ensure that ``receiveWithdrawalAVAX()`` can only be called by the ``TokenggAVAX`` contract:
+```
+function receiveWithdrawalAVAX() external payable {
+      assert(msg.sender == address(ggAVAX));
+}
+```
