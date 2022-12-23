@@ -220,5 +220,19 @@ function cancelMinipool(address nodeID) external nonReentrant {
 G24. https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/Vault.sol#L61
 Adding payable to the function can save gas since it will eliminate the code to check whether msg.value == 0, and the modifier ``onlySpecificRegisteredContract`` will ensure no AVAX will be sent to this function by mistake, so there is no need to check whether msg.value == 0. 
 
+G25. https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/MinipoolManager.sol#L341-L342
+No need to introduce another variable ``totalAvaxAmt`` and the assignment statement. 
 
+```		
+msg.sender.safeTransferETH(avaxNodeOpAmt + avaxLiquidStakerAmt);
+
+```
  
+g26. https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/MinipoolManager.sol#L400-L403
+No need to introduce another variable ``totalAvaxAmt`` and the assignment statement. Change it to
+```
+		if (msg.value != avaxNodeOpAmt + avaxLiquidStakerAmt + avaxTotalRewardAmt) {
+			revert InvalidAmount();
+		}
+
+```
