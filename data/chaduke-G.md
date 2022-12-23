@@ -216,4 +216,9 @@ function cancelMinipool(address nodeID) external nonReentrant {
 		_cancelMinipoolAndReturnFunds(nodeID, index);
 	}
 ```
+
+G24. https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/Vault.sol#L61
+Adding payable to the function can save gas since it will eliminate the code to check whether msg.value == 0, and the modifier ``onlySpecificRegisteredContract`` will ensure no AVAX will be sent to this function by mistake, so there is no need to check whether msg.value == 0. 
+
+
  
