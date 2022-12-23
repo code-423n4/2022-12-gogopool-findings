@@ -116,3 +116,11 @@ Including  the line inside  unchecked can save gas since we know ``baseAmt <= st
 ```
 unchecked{stakingTotalAssets -= baseAmt;}
 ```
+
+G13: https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/tokens/TokenggAVAX.sol#L128
+adding ``unchecked`` for the line can save gas as we know underflow and devide-by-zero  are impossible.
+```
+unchecked{
+      uint256 unlockedRewards = (lastRewardsAmt_ * (block.timestamp - lastSync_)) / (rewardsCycleEnd_ - lastSync_);
+}
+```
