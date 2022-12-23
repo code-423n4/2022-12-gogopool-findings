@@ -91,33 +91,33 @@ unchecked{
 }
 ```
 
-G7. https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/BaseAbstract.sol#L107-L197
+G8. https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/BaseAbstract.sol#L107-L197
 eliminating these unnecessary getters and setters can save gas, one can simply call gogoStorage.getX(), gogoStorage.setX(), gogoStorage.deleteX(), and gogoStorage.addX(), and only increase readability of the contracts
 
-G8. https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/Vault.sol#L157-L159
+G9. https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/Vault.sol#L157-L159
 No need to introduce another variable ``tokenContract``, here, a type casing is sufficient:
 ```
 ERC20(tokenAddress).safeTransfer(withdrawalAddress, amount);
 ```
-G9. https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/Staking.sol#L353
+G10. https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/Staking.sol#L353
 Replacing this line with the following line can save gas since there is no need to check AGAIN check the validity of the ``stakerIndex``:
 ```
 addUint(keccak256(abi.encodePacked("staker.item", stakerIndex, ".ggpStaked")), amount);
 ```
 
-G10 https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/Staking.sol#L398-L400
+G11 https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/Staking.sol#L398-L400
 Much gas is wasted because the stored index of a staker is added by 1 in the storage. AS a result, both reading and updating need to make adjustment and waste gas. To save gas, gettting rid of this add-by-1/subtract-by-1 operation and let the first staker have index 1 instead. We will not use the INDEX 0. 
 
-G11. https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/MinipoolManager.sol#L566
+G12. https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/MinipoolManager.sol#L566
 Much gas is wasted because the stored index of a ``minipool``  is added by 1 in the storage. AS a result, both reading and updating need to make adjustment and waste gas. To save gas, gettting rid of this add-by-1/subtract-by-1 operation and the first ``minipool`` will have index 1 instead. We will not use the INDEX 0. 
 
-G12 https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/tokens/TokenggAVAX.sol#L149
+G13 https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/tokens/TokenggAVAX.sol#L149
 Including  the line inside  unchecked can save gas since we know ``baseAmt <= stakingTotalAssets`` as a result of line 144.
 ```
 unchecked{stakingTotalAssets -= baseAmt;}
 ```
 
-G13: https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/tokens/TokenggAVAX.sol#L128
+G14: https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/tokens/TokenggAVAX.sol#L128
 adding ``unchecked`` for the line can save gas as we know underflow and devide-by-zero  are impossible.
 ```
 unchecked{
@@ -125,7 +125,7 @@ unchecked{
 }
 ```
 
-G14: https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/tokens/upgradeable/ERC20Upgradeable.sol#L166-L177
+G15: https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/tokens/upgradeable/ERC20Upgradeable.sol#L166-L177
 abi.encodePacked() can be used here, which saves gas.
 ```
 function computeDomainSeparator() internal view virtual returns (bytes32) {
@@ -142,14 +142,14 @@ function computeDomainSeparator() internal view virtual returns (bytes32) {
 	}
 ```
 
-G15. https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/tokens/upgradeable/ERC20Upgradeable.sol#L154-L166
+G16. https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/tokens/upgradeable/ERC20Upgradeable.sol#L154-L166
 Dropping the first condition can save gas since the second condition implies the first condition, in addition, owner cannot be address 0x0 since ox0 cannot sign anything)
 
 ```
 require(recoveredAddress == owner, "INVALID_SIGNER");
 ```
 
-G16. https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/tokens/upgradeable/ERC20Upgradeable.sol#L138-L145
+G17. https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/tokens/upgradeable/ERC20Upgradeable.sol#L138-L145
 abi.encodePacked() can be used here, which saves gas.
 ```
 abi.encodePacked(
@@ -163,10 +163,23 @@ abi.encodePacked(
 ```
 
 
-G17. https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/tokens/TokenggAVAX.sol#L139
+G18. https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/tokens/TokenggAVAX.sol#L139
 Adding unchecked can save gas here, impossible for underflow
 ```
 unchecked{
            return totalAssets_ - reservedAssets - stakingTotalAssets;
 }
 ```
+
+G19. https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/tokens/TokenggAVAX.sol#L99
+Adding unchecked can save gas here, impossible for underflow
+```
+uint256 nextRewardsAmt = (asset.balanceOf(address(this)) + stakingTotalAssets_) - totalReleasedAssets_ - lastRewardsAmt_;
+
+```
+G20. https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/tokens/TokenggAVAX.sol#L162-L163
+No need to introduce another variable ``withdrawer`` and the need of assignment stmt:
+```
+IWithdrawer(msg.sender).receiveWithdrawalAVAX{value: assets}();
+
+``` 
