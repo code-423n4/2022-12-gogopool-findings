@@ -10,6 +10,11 @@ Here are the instances entailed:
 // import {console} from "forge-std/console.sol";
 // import {format} from "sol-utils/format.sol";
 ```
+[File: Staking.sol#L203](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Staking.sol#L203)
+
+```
+	// TODO cant use onlySpecificRegisteredContract("ClaimNodeOp", msg.sender) since we also call from increaseMinipoolCount. Wat do?
+```
 ## Modularity on import usages
 For cleaner Solidity code in conjunction with the rule of modularity and modular programming, use named imports with curly braces instead of adopting the global import approach. Throughout the code bases, most of the imports are adopting the recommended approach but some are not. Consider synchronizing them to the recommended method.
 
@@ -37,3 +42,11 @@ Here are the contract instances with missing NatSpec in its entirety:
 
 [File: BaseUpgradeable.sol](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/BaseUpgradeable.sol)
 
+## Typo mistakes
+
+[File: MinipoolManager.sol#L309](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol#L309)
+
+```diff
+-	/// @notice Verifies that the minipool related the the given node ID is able to a validator
++	/// @notice Verifies that the minipool related to the given node ID is able to become a validator
+```
