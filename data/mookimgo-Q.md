@@ -1,4 +1,6 @@
-dirty hack in getStakers function of Staking.sol can be removed
+# 1. dirty hack in getStakers function of Staking.sol can be removed
+
+https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Staking.sol#L416
 
 ```
 	/// @notice Get stakers in the protocol (limit=0 means no pagination)
@@ -26,6 +28,6 @@ dirty hack in getStakers function of Staking.sol can be removed
 	}
 ```
 
-As the stakers'length is exactly max - offse, which would be the same as total
+As the stakers'length is exactly max - offse, which would be the same as `total` variable
 
 So there's no need to use assembly dirty hack, and also total variable can be removed
