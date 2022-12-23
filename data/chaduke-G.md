@@ -111,3 +111,8 @@ Much gas is wasted because the stored index of a staker is added by 1 in the sto
 G11. https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/MinipoolManager.sol#L566
 Much gas is wasted because the stored index of a ``minipool``  is added by 1 in the storage. AS a result, both reading and updating need to make adjustment and waste gas. To save gas, gettting rid of this add-by-1/subtract-by-1 operation and the first ``minipool`` will have index 1 instead. We will not use the INDEX 0. 
 
+G12 https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/tokens/TokenggAVAX.sol#L149
+Including  the line inside  unchecked can save gas since we know ``baseAmt <= stakingTotalAssets`` as a result of line 144.
+```
+unchecked{stakingTotalAssets -= baseAmt;}
+```
