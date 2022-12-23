@@ -24,6 +24,4 @@ File: ProtocolDAO.sol
 File: Base.sol
 10:	         constructor(Storage _gogoStorageAddress) {
 
-
 ```
-- add a function to return only price in Oracle contract to keep the code concise, so in Staking.sol line 296, the return value would only contain the price, would save on the cost of fetching timestamp and returning it while being unused.
