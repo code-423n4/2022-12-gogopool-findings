@@ -176,3 +176,11 @@ Replacing it with ``convertToAssets()`` can save gas:
 			revert ZeroAssets();
 		}
 ```
+
+G19. https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/tokens/TokenggAVAX.sol#L139
+Adding unchecked can save gas here, impossible for underflow
+```
+unchecked{
+           return totalAssets_ - reservedAssets - stakingTotalAssets;
+}
+```
