@@ -196,3 +196,8 @@ function depositFromStaking(uint256 baseAmt, uint256 rewardAmt) public payable o
 		IWAVAX(address(asset)).deposit{value: msg.value}();  // @audit: replace it with msg.value
 	}
 ```
+
+G22. https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/tokens/TokenggAVAX.sol#L153
+Making the function payable can save gas, as this will eliminate the code to check whether msg.value == 0, and this function will be called by ``MinipoolManager``. Therefore, no worry to send avax via this function mistakenly.
+
+ 
