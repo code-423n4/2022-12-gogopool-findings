@@ -52,3 +52,23 @@ For instance, the code block below may be refactored as follows:
 +		ggpRewards = getUint(keccak256(abi.encodePacked("staker.item", stakerIndex, ".ggpRewards")));
 	}
 ```
+## Unneeded functions
+In `Staking.sol`, `stakeGGP()` and `restakeGGP()` that have similar/identical function logic can be discarded to save gas both on contract size and function calls. `stakerAddr` can be user specified much as it is being applied on `amount`. These parameters are going to be taken care of at the user interface after all. Additionally, there should not be any security concern removing the modifier, `onlySpecificRegisteredContract("ClaimNodeOp", msg.sender)`, while impartially applying the same set of rules on every staker.
+
+Consider doing away with them and refactoring `_stakeGGP()` and the associated `claimAndRestake()` of `ClaimNodeOp.sol` as follows:
+
+[File: Staking.sol#L337-L354](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Staking.sol#L337-L354)
+
+```diff
+-	function _stakeGGP(address stakerAddr, uint256 amount) internal {
++	function _stakeGGP(address stakerAddr, uint256 amount) external whenNotPaused {
++		ggp.safeTransferFrom(msg.sender, address(this), amount);
+		emit GGPStaked(stakerAddr, amount);
+                ...
+```
+[File: ClaimNodeOp.sol#L106](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/ClaimNodeOp.sol#L106)
+
+```diff
+-			staking.restakeGGP(msg.sender, restakeAmt);
++			staking._stakeGGP(msg.sender, restakeAmt);
+```
