@@ -31,3 +31,19 @@ https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Stak
 As the stakers'length is exactly max - offse, which would be the same as `total` variable
 
 So there's no need to use assembly dirty hack, and also total variable can be removed
+
+# 2. InsufficientBalance revert can be removed (auto adjust amount)
+
+https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Staking.sol#L360
+
+ can be modified as:
+
+```
+	function withdrawGGP(uint256 amount) external whenNotPaused {
+                uint256 stakingAmount = getGGPStake(msg.sender);
+		if (amount > stakingAmount) {
+			amount = stakingAmount;
+		}
+```
+
+In this design, user can easily withdraw all his GGP staking by specifying amount=(uint256).max-1
