@@ -200,4 +200,20 @@ function depositFromStaking(uint256 baseAmt, uint256 rewardAmt) public payable o
 G22. https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/tokens/TokenggAVAX.sol#L153
 Making the function payable can save gas, as this will eliminate the code to check whether msg.value == 0, and this function will be called by ``MinipoolManager``. Therefore, no worry to send avax via this function mistakenly.
 
+G23: https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/MinipoolManager.sol#L276-L277
+Moving these two lines as the first two lines of the function can save gas when the caller is not the owner for example:
+```
+function cancelMinipool(address nodeID) external nonReentrant {
+		int256 index = requireValidMinipool(nodeID);
+		onlyOwner(index);
+
+		Staking staking = Staking(getContractAddress("Staking"));
+		ProtocolDAO dao = ProtocolDAO(getContractAddress("ProtocolDAO"));
+		// make sure they meet the wait period requirement
+		if (block.timestamp - staking.getRewardsStartTime(msg.sender) < dao.getMinipoolCancelMoratoriumSeconds()) {
+			revert CancellationTooEarly();
+		}
+		_cancelMinipoolAndReturnFunds(nodeID, index);
+	}
+```
  
