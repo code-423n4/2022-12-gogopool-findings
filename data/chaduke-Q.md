@@ -15,3 +15,26 @@ function receiveWithdrawalAVAX() external payable {
       assert(msg.sender == address(ggAVAX) || msg.sender == getContractAddress("Vault"));
 }
 ```
+
+QA5: https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/MinipoolManager.sol#L239-L246
+The implementation fails to conform to the documentation that says "If nodeID exists, only allow overwriting if node is finished or canceled``). It only checked the next status is ``MinipoolStatus.Prelaunch`` without checking the current status. For example, the current status might be MinipoolStatus.Withdrawable`` see the logic in ``requireValidStateTransition()``.
+To fix, we need to explicitly check the current status as well:
+```
+if (minipoolIndex != -1) {
+                       bytes32 statusKey = keccak256(abi.encodePacked("minipool.item", minipoolIndex, ".status"));
+		       MinipoolStatus currentStatus = MinipoolStatus(getUint(statusKey));
+
+                       if(currentStutus != MinipoolStaus.Finished && currentStutus != MinipoolStatus.Canceled) revert InvalidStateTransition(); // @audit: check current status explicitly!
+
+			requireValidStateTransition(minipoolIndex, MinipoolStatus.Prelaunch);
+        		resetMinipoolData(minipoolIndex);
+			// Also reset initialStartTime as we are starting a whole new validation
+			setUint(keccak256(abi.encodePacked("minipool.item", minipoolIndex, ".initialStartTime")), 0);
+		} else {
+			minipoolIndex = int256(getUint(keccak256("minipool.count")));
+			// The minipoolIndex is stored 1 greater than actual value. The 1 is subtracted in getIndexOf()
+			setUint(keccak256(abi.encodePacked("minipool.index", nodeID)), uint256(minipoolIndex + 1));
+			setAddress(keccak256(abi.encodePacked("minipool.item", minipoolIndex, ".nodeID")), nodeID);
+			addUint(keccak256("minipool.count"), 1);
+		}
+```
