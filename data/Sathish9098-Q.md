@@ -212,6 +212,34 @@ INSTANCES(2) :
 
 pragma solidity >=0.8.0 <0.9.0;
 
+##
+
+## [L-1]  nodeID is not checked with zero address . Its possible to call the cancelMinipool() function with zero address.
+
+[FILE: 2022-12-gogopool/contracts/contract/MinipoolManager.sol](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol)
+
+            function cancelMinipool(address nodeID) external nonReentrant {
+		Staking staking = Staking(getContractAddress("Staking"));
+		ProtocolDAO dao = ProtocolDAO(getContractAddress("ProtocolDAO"));
+		int256 index = requireValidMinipool(nodeID);
+		onlyOwner(index);
+		// make sure they meet the wait period requirement
+		if (block.timestamp - staking.getRewardsStartTime(msg.sender) < dao.getMinipoolCancelMoratoriumSeconds()) {
+			revert CancellationTooEarly();
+		}
+		_cancelMinipoolAndReturnFunds(nodeID, index);
+	     }
+
+Recommended mitigation:
+
+                if (nodeID == address(0)) {
+			revert InvalidNodeID();
+		}
+##
+
+## 
+
+
 
 
 
