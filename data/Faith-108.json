@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "Faith",
+  "risk": "",
+  "title": "Multiple settings in `ProtocolDAO` do not have setters implemented for them",
+  "issueId": 108,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/108"
+}
