@@ -243,3 +243,9 @@ This block can be simply replaced by the following
 return claimContractPct.mulWadDown(currentCycleRewardsTotal);
 
 ```
+
+G28. https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/RewardsPool.sol#L82-L100
+We can simply replace L98 with the following and eliminate L84 to save gas.
+```
+setUint(keccak256("RewardsPool.InflationIntervalStartTime"), block.timestamp);
+```
