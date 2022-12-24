@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "helios",
+  "risk": "",
+  "title": "Incorrect function calls in `calculateAndDistributeRewards` function",
+  "issueId": 101,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/101"
+}
