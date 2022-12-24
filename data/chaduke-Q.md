@@ -38,3 +38,13 @@ if (minipoolIndex != -1) {
 			addUint(keccak256("minipool.count"), 1);
 		}
 ```
+
+QA6: https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/MinipoolManager.sol#L509-L510
+Fail to call ``staking.decreaseMinipoolCount(owner);`` to decrease the minipool count. The fix is:
+
+```
+                Staking staking = Staking(getContractAddress("Staking"));
+		staking.decreaseAVAXAssigned(owner, avaxLiquidStakerAmt);
+		staking.decreaseMinipoolCount(owner);
+
+```
