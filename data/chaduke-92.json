@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "chaduke",
+  "risk": "",
+  "title": "Rounding down error for the  inflate() function leaing to accumulation of partial day inflation loss.",
+  "issueId": 92,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/92"
+}
