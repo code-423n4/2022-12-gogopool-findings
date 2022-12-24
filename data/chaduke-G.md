@@ -236,3 +236,10 @@ No need to introduce another variable ``totalAvaxAmt`` and the assignment statem
 		}
 
 ```
+
+G27. https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/RewardsPool.sol#L141-L146
+This block can be simply replaced by the following
+```
+return claimContractPct.mulWadDown(currentCycleRewardsTotal);
+
+```
