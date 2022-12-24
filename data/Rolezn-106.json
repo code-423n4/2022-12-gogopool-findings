@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "Rolezn",
+  "risk": "",
+  "title": "`safeTransferETH()` can result in failed transfer with low level call and won't revert as it does not check the codesize of `to` address, which may lead to loss of funds",
+  "issueId": 106,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/106"
+}
