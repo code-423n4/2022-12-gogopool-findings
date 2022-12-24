@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "UdarTeam",
+  "risk": "",
+  "title": "TOKENS LIKE ```STA``` TAKE FEES ON TRANSFER AND COULD LEAD TO INCORRECT BALANCES ON ```tokenBalances[contractKey]```",
+  "issueId": 107,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/107"
+}
