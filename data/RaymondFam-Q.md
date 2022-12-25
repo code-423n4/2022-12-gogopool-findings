@@ -59,3 +59,35 @@ The calculated number should be `1,000,133,680,617,113,440` instead of `1,000,13
 
 Note: `BigInt((1 + 0.05) ** (1 / (365)) * 1e18)` would also yield an inaccurate figure, `1000133680617113472n`.
 
+`dao.getInflationIntervalRate()`, i.e. 1000133680617113500, is currently used to calculate the inflation amount in the code line below:
+
+[File: RewardsPool.sol#L75](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/RewardsPool.sol#L75) 
+
+```
+			newTotalSupply = newTotalSupply.mulWadDown(inflationRate);
+```
+It has no impact in the protocol with the last three differing digits since the total supply of GGP is capped at 22,500,000. It could be an issue elsewhere if the a different reward token were to be implemented with its total supply capped at a much higher value, e.g. in quadrillion like Shiba Inu.  
+
+## Hard coded initialization
+In `ProtocolDAO.sol`, `initialize()` could only be called once by `onlyGuardian` because of the bool logic in [lines 24 - 27](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/ProtocolDAO.sol#L24-L27). All getters are hard coded with only `TotalGGPCirculatingSupply`, `ClaimingContractPct`, and `ExpectedAVAXRewardsRate` having their respective setters implemented in the contract.
+
+Consider implementing setters for all of them where possible so that the community will have more proposal options when the protocol go full DAO. Otherwise, a proposal for changing `dao.getInflationIntervalRate()`, currently hard coded to 1000133680617113500, for an example, would not be viable if there was no setter function catered for it.
+
+## Inexpedient ternary logic
+The ternary code line below:
+
+[File: ProtocolDAO.sol#L118](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/ProtocolDAO.sol#L118)
+
+```
+		return rate < 1 ether ? 1 ether : rate;
+```
+is deemed impractical considering 1 ether, which is 1e18, is going to make the fraction of the following arithmetic calculation always equal to 1:
+
+[File: RewardsPool.sol#L75](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/RewardsPool.sol#L75)
+
+```
+			newTotalSupply = newTotalSupply.mulWadDown(inflationRate);
+```
+With `1 ether / WAD == 1`, GGP would never be able to inflate and `ggp.totalSupply()` would forever stay at the initialized value of 18,000,000. Additionally, running a GGP rewards cycle via `startRewardsCycle()` would also be impossible because the function would readily revert on [the second if block](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/RewardsPool.sol#L174-L176) due to [`newTokens == 0`](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/RewardsPool.sol#L92). 
+
+There is no risk foreseeable since `InflationIntervalRate` is currently hard coded to 5 % annual. It would have to be refactored to assume something higher than 1 ether if `(rate < 1 ether) == false` if a setter for `InflationIntervalRate` was going to be implemented in the contract. 
