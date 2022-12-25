@@ -60,3 +60,13 @@ function increaseRewardsCycleCount() internal {
 
 ```
 
+QA8: https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/RewardsPool.sol#L230
+The number of enabled ``enabledMultisigs`` should be ``enabledCount`` instead of ``enabledMultisigs.length``, which is equal to ``count``.
+
+```
+for (uint256 i = 0; i < enabledCount; i++) {
+			vault.withdrawToken(enabledMultisigs[i], ggp, tokensPerMultisig);
+}
+```
+
+
