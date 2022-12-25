@@ -1,4 +1,4 @@
-# Unnecessary checked arithmetic in for loop
+# 1.Unnecessary checked arithmetic in for loop
 
 A lot of times there is no risk that the loop counter can overflow.
 
@@ -40,6 +40,23 @@ File: Staking.sol
 
 428:                  for (uint256 i = offset; i < max; i++) {
 
+
+
+
+# 2.Use Shift Right/Left instead of Division/Multiplication if possible
+Description
+A division/multiplication by any number x being a power of 2 can be calculated by shifting log2(x) to the right/left.
+While the DIV opcode uses 5 gas, the SHR opcode only uses 3 gas. Furthermore, Solidity's division operation also includes a division-by-0 prevention which is bypassed using shifting.
+
+Good:
+
+uint256 b = a >> 1
+
+
+Instances (1):
+File: MinipoolManager.sol
+
+413: 		uint256 avaxHalfRewards = avaxTotalRewardAmt / 2;
 
 
 
