@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "ladboy233",
+  "risk": "",
+  "title": "Node Operator can game the delegationFee parameter when creating Mini pool",
+  "issueId": 120,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/120"
+}
