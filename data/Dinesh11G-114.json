@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "Dinesh11G",
+  "risk": "",
+  "title": "Using block.timestamp can lead to vulnerabilities",
+  "issueId": 114,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/114"
+}
