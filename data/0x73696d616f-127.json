@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "0x73696d616f",
+  "risk": "",
+  "title": "ERC20Upgradeable.sol and ERC4626Upgradeable.sol do not define a private uint256[] __gap",
+  "issueId": 127,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/127"
+}
