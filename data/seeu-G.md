@@ -41,7 +41,7 @@ for (uint256 i = 0; i < len; i++) {
 - [G002 - Cache Array Length Outside of Loop](https://github.com/byterocket/c4-common-issues/blob/main/0-Gas-Optimizations.md#g002---cache-array-length-outside-of-loop)
 - [Avoid unnecessary read of array length in for loops can save gas](https://github.com/code-423n4/2021-11-badgerzaps-findings/issues/36)
 
-## If possible, implement Shift Right/Left for Division and Multiplication
+## Missing implementation Shift Right/Left for division and multiplication
 
 The `SHR` opcode only utilizes 3 gas, compared to the 5 gas used by the `DIV` opcode. Additionally, shifting is used to get around Solidity's division operation's division-by-0 prohibition.
 
