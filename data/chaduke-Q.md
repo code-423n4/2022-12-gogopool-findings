@@ -46,5 +46,17 @@ Fail to call ``staking.decreaseMinipoolCount(owner);`` to decrease the minipool 
                 Staking staking = Staking(getContractAddress("Staking"));
 		staking.decreaseAVAXAssigned(owner, avaxLiquidStakerAmt);
 		staking.decreaseMinipoolCount(owner);
+ 
+```
+
+QA7: https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/RewardsPool.sol#L165
+The function ``increaseRewardsCycleCount()`` assumes that ``getRewardsCyclesElapsed() = 1``, this assumption might not be true. We should implement `increaseRewardsCycleCount()`` such that its correctness does not depend on this assumption, and will work regardless how many reward cycles have passed.
+```
+
+function increaseRewardsCycleCount() internal {
+		addUint(keccak256("RewardsPool.RewardsCycleCount"), getRewardsCyclesElapsed());
+}
+
 
 ```
+
