@@ -13,7 +13,7 @@ for (uint i; i < len; ) {
     unchecked { i++; }
 }
 
-Instances (10):
+Instances (7):
 File: MinipoolManager.sol
 
 619: 		for (uint256 i = offset; i < max; i++) {
