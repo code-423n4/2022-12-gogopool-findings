@@ -50,3 +50,12 @@ Here are the contract instances with missing NatSpec in its entirety:
 -	/// @notice Verifies that the minipool related the the given node ID is able to a validator
 +	/// @notice Verifies that the minipool related to the given node ID is able to become a validator
 ```
+## 5% annual calculated on a daily interval not precised enough
+[File: ProtocolDAO.sol#L41](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/ProtocolDAO.sol#L41)
+
+The max safe integer for JavaScript without losing precision is `(2^53 – 1)`, which is [around 9 quadrillion](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER#:~:text=The%20Number.,larger%20integers%2C%20consider%20using%20BigInt%20.). As such, the code line linked above that entails 19 digits will not be fully accurate.
+
+The calculated number should be `1,000,133,680,617,113,440` instead of `1,000,133,680,617,113,500`.
+
+Note: `BigInt((1 + 0.05) ** (1 / (365)) * 1e18)` would also yield an inaccurate figure, `1000133680617113472n`.
+
