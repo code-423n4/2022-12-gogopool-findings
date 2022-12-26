@@ -15,6 +15,11 @@ Here are the instances entailed:
 ```
 	// TODO cant use onlySpecificRegisteredContract("ClaimNodeOp", msg.sender) since we also call from increaseMinipoolCount. Wat do?
 ```
+[File: MinipoolManager.sol#L412](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol#L412)
+
+```
+		// TODO Revisit this logic if we ever allow unequal matched funds
+```
 ## Modularity on import usages
 For cleaner Solidity code in conjunction with the rule of modularity and modular programming, use named imports with curly braces instead of adopting the global import approach. Throughout the code bases, most of the imports are adopting the recommended approach but some are not. Consider synchronizing them to the recommended method.
 
@@ -38,7 +43,7 @@ Solidity contracts can use a special form of comments, i.e., the Ethereum Natura
 
 https://docs.soliditylang.org/en/v0.8.16/natspec-format.html
 
-Here are the contract instances with missing NatSpec in its entirety:
+Here is a contract instance with missing NatSpec in its entirety:
 
 [File: BaseUpgradeable.sol](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/BaseUpgradeable.sol)
 
@@ -49,6 +54,12 @@ Here are the contract instances with missing NatSpec in its entirety:
 ```diff
 -	/// @notice Verifies that the minipool related the the given node ID is able to a validator
 +	/// @notice Verifies that the minipool related to the given node ID is able to become a validator
+```
+[File: MinipoolManager.sol#L556](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol#L556)
+
+```diff
+-	/// @return The approximate rewards the node should recieve from Avalanche for beign a validator
++	/// @return The approximate rewards the node should recieve from Avalanche for being a validator
 ```
 ## 5% annual calculated on a daily interval not fully precised
 [File: ProtocolDAO.sol#L41](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/ProtocolDAO.sol#L41)
