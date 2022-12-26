@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "0x73696d616f",
+  "risk": "",
+  "title": "In TokenggAVAX.sol, the rewards are destributed for the last validation period, so users know how much they will earn before staking.",
+  "issueId": 134,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/134"
+}
