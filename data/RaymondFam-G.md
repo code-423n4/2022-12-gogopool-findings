@@ -144,3 +144,14 @@ Consider swapping the order of executions on line 84 and line 85:
 		uint256 inflationIntervalElapsedSeconds = (block.timestamp - getInflationIntervalStartTime());
 -		(uint256 currentTotalSupply, uint256 newTotalSupply) = getInflationAmt();
 ```
+## Division by 2
+A division by 2 can be calculated by shifting one to the right since the div opcode uses 5 gas while SHR opcode uses 3 gas. Additionally, Solidity's division operation also includes a division-by-0 prevention by pass using shifting.
+
+Consider using >>1 by having the code instance below refactored as follows:
+
+[File: MinipoolManager.sol#L413](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol#L413)
+
+```diff
+-		uint256 avaxHalfRewards = avaxTotalRewardAmt / 2;
++		uint256 avaxHalfRewards = avaxTotalRewardAmt >> 1;
+```
