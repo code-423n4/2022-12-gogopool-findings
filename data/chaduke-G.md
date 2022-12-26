@@ -255,3 +255,11 @@ Adding unchecked can save gas since underflow is impossible here:
 ```
 uint256 newTokens = newTotalSupply - currentTotalSupply;
 ```
+
+G29. https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/ClaimNodeOp.sol#L102
+Surrounding this with unchecked with save gas since underflow is impossible due to line 92.
+```
+unchecked{
+       uint256 restakeAmt = ggpRewards - claimAmt;
+}
+```
