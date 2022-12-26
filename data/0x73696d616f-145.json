@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "0x73696d616f",
+  "risk": "",
+  "title": "Dishonest node operator that did not contribute to any validation can still receive staking GGP rewards.",
+  "issueId": 145,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/145"
+}
