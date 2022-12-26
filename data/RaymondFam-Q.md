@@ -50,7 +50,7 @@ Here are the contract instances with missing NatSpec in its entirety:
 -	/// @notice Verifies that the minipool related the the given node ID is able to a validator
 +	/// @notice Verifies that the minipool related to the given node ID is able to become a validator
 ```
-## 5% annual calculated on a daily interval not precised enough
+## 5% annual calculated on a daily interval not fully precised
 [File: ProtocolDAO.sol#L41](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/ProtocolDAO.sol#L41)
 
 The max safe integer for JavaScript without losing precision is `(2^53 – 1)`, which is [around 9 quadrillion](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER#:~:text=The%20Number.,larger%20integers%2C%20consider%20using%20BigInt%20.). As such, the code line linked above that entails 19 digits will not be fully accurate.
@@ -66,12 +66,12 @@ Note: `BigInt((1 + 0.05) ** (1 / (365)) * 1e18)` would also yield an inaccurate 
 ```
 			newTotalSupply = newTotalSupply.mulWadDown(inflationRate);
 ```
-It has no impact in the protocol with the last three differing digits since the total supply of GGP is capped at 22,500,000. It could be an issue elsewhere if the a different reward token were to be implemented with its total supply capped at a much higher value, e.g. in quadrillion like Shiba Inu.  
+It has no impact in the protocol with the last three differing digits since the total supply of GGP is comparatively lowly capped at 22,500,000. It could be an issue elsewhere if the a different reward token were to be implemented with its total supply capped at a much higher value, e.g. in quadrillion like Shiba Inu.  
 
 ## Hard coded initialization
-In `ProtocolDAO.sol`, `initialize()` could only be called once by `onlyGuardian` because of the bool logic in [lines 24 - 27](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/ProtocolDAO.sol#L24-L27). All getters are hard coded with only `TotalGGPCirculatingSupply`, `ClaimingContractPct`, and `ExpectedAVAXRewardsRate` having their respective setters implemented in the contract.
+In `ProtocolDAO.sol`, `initialize()` could only be called once by `onlyGuardian` because of the bool logic in [lines 24 - 27](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/ProtocolDAO.sol#L24-L27). All storage variables are hard coded with their values retrievable via the getters. Only `TotalGGPCirculatingSupply`, `ClaimingContractPct`, and `ExpectedAVAXRewardsRate` have their respective setters implemented in the contract.
 
-Consider implementing setters for all of them where possible so that the community will have more proposal options when the protocol go full DAO. Otherwise, a proposal for changing `dao.getInflationIntervalRate()`, currently hard coded to 1000133680617113500, for an example, would not be viable if there was no setter function catered for it.
+Consider implementing setters for all of the storage variables initialized where possible so that the community will have more proposal options when the protocol go full DAO. Otherwise, a proposal for changing `dao.getInflationIntervalRate()`, currently hard coded to 1000133680617113500, for an example, would not be viable if there was no setter function catered for it.
 
 ## Inexpedient ternary logic
 The ternary code line below:
@@ -91,3 +91,42 @@ is deemed impractical considering 1 ether, which is 1e18, is going to make the f
 With `1 ether / WAD == 1`, GGP would never be able to inflate and `ggp.totalSupply()` would forever stay at the initialized value of 18,000,000. Additionally, running a GGP rewards cycle via `startRewardsCycle()` would also be impossible because the function would readily revert on [the second if block](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/RewardsPool.sol#L174-L176) due to [`newTokens == 0`](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/RewardsPool.sol#L92). 
 
 There is no risk foreseeable since `InflationIntervalRate` is currently hard coded to 5 % annual. It would have to be refactored to assume something higher than 1 ether if `(rate < 1 ether) == false` if a setter for `InflationIntervalRate` was going to be implemented in the contract. 
+
+## Custom contract pauser and resumer
+First off, `pauseEverything()` and `resumeEverything()` have both their names belie their function logic catering selectively to important contracts instead of everything (or as it implies, every contract). Consider implementing a custom contract pauser and resumer in `Ocyticus.sol` so that the defenders get to work on other contracts rather than just "TokenggAVAX", "MinipoolManager", and "Staking".
+
+Here is what the suggested functions could look like:
+
+```solidity
+	function pauseContract (string memory _contract) external onlyDefender {
+		ProtocolDAO dao = ProtocolDAO(getContractAddress("ProtocolDAO"));
+		dao.pauseContract(_contract);
+		disableAllMultisigs();
+	}
+
+	function resumeContract (string memory _contract) external onlyDefender {
+		ProtocolDAO dao = ProtocolDAO(getContractAddress("ProtocolDAO"));
+		dao.resumeContract(_contract);
+	}
+```
+## Unusual multisig logic
+Conventionally, multi-signature requires the agreement of multiple people to perform an action, e.g. 6 out of 10 in the case associated with the protocol. However, `requireNextActiveMultisig()` in `MultisigManager.sol` only requires one valid, i.e registered and enabled Multisig, address to interact with `MinipoolManager.sol`. 
+
+Additionally, the function logic of `requireNextActiveMultisig()` seems to be mostly (if not only) dealing with the first multisig's index, making the other nine indices never reachable unless the first one has been compromised and disabled. 
+
+[File: MultisigManager.sol#L80-L91](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MultisigManager.sol#L80-L91)
+
+```
+	function requireNextActiveMultisig() external view returns (address) {
+		uint256 total = getUint(keccak256("multisig.count"));
+		address addr;
+		bool enabled;
+		for (uint256 i = 0; i < total; i++) {
+			(addr, enabled) = getMultisig(i);
+			if (enabled) {
+				return addr;
+			}
+		}
+		revert NoEnabledMultisigFound();
+	}
+```
