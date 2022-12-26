@@ -69,4 +69,10 @@ for (uint256 i = 0; i < enabledCount; i++) {
 }
 ```
 
+QA9: https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/Ocyticus.sol#L55-L68
+Need to function to enable a particular multisig.
+
+QA10. https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/tokens/TokenggAVAX.sol#L166
+The following functions need to add modifier ``whenNotPaused``: ``depositAVAX()``, ``withdrawAVAX()``, ``redeemAVAX()``.
+
 
