@@ -96,3 +96,51 @@ Consider removing the unneeded if block to save gas both on contract deployment 
 -			revert InsufficientAVAXForMinipoolCreation();
 -		}
 ```
+## Avoid comparing boolean expressions to boolean literals
+Comparing a boolean value to a boolean literal incurs the `ISZERO` operation and costs more gas than using a boolean expression.
+
+Consider having the affected code lines below refactored as follows:
+
+[File: BaseAbstract.sol#L25](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/BaseAbstract.sol#L25)
+
+```diff
+-		if (getBool(keccak256(abi.encodePacked("contract.exists", msg.sender))) == false) {
++		if !(getBool(keccak256(abi.encodePacked("contract.exists", msg.sender)))) {
+```
+[File: BaseAbstract.sol#L74](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/BaseAbstract.sol#L74)
+
+```diff
+-		if (enabled == false) {
++		if (!enabled) {
+```
+[File: Storage.sol#L29](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Storage.sol#L29)
+
+```diff
+-		if (booleanStorage[keccak256(abi.encodePacked("contract.exists", msg.sender))] == false && msg.sender != guardian) {
++		if (!booleanStorage[keccak256(abi.encodePacked("contract.exists", msg.sender))] && msg.sender != guardian) {
+```
+## `||` costs less gas than its equivalent `&&`
+Rule of thumb: `(x && y)` is `(!(!x || !y))`
+
+Even with the 10k Optimizer enabled: `||`, OR conditions cost less than their equivalent `&&`, AND conditions.
+
+As an example, the code line instance below may be refactored as follows:
+
+[File: BaseAbstract.sol#L73](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/BaseAbstract.sol#L73)
+
+```diff
+-		bool enabled = (addr != address(0)) && getBool(keccak256(abi.encodePacked("multisig.item", multisigIndex, ".enabled")));
++		bool enabled = (!(addr == address(0)) || !getBool(keccak256(abi.encodePacked("multisig.item", multisigIndex, ".enabled"))));
+```
+## Early function checks
+Function logic checks should be implemented as early as possible to minimize gas wastage in case of a revert. In `RewardsPool.sol`, `inflate()` internally calls `getInflationIntervalStartTime()` on [line 84](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/RewardsPool.sol#L84), which is also called again in the next code line via [`getInflationAmt()`](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/RewardsPool.sol#L69). The latter will, however, have a [zero value check](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/RewardsPool.sol#L56-L59) on `getInflationIntervalStartTime()`.
+
+Consider swapping the order of executions on line 84 and line 85:
+
+[File: RewardsPool.sol#L84-L85](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/RewardsPool.sol#L84-L85)
+  
+```diff
++		(uint256 currentTotalSupply, uint256 newTotalSupply) = getInflationAmt();
+		uint256 inflationIntervalElapsedSeconds = (block.timestamp - getInflationIntervalStartTime());
+-		(uint256 currentTotalSupply, uint256 newTotalSupply) = getInflationAmt();
+```
