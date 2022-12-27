@@ -103,3 +103,42 @@ function depositFromStaking(uint256 baseAmt, uint256 rewardAmt) public payable o
 	}
 ```
 
+QA15. https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/tokens/TokenggAVAX.sol#L211
+We need to consider the ``reservedAsset`` as well when calculating ``maxWithdraw()`` and ``maxRedeem()'':
+```
+
+function maxWithdraw(address _owner) public view override returns (uint256) {
+		if (getBool(keccak256(abi.encodePacked("contract.paused", "TokenggAVAX")))) {
+			return 0;
+		}
+		uint256 assets = convertToAssets(balanceOf[_owner]);
+
+                ProtocolDAO protocolDAO = ProtocolDAO(getContractAddress("ProtocolDAO"));]
+		uint256 targetCollateralRate = protocolDAO.getTargetGGAVAXReserveRate();]
+
+		uint256 totalAssets_ = totalAssets();
+
+		uint256 reservedAssets = totalAssets_.mulDivDown(targetCollateralRate, 1 ether);
+
+		uint256 avail = totalAssets - stakingTotalAssets - reservedAssets; // @audit: we need to consider reservedAssets
+		return assets > avail ? avail : assets;
+	}
+
+function maxRedeem(address _owner) public view override returns (uint256) {
+		if (getBool(keccak256(abi.encodePacked("contract.paused", "TokenggAVAX")))) {
+			return 0;
+		}
+		uint256 shares = balanceOf[_owner];
+                ProtocolDAO protocolDAO = ProtocolDAO(getContractAddress("ProtocolDAO"));]
+		uint256 targetCollateralRate = protocolDAO.getTargetGGAVAXReserveRate();]
+
+		uint256 totalAssets_ = totalAssets();
+
+		uint256 reservedAssets = totalAssets_.mulDivDown(targetCollateralRate, 1 ether);
+
+
+		uint256 avail = convertToShares(totalAssets - stakingTotalAssets - reservedAssets); // audit: consider reservedAssets as well
+		return shares > avail ? avail : shares;
+}
+
+```
