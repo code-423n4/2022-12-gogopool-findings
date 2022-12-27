@@ -86,3 +86,20 @@ WE should check that ``assets != 0`` and ``receiver != address(0x0)``.
 QA13: https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/tokens/upgradeable/ERC4626Upgradeable.sol#L93
 Zero address check for ``receiver``. 
 
+QA14: https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/tokens/TokenggAVAX.sol#L142-L151
+Calling ``synRewards()`` from this function would be appropriate since rewards will be received from this function. 
+```
+function depositFromStaking(uint256 baseAmt, uint256 rewardAmt) public payable onlySpecificRegisteredContract("MinipoolManager", msg.sender) {
+		uint256 totalAmt = msg.value;
+		if (totalAmt != (baseAmt + rewardAmt) || baseAmt > stakingTotalAssets) {
+			revert InvalidStakingDeposit();
+		}
+
+		emit DepositedFromStaking(msg.sender, baseAmt, rewardAmt);
+		stakingTotalAssets -= baseAmt;
+		IWAVAX(address(asset)).deposit{value: totalAmt}();
+
+                if(block.timestamp.safeCastTo32() >= rewardsCycleEnd) synRewards(); // better to call here
+	}
+```
+
