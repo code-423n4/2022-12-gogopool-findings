@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "koxuan",
+  "risk": "",
+  "title": "node operator can leave pool after claiming ggp rewards without launching pool after 14 days",
+  "issueId": 152,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/152"
+}
