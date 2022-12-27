@@ -1040,7 +1040,36 @@ It's not necessary to instantiate a variable with the default value. Also, in th
 
 # Move the events emission to the end of the function body to save gas in case that any validation fails before.
 
-TODO
+There're multiple places where events are emitted before all the execution is done. This could result in a waste of gas if, for some reason, the transaction is reverted after the event was already emitted. I recommend to move the events to the end of the function execution and emit them only after we're sure that the transaction won't be reverted.
+
+Example:
+
+[/MinipoolManager.sol#L646-L665](https://github.com/code-423n4/2022-12-gogopool/blob/1c30b320b7105e57c92232408bc795b6d2dfa208/contracts/contract/MinipoolManager.sol#L646-L665)
+
+```diff
+  function _cancelMinipoolAndReturnFunds(address nodeID, int256 index) private {
+		requireValidStateTransition(index, MinipoolStatus.Canceled);
+		setUint(keccak256(abi.encodePacked("minipool.item", index, ".status")), uint256(MinipoolStatus.Canceled));
+
+		address owner = getAddress(keccak256(abi.encodePacked("minipool.item", index, ".owner")));
+		uint256 avaxNodeOpAmt = getUint(keccak256(abi.encodePacked("minipool.item", index, ".avaxNodeOpAmt")));
+		uint256 avaxLiquidStakerAmt = getUint(keccak256(abi.encodePacked("minipool.item", index, ".avaxLiquidStakerAmt")));
+
+		Staking staking = Staking(getContractAddress("Staking"));
+		staking.decreaseAVAXStake(owner, avaxNodeOpAmt);
+		staking.decreaseAVAXAssigned(owner, avaxLiquidStakerAmt);
+
+		staking.decreaseMinipoolCount(owner);
+
+-		emit MinipoolStatusChanged(nodeID, MinipoolStatus.Canceled); // EVENT IS EMITTED
+
+		Vault vault = Vault(getContractAddress("Vault")); // THIS COULD REVERT
+		vault.withdrawAVAX(avaxNodeOpAmt); // THIS COULD REVERT
+		owner.safeTransferETH(avaxNodeOpAmt); // THIS COULD REVERT
+
++		emit MinipoolStatusChanged(nodeID, MinipoolStatus.Canceled); // EVENT MOVED TO THE END OF THE EXECUTION
+	}
+```
 
 # Avoid storage readings until is necessary
 
