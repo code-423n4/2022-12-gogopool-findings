@@ -224,7 +224,7 @@ This will improve the code quality a lot making it shorter, more readable and le
 # An invalid call to `initialize()` should revert the transaction
 
 ## Where
-(ProtocolDAO.sol#L24-L26)[https://github.com/code-423n4/2022-12-gogopool/blob/1c30b320b7105e57c92232408bc795b6d2dfa208/contracts/contract/ProtocolDAO.sol#L24-L26]
+[ProtocolDAO.sol#L24-L26](https://github.com/code-423n4/2022-12-gogopool/blob/1c30b320b7105e57c92232408bc795b6d2dfa208/contracts/contract/ProtocolDAO.sol#L24-L26)
 
 If someone tries to reinitialize the contract, the transaction should revert instead of return the execution silently.
 
