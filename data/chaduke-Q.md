@@ -6,7 +6,7 @@ Lock all files with the most recent version of Solidity  0.8.17.
 
 QA3: https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/tokens/TokenggAVAX.sol#L207-L209
 The check of if-paused for ``TokenggAVAX`` should be done for the following important functions as well: 
-``depositAVAX()``, ``withdrawAVAX()``, ``redeemAVAX()``, ``depositFromStaking()``, and ``withdrawForStaking()``. 
+``depositAVAX()``, ``withdrawAVAX()``, ``redeemAVAX()``, ``depositFromStaking()``, and ``withdrawForStaking()``, ``deposit()``, ``mint()``, ``withdraw()``, and ``redeem()`` in ``ERC4626Upgradeable.sol``.
 
 QA4: https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/MinipoolManager.sol#L106
 We need to ensure that ``receiveWithdrawalAVAX()`` can only be called by the ``TokenggAVAX`` contract or the ``Vault`` contract.
@@ -80,3 +80,9 @@ After ``syncRewards()``, the following invariant must hold, so it might be a goo
 ```
           assert(totalReleasedAssets+lastRewardsAmt == asset.balanceOf(address(this))+stakingTotalAssets;
 ```
+QA12:  https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/tokens/upgradeable/ERC4626Upgradeable.sol#L69-L73
+WE should check that ``assets != 0`` and ``receiver != address(0x0)``. 
+
+QA13: https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/tokens/upgradeable/ERC4626Upgradeable.sol#L93
+Zero address check for ``receiver``. 
+
