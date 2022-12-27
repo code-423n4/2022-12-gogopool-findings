@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "aviggiano",
+  "risk": "",
+  "title": "Lack of input validation on `MinipoolManager.createMinipool` allows Node Operator to create pools with an arbitrary delegation fee (100% or higher)",
+  "issueId": 161,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/161"
+}
