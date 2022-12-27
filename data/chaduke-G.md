@@ -263,3 +263,29 @@ unchecked{
        uint256 restakeAmt = ggpRewards - claimAmt;
 }
 ```
+
+G30. https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/Ocyticus.sol#L55-L67
+
+The real implementation of ``disableAllMultisigs()`` should be in ``MultisigManager.sol`` to save gas:
+```
+function disableAllMultisigs() public onlyDefender {
+		MultisigManager mm = MultisigManager(getContractAddress("MultisigManager"));
+                mm.disableAllMultisigs();
+}
+
+// in MultisigManager.sol
+function disableAllMultisig(r) external guardianOrSpecificRegisteredContract("Ocyticus", msg.sender) {
+		uint256 total = getUint(keccak256("multisig.count"));
+                address addr;
+		bool enabled;
+                for (uint256 i; i < total;) {
+                           (addr, enabled) = getMultisig(i);
+                           if(enabled) { 
+                                setBool(keccak256(abi.encodePacked("multisig.item", multisigIndex, ".enabled")), false);
+      		                emit DisabledMultisig(addr, msg.sender);
+                            }
+                           unchecked{++i;}
+               }
+}
+
+```
