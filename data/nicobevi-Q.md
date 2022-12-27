@@ -160,12 +160,12 @@ However, it's only being used on a external view function, for the actual storag
 This could be improved a lot just adding a custom mapping on storage (with some custom helpers) using that custom struct that we have defined on the contract.
 
 ```solidity
-  import {Minipool} from './MinipoolManager.sol'; // I'd move this struct to the `Constant.sol` contract as well.
+  import {MinipoolManager} from './MinipoolManager.sol'; // I'd move this struct to the `Constant.sol` contract as well.
 
   contract Storage is IStorage {
-    mapping(uint256 => Minipool) private _miniPools;
+    mapping(uint256 => MinipoolManager.Minipool) private _miniPools;
 
-    function getMinipool(uint256 index) external returns (Minipool) onlyRegisteredNetworkContract {
+    function getMinipool(uint256 index) external view onlyRegisteredNetworkContract returns(MinipoolManager.Minipool memory)  {
       return _miniPools[index];
     }
 
@@ -173,7 +173,7 @@ This could be improved a lot just adding a custom mapping on storage (with some 
       delete _miniPools[index];
     }
 
-    function setMinipool(uint256 index, Minipool minipool) external onlyRegisteredNetworkContract {
+    function setMinipool(uint256 index, MinipoolManager.Minipool calldata minipool) external onlyRegisteredNetworkContract {
       _miniPools[index] = minipool;
     }
   }
@@ -182,7 +182,7 @@ This could be improved a lot just adding a custom mapping on storage (with some 
     function getMinipool(bytes32 key) internal view returns (Minipool memory mp) {
       return gogoStorage.getMinipool(key);
     }
-  }
+}
 
   contract MinipoolManager is Base, ReentrancyGuard, IWithdrawer {
     function getMinipool(uint256 index) public view returns (Minipool memory mp) {
@@ -192,3 +192,76 @@ This could be improved a lot just adding a custom mapping on storage (with some 
 ```
 
 This will improve the code quality a lot making it shorter, more readable and less error prone.
+
+
+# Add `address(0)` validations to avoid unexpected behaviours
+
+## Where
+
+* [Base.sol#L9](https://github.com/code-423n4/2022-12-gogopool/blob/1c30b320b7105e57c92232408bc795b6d2dfa208/contracts/contract/Base.sol#L9) - `_gogoStorageAddress` must not be `address(0)`
+* [ClaimNodeOp.sol#L31](https://github.com/code-423n4/2022-12-gogopool/blob/1c30b320b7105e57c92232408bc795b6d2dfa208/contracts/contract/ClaimNodeOp.sol#L31
+) - `gpt_` must not be `address(0)`
+
+
+# Simplify if condition
+
+## Where
+* [BaseAbstract.sol#L44](https://github.com/code-423n4/2022-12-gogopool/blob/1c30b320b7105e57c92232408bc795b6d2dfa208/contracts/contract/BaseAbstract.sol#L44)
+* [BaseAbstract.sol#L55](https://github.com/code-423n4/2022-12-gogopool/blob/1c30b320b7105e57c92232408bc795b6d2dfa208/contracts/contract/BaseAbstract.sol#L55)
+
+
+`!(isGuardian || isContract)` is the same than `!isGuardian && !isContract` but the second option is more readable.
+
+# Remove unused imports on `ClaimNodeOp.sol`
+
+## Where
+* [ClaimNodeOp.sol#L5
+](https://github.com/code-423n4/2022-12-gogopool/blob/1c30b320b7105e57c92232408bc795b6d2dfa208/contracts/contract/ClaimNodeOp.sol#L5)
+* [ClaimNodeOp.sol#L10
+](https://github.com/code-423n4/2022-12-gogopool/blob/1c30b320b7105e57c92232408bc795b6d2dfa208/contracts/contract/ClaimNodeOp.sol#L10
+)
+
+# An invalid call to `initialize()` should revert the transaction
+
+## Where
+(ProtocolDAO.sol#L24-L26)[https://github.com/code-423n4/2022-12-gogopool/blob/1c30b320b7105e57c92232408bc795b6d2dfa208/contracts/contract/ProtocolDAO.sol#L24-L26]
+
+If someone tries to reinitialize the contract, the transaction should revert instead of return the execution silently.
+
+# Remove unnecesary getter and use public for the storage definition instead
+
+## Where
+
+[Storage.sol#L51-L53](https://github.com/code-423n4/2022-12-gogopool/blob/1c30b320b7105e57c92232408bc795b6d2dfa208/contracts/contract/Storage.sol#L51-L53)
+
+Remove the getter and use `address public guardian;` instead.
+
+# Shadowed variables should be renamed
+
+## Where
+
+[/tokens/TokenggAVAX.sol#L72-L79](https://github.com/code-423n4/2022-12-gogopool/blob/1c30b320b7105e57c92232408bc795b6d2dfa208/contracts/contract/tokens/TokenggAVAX.sol#L72-L79)
+
+`asset` is shadowing a storage variable.
+
+```diff
+-   function initialize(Storage storageAddress, ERC20 asset) public initializer {
+-     __ERC4626Upgradeable_init(asset, "GoGoPool Liquid Staking Token", "ggAVAX");
++   function initialize(Storage storageAddress, ERC20 asset_) public initializer {
++     __ERC4626Upgradeable_init(asset_, "GoGoPool Liquid Staking Token", "ggAVAX");
+      __BaseUpgradeable_init(storageAddress);
+
+      rewardsCycleLength = 14 days;
+      // Ensure it will be evenly divisible by `rewardsCycleLength`.
+      rewardsCycleEnd = (block.timestamp.safeCastTo32() / rewardsCycleLength) * rewardsCycleLength;
+    }
+```
+
+# Use same pragma version across all the contracts
+
+## Where
+
+* [/tokens/upgradeable/ERC20Upgradeable.sol#L2](https://github.com/code-423n4/2022-12-gogopool/blob/1c30b320b7105e57c92232408bc795b6d2dfa208/contracts/contract/tokens/upgradeable/ERC20Upgradeable.sol#L2)
+* [/tokens/upgradeable/ERC4626Upgradeable.sol#L2](https://github.com/code-423n4/2022-12-gogopool/blob/1c30b320b7105e57c92232408bc795b6d2dfa208/contracts/contract/tokens/upgradeable/ERC4626Upgradeable.sol#L2)
+
+Use `pragma solidity 0.8.17` just like the rest of the contracts.
