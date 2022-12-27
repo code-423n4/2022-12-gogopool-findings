@@ -123,7 +123,7 @@ Here is what the suggested functions could look like:
 ## Unusual multisig logic
 Conventionally, multi-signature requires the agreement of multiple people to perform an action, e.g. 6 out of 10 in the case associated with the protocol. However, `requireNextActiveMultisig()` in `MultisigManager.sol` only requires one valid, i.e registered and enabled Multisig, address to interact with `MinipoolManager.sol`. 
 
-Additionally, the function logic of `requireNextActiveMultisig()` seems to be mostly (if not only) dealing with the first multisig's index, making the other nine indices never reachable unless the first one has been compromised and disabled. 
+Additionally, the function logic of `requireNextActiveMultisig()` seems to be mostly (if not only) dealing with the first enabled multisig's index, making the other enabled indices never reachable unless the first one has been compromised and disabled. 
 
 [File: MultisigManager.sol#L80-L91](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MultisigManager.sol#L80-L91)
 
@@ -140,4 +140,19 @@ Additionally, the function logic of `requireNextActiveMultisig()` seems to be mo
 		}
 		revert NoEnabledMultisigFound();
 	}
+```
+## Comment mistakes
+The comment lines below said that `2% is 0.2 ether`. It should be `2% is 0.02 ether` or `20% is 0.2 ether`.
+
+[File: MinipoolManager.sol#L35](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol#L35)
+
+```
+-	minipool.item<index>.delegationFee = node operator specified fee (must be between 0 and 1 ether) 2% is 0.2 ether
++	minipool.item<index>.delegationFee = node operator specified fee (must be between 0 and 1 ether) 2% is 0.02 ether
+```
+[File: MinipoolManager.sol#L194](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol#L194)
+
+```
+-	/// @param delegationFee Percentage delegation fee in units of ether (2% is 0.2 ether)
++	/// @param delegationFee Percentage delegation fee in units of ether (20% is 0.2 ether)
 ```
