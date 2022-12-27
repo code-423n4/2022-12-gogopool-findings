@@ -289,3 +289,10 @@ function disableAllMultisig(r) external guardianOrSpecificRegisteredContract("Oc
 }
 
 ```
+
+G31. https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/tokens/TokenggAVAX.sol#L44
+Changing it to a private immutable can save gas
+```
+uint32 private immutable rewardsCycleLength;
+```
+
