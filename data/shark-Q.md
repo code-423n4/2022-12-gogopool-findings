@@ -85,3 +85,17 @@ Here a few instances of this issue:
 - File: `BaseAbstract.sol` [Line 6](https://github.com/code-423n4/2022-12-gogopool/blob/1c30b320b7105e57c92232408bc795b6d2dfa208/contracts/contract/BaseAbstract.sol#L6)
 - File: `Staking.sol` [Line 203](https://github.com/code-423n4/2022-12-gogopool/blob/1c30b320b7105e57c92232408bc795b6d2dfa208/contracts/contract/Staking.sol#L203)
 - File: `MinipoolManager.sol` [Line 412](https://github.com/code-423n4/2022-12-gogopool/blob/1c30b320b7105e57c92232408bc795b6d2dfa208/contracts/contract/MinipoolManager.sol#L412)
+
+## 4. No storage gap for upgradeable contracts
+
+For upgradeable contracts, there should be a storage gap at the end of the contract. Without a storage gap, Storage clashes could occur while using inheritance.
+
+For example:
+
+[File: `TokenggAVAX.sol`](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/tokens/TokenggAVAX.sol)
+
+Consider adding the variable `__gap` at the end of the contract:
+
+```
+uint256[50] private __gap;
+```
