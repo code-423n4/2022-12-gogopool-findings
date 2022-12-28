@@ -160,7 +160,9 @@ The comment lines below said that `2% is 0.2 ether`. It should be `2% is 0.02 et
 GGP is initialized with `TotalGGPCirculatingSupply == 18_000_000 ether`. However, an exchange is needed to at least allow node operators to swap AVAX or ggAVAX into GGP. Devoid of this, no one would be able to secure any GGP to stake prior to creating a minipool.
 
 ## Missing use for `delegationFee` 
-`delegationFee` is introduced in `MinipoolManager.sol`. However, no where in the contract or the protocol could be found any use for this variable that has been included in the struct, `Minipool`. If it is not ready to be fully introduced yet, consider elaborating a brief structured plan for it in the NatSpec or the documentations since this constitutes one of the triple incentives to the node operators.
+`delegationFee` is introduced in `MinipoolManager.sol`. However, no where in the contract or the protocol could be found any use for this variable that has been included in the struct, `Minipool`. Additionally, there seems to be no boundary control on the input parameter of `delegationFee` in `createMinipool()`. This could impose a problem devoid of a yardstick to determine what percentage delegation fee in units of ether is deemed fair and appropriate on `avaxAssignmentRequest`. If `delegationFee` is not ready to be fully introduced yet, consider elaborating a brief structured plan for it in the NatSpec or the documentations since this constitutes one of the triple incentives to the node operators. 
+
+Ironically, `MinipoolNodeCommissionFeePct` is found to be deducting a cut from `avaxHalfRewards` [prior to getting `avaxLiquidStakerRewardAmt` assigned](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol#L417). Apparently, the documentation might have to be updated to reflect a four fold incentives to the node operators.
 
 ## No storage gap for upgradeable contracts
 Consider adding a storage gap at the end of an upgradeable contract, just in case it would entail some child contracts in the future. This would ensure no shifting down of storage in the inheritance chain.
