@@ -142,3 +142,7 @@ function maxRedeem(address _owner) public view override returns (uint256) {
 }
 
 ```
+
+QA16. https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/MinipoolManager.sol#L198
+The ``duration`` parameter needs to be checked to make sure it is long enough. 
+
