@@ -193,3 +193,17 @@ Consider moving the needed assignment before the conditional statement by having
 +		assets = previewRedeem(shares);
 +		if (assets == 0) {
 ```
+## Zero value check on `withdrawAVAX() in TokenggAVAX.sol
+Although `previewWithdraw()` does round up, it could still assign a zero value to `shares` if the input parameter, `assets` is accidentally entered as zero. Consider having a zero value check implemented just as it has been done so on `redeemAVAX()` which is nonetheless a side effect zero value check arising from rounding error check associated with round down issue in `previewRedeem()`.
+
+[File: TokenggAVAX.sol#L180-L189](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/tokens/TokenggAVAX.sol#L180-L189)
+
+```diff
+	function withdrawAVAX(uint256 assets) public returns (uint256 shares) {
++		if (assets == 0) {
++			revert ZeroAssets();
+
+		shares = previewWithdraw(assets); // No need to check for rounding error, previewWithdraw rounds up.
+		beforeWithdraw(assets, shares);
+		_burn(msg.sender, shares);
+```
