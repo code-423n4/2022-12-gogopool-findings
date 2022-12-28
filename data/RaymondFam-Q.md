@@ -156,3 +156,38 @@ The comment lines below said that `2% is 0.2 ether`. It should be `2% is 0.02 et
 -	/// @param delegationFee Percentage delegation fee in units of ether (2% is 0.2 ether)
 +	/// @param delegationFee Percentage delegation fee in units of ether (20% is 0.2 ether)
 ```
+## GGP token exchange
+GGP is initialized with `TotalGGPCirculatingSupply == 18_000_000 ether`. However, an exchange is needed to at least allow node operators to swap AVAX or ggAVAX into GGP. Devoid of this, no one would be able to secure any GGP to stake prior to creating a minipool.
+
+## Missing use for `delegationFee` 
+`delegationFee` is introduced in `MinipoolManager.sol`. However, no where in the contract or the protocol could be found any use for this variable that has been included in the struct, `Minipool`. If it is not ready to be fully introduced yet, consider elaborating a brief structured plan for it in the NatSpec or the documentations since this constitutes one of the triple incentives to the node operators.
+
+## No storage gap for upgradeable contracts
+Consider adding a storage gap at the end of an upgradeable contract, just in case it would entail some child contracts in the future. This would ensure no shifting down of storage in the inheritance chain.
+
+Here is the contract instance entailed:
+
+[File: TokenggAVAX.sol](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/tokens/TokenggAVAX.sol)
+
+```diff
++ uint256[50] private __gap;
+```
+## Variable assignment in conditional checks
+Making a variable assignment in a conditional statement deviates from the standard use and intention of the check and can easily lead to confusion.
+
+Consider moving the needed assignment before the conditional statement by having the code lines below rewritten as follows:
+
+[File: TokenggAVAX.sol#L169](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/tokens/TokenggAVAX.sol#L169)
+
+```diff
+-		if ((shares = previewDeposit(assets)) == 0) {
++		shares = previewDeposit(assets);
++		if (shares == 0) {
+```
+[File: TokenggAVAX.sol#L193](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/tokens/TokenggAVAX.sol#L193)
+
+```diff
+-		if ((assets = previewRedeem(shares)) == 0) {
++		assets = previewRedeem(shares);
++		if (assets == 0) {
+```
