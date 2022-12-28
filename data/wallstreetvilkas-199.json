@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "wallstreetvilkas",
+  "risk": "",
+  "title": "createMinipool() function allows the attacker to submit other validators nodeId and clear already initialized pool's data aswell as set innocent user's pool's status to prelaunch.",
+  "issueId": 199,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/199"
+}
