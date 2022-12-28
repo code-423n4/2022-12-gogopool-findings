@@ -41,3 +41,34 @@ When retrieving data from a `storage` location, assigning the data to a `memory`
 For example, the following struct can be changed to `storage` instead of `memory` to save gas:
 
 File: `Staking.sol` [Line 429](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Staking.sol#L429)
+
+## 4. Unnecessary boolean literal compare
+
+You will save gas on deployment by not comparing boolean literals (i.e. `true` and `false`)
+
+Here are some examples of this issue:
+
+File: `Storage.sol` [Line 29](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Storage.sol#L29)
+
+File: `BaseAbstract.sol` [Line 25](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/BaseAbstract.sol#L25)
+
+File: `BaseAbstract.sol` [Line 74](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/BaseAbstract.sol#L74)
+
+## 5. Unchecked maths saves gas
+
+Use the `unchecked` keyword to avoid redundant arithmetic checks when an underflow/overflow cannot happen. This will save around 20-30 gas.
+
+For example:
+
+File: `MultisigManager.sol` [Line 84-89](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MultisigManager.sol#L84-L89)
+
+```
+		for (uint256 i = 0; i < total; i++) {
+			(addr, enabled) = getMultisig(i);
+			if (enabled) {
+				return addr;
+			}
+		}
+```
+
+`i++` will never overflow here.
