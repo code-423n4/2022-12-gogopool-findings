@@ -70,6 +70,7 @@ https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c3
 ### Don't Initialize Variables with Default Value
 
 #### Impact
+All the cases below, it is cheaper not to initialize them to 0. Because their default value is already 0.
 Issue Information: [G001](https://github.com/byterocket/c4-common-issues/blob/main/0-Gas-Optimizations.md#g001---dont-initialize-variables-with-default-value)
 
 #### Findings:
