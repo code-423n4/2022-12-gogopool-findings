@@ -1,0 +1,3 @@
+# 1. Missing event emission from relevant functions
+
+The functions [`Vault.addAllowedToken` and `Vault.removeAllowedToken`](https://github.com/code-423n4/2022-12-gogopool/blob/1c30b320b7105e57c92232408bc795b6d2dfa208/contracts/contract/Vault.sol#L204-L210) make important changes to the contract state without emitting an event. It is recommended to emit events on both cases when an allowed token is added or removed from the vault.
