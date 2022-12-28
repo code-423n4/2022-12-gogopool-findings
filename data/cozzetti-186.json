@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "cozzetti",
+  "risk": "",
+  "title": "Unbounded minipool duration may lead to reward manipulation or slashing DoS",
+  "issueId": 186,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/186"
+}
