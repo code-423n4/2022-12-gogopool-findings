@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "rvierdiiev",
+  "risk": "",
+  "title": "Minipool owner can call createMinipool for existing node after recordStakingEnd was called and loose his rewards and staked avax",
+  "issueId": 173,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/173"
+}
