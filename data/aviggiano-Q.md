@@ -8,7 +8,9 @@ The error [`Staking.CannotWithdrawUnder150CollateralizationRatio`](https://githu
 
 # 3. Inconsistent event ordering emission between `TokenggAVAX.depositAVAX` and `TokenggAVAX.deposit`
 
-The function `depositAVAX` emit `Deposit` before emitting `Transfer`. This is the opposite behavior from the [`ERC4626Upgradeable.deposit`](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/tokens/upgradeable/ERC4626Upgradeable.sol#L42) inherited implementation, which performs _first_ a `Transfer` and _then_ a `Deposit`. 
+The function [`depositAVAX`](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/tokens/TokenggAVAX.sol#L166) emits [`Deposit`](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/tokens/TokenggAVAX.sol#L173) before emitting [`Transfer`](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/tokens/TokenggAVAX.sol#L176) from `_mint`. 
+
+This is the opposite behavior from the [`ERC4626Upgradeable.deposit`](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/tokens/upgradeable/ERC4626Upgradeable.sol#L42) inherited implementation, which emits _first_ a [`Transfer`](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/tokens/upgradeable/ERC4626Upgradeable.sol#L49) from `_mint` and _then_ a [`Deposit`](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/tokens/upgradeable/ERC4626Upgradeable.sol#L51). 
 
 Consider changing the function order for the sake of consistency:
 
