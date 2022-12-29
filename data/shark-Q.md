@@ -86,7 +86,36 @@ Here a few instances of this issue:
 - File: `Staking.sol` [Line 203](https://github.com/code-423n4/2022-12-gogopool/blob/1c30b320b7105e57c92232408bc795b6d2dfa208/contracts/contract/Staking.sol#L203)
 - File: `MinipoolManager.sol` [Line 412](https://github.com/code-423n4/2022-12-gogopool/blob/1c30b320b7105e57c92232408bc795b6d2dfa208/contracts/contract/MinipoolManager.sol#L412)
 
-## 4. No storage gap for upgradeable contracts
+## 4. Zero value check on `withdrawAVAX() in TokenggAVAX.sol
+
+If the parameter `uint256 assets` is accidentally input as zero, a zero value could still be assigned to `shares` even though it is rounded up. As such, a zero value check could be implemented.
+
+For instance:
+
+File: `TokenggAVAX.sol` [Line 180 - Line 189](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/tokens/TokenggAVAX.sol#L180-L189)
+
+```solidity
+	function withdrawAVAX(uint256 assets) public returns (uint256 shares) {
+		shares = previewWithdraw(assets); // No need to check for rounding error, previewWithdraw rounds up.
+		beforeWithdraw(assets, shares);
+		_burn(msg.sender, shares);
+
+		emit Withdraw(msg.sender, msg.sender, msg.sender, assets, shares);
+
+		IWAVAX(address(asset)).withdraw(assets);
+		msg.sender.safeTransferETH(assets);
+	}
+```
+
+As seen above, there is no zero value check for the parameter `uint256 assets`. Consider adding the following check at the start of `withdrawAVAX`:
+
+```solidity
+	if (assets == 0) {
+        	revert ZeroAssets();
+	}
+```
+
+## 5. No storage gap for upgradeable contracts
 
 For upgradeable contracts, there should be a storage gap at the end of the contract. Without a storage gap, Storage clashes could occur while using inheritance.
 
@@ -96,6 +125,6 @@ For example:
 
 Consider adding the variable `__gap` at the end of the contract:
 
-```
+```solidity
 uint256[50] private __gap;
 ```
