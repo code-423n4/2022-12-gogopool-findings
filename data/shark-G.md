@@ -38,9 +38,11 @@ Since the above function has the access control `onlyGuardian`, it can be marked
 
 When retrieving data from a `storage` location, assigning the data to a `memory` variable will cause all fields of the struct/array to be read from storage, which incurs a Gcoldsload (2100 gas) for each field of the struct/array. If the fields are read from the new `memory` variable, they incur an additional MLOAD rather than a cheap stack read. Instead of declaring the variable with the memory keyword, declaring the variable with the `storage` keyword and caching any fields that need to be re-read in stack variables, will be much cheaper, only incurring the Gcoldsload for the fields actually read. The only time it makes sense to read the whole struct/array into a `memory` variable, is if the full struct/array is being returned by the function, is being passed to a function that requires `memory`, or if the array/struct is being read from another `memory` array/struct.
 
-For example, the following struct can be changed to `storage` instead of `memory` to save gas:
+For example, the following structs can be changed to `storage` instead of `memory` to save gas:
 
 File: `Staking.sol` [Line 429](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Staking.sol#L429)
+
+File: `MinipoolManager.sol` [Line 620](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol#L620)
 
 ## 4. Unnecessary boolean literal compare
 
