@@ -90,3 +90,35 @@ function cancelMinipool(address nodeID) external nonReentrant {
 ```
 
 Remidiation: Please avoid loops in your functions or actions that modify large areas of storage (this includes clearing or copying arrays in storage)
+
+## [G-06]
+File: MinipoolManager.sol
+
+URL: https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/MinipoolManager.sol#L287 
+
+Summary: 
+Gas requirement of function MinipoolManager.withdrawMinipoolFunds is infinite: If the gas requirement of a function is higher than the block gas limit, it cannot be executed. Please avoid loops in your functions or actions that modify large areas of storage (this includes clearing or copying arrays in storage)
+Line: 287
+
+PoC:
+```
+function withdrawMinipoolFunds(address nodeID) external nonReentrant {
+		int256 minipoolIndex = requireValidMinipool(nodeID);
+		address owner = onlyOwner(minipoolIndex);
+		requireValidStateTransition(minipoolIndex, MinipoolStatus.Finished);
+		setUint(keccak256(abi.encodePacked("minipool.item", minipoolIndex, ".status")), uint256(MinipoolStatus.Finished));
+
+		uint256 avaxNodeOpAmt = getUint(keccak256(abi.encodePacked("minipool.item", minipoolIndex, ".avaxNodeOpAmt")));
+		uint256 avaxNodeOpRewardAmt = getUint(keccak256(abi.encodePacked("minipool.item", minipoolIndex, ".avaxNodeOpRewardAmt")));
+		uint256 totalAvaxAmt = avaxNodeOpAmt + avaxNodeOpRewardAmt;
+
+		Staking staking = Staking(getContractAddress("Staking"));
+		staking.decreaseAVAXStake(owner, avaxNodeOpAmt);
+
+		Vault vault = Vault(getContractAddress("Vault"));
+		vault.withdrawAVAX(totalAvaxAmt);
+		owner.safeTransferETH(totalAvaxAmt);
+	}
+```
+
+Remidiation: Please avoid loops in your functions or actions that modify large areas of storage (this includes clearing or copying arrays in storage)
