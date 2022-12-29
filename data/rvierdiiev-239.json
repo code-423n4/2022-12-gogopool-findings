@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "rvierdiiev",
+  "risk": "",
+  "title": "RewardsPool.inflate sets wrong value to `RewardsPool.InflationIntervalStartTime` variable",
+  "issueId": 239,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/239"
+}
