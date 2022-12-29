@@ -43,3 +43,24 @@ TokenggAVAX public immutable ggAVAX;
 ```
 
 Remidiation: Please avoid loops in your functions or actions that modify large areas of storage (this includes clearing or copying arrays in storage)
+
+## [G-04]
+File: MinipoolManager.sol
+
+URL: https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/MinipoolManager.sol#L196 
+
+Summary: 
+Gas requirement of function MinipoolManager.createMinipool is infinite: If the gas requirement of a function is higher than the block gas limit, it cannot be executed. Please avoid loops in your functions or actions that modify large areas of storage (this includes clearing or copying arrays in storage)
+Line: 196
+
+PoC:
+```
+function createMinipool(
+		address nodeID,
+		uint256 duration,
+		uint256 delegationFee,
+		uint256 avaxAssignmentRequest
+	)
+```
+
+Remidiation: Please avoid loops in your functions or actions that modify large areas of storage (this includes clearing or copying arrays in storage)
