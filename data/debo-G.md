@@ -17,3 +17,14 @@ URL: https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45
 Summary: Gas requirement of function MinipoolManager.ggp is infinite: If the gas requirement of a function is higher than the block gas limit, it cannot be executed. Line 78. 
 
 Remidiation: Please avoid loops in your functions or actions that modify large areas of storage (this includes clearing or copying arrays in storage)
+
+## [G-03]
+File: MinipoolManager.sol
+
+URL: https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/MinipoolManager.sol#L79 
+
+Summary: 
+Gas requirement of function MinipoolManager.ggAVAX is infinite: If the gas requirement of a function is higher than the block gas limit, it cannot be executed. Please avoid loops in your functions or actions that modify large areas of storage (this includes clearing or copying arrays in storage)
+Line: 79
+
+Remidiation: Please avoid loops in your functions or actions that modify large areas of storage (this includes clearing or copying arrays in storage)
