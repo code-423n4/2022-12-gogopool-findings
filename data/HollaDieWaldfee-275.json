@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "HollaDieWaldfee",
+  "risk": "",
+  "title": "ProtocolDAO: upgradeExistingContract deletes the new contract address making protocol inoperable",
+  "issueId": 275,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/275"
+}
