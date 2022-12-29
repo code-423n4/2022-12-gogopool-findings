@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "rvierdiiev",
+  "risk": "",
+  "title": "MinipoolManager doesn't reset rewardsStartTime for staker if it has no more minipool while canceling",
+  "issueId": 251,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/251"
+}
