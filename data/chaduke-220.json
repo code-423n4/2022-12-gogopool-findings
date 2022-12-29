@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "chaduke",
+  "risk": "",
+  "title": "A node operator can front run  calculateAndDistributeRewards() and receive rewards forever even after stopping being a node operator",
+  "issueId": 220,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/220"
+}
