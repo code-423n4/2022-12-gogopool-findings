@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "HollaDieWaldfee",
+  "risk": "",
+  "title": "MinipoolManager: createMinipool function can update existing Minipool of other staker and reset rewards",
+  "issueId": 255,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/255"
+}
