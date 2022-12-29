@@ -5,9 +5,14 @@ URL: https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45
 
 Summary: invoiceID of string data type should be converted to bytes or size 32 if invoiceID is less than or equal to 32 digits or bytes in length;
 
-Line 21 Code: {string} memory invoiceID;
-
-Remidiation: {bytes32} memory invoiceID
+Line 21 PoC: 
+```
+{string} memory invoiceID;
+```
+Remidiation: 
+```
+{bytes32} memory invoiceID;
+```
 
 ## [G-02]
 File: MinipoolManager.sol
@@ -15,6 +20,11 @@ File: MinipoolManager.sol
 URL: https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/MinipoolManager.sol#L78 
 
 Summary: Gas requirement of function MinipoolManager.ggp is infinite: If the gas requirement of a function is higher than the block gas limit, it cannot be executed. Line 78. 
+
+PoC:
+```
+ERC20 public immutable ggp;
+```
 
 Remidiation: Please avoid loops in your functions or actions that modify large areas of storage (this includes clearing or copying arrays in storage)
 
@@ -26,5 +36,10 @@ URL: https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45
 Summary: 
 Gas requirement of function MinipoolManager.ggAVAX is infinite: If the gas requirement of a function is higher than the block gas limit, it cannot be executed. Please avoid loops in your functions or actions that modify large areas of storage (this includes clearing or copying arrays in storage)
 Line: 79
+
+PoC:
+```
+TokenggAVAX public immutable ggAVAX;
+```
 
 Remidiation: Please avoid loops in your functions or actions that modify large areas of storage (this includes clearing or copying arrays in storage)
