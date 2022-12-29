@@ -146,3 +146,39 @@ function maxRedeem(address _owner) public view override returns (uint256) {
 QA16. https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/MinipoolManager.sol#L198
 The ``duration`` parameter needs to be checked to make sure it is long enough. 
 
+QA17. https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/tokens/TokenggAVAX.sol#L180
+The ``withdrawAVAX()`` needs to check to ensure the amount of withdrawal is not great than ``maxWithdraw(address _owner)``:
+```
+function withdrawAVAX(uint256 assets) public returns (uint256 shares) {
+              if(assets > maxWithdraw(msg.sender)) revert WithdrawTooMuch(); // @audit: check this        
+
+		shares = previewWithdraw(assets); // No need to check for rounding error, previewWithdraw rounds up.
+		beforeWithdraw(assets, shares);
+		_burn(msg.sender, shares);
+
+		emit Withdraw(msg.sender, msg.sender, msg.sender, assets, shares);
+
+		IWAVAX(address(asset)).withdraw(assets);
+		msg.sender.safeTransferETH(assets);
+	}
+```
+QA18. https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/tokens/TokenggAVAX.sol#L216
+The ``redeemAVAX()`` needs to check to ensure the amount of withdrawal is not great than ``maxRedeem(address _owner)``:
+```
+function redeemAVAX(uint256 shares) public returns (uint256 assets) {
+              if(shares > maxRedeem(msg.sender)) revert WithdrawTooMuch(); // @audit: check this        
+
+
+		// Check for rounding error since we round down in previewRedeem.
+		if ((assets = previewRedeem(shares)) == 0) {
+			revert ZeroAssets();
+		}
+		beforeWithdraw(assets, shares);
+		_burn(msg.sender, shares);
+
+		emit Withdraw(msg.sender, msg.sender, msg.sender, assets, shares);
+
+		IWAVAX(address(asset)).withdraw(assets);
+		msg.sender.safeTransferETH(assets);
+	}
+```
