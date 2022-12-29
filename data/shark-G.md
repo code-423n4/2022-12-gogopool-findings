@@ -2,17 +2,17 @@
 
 A division by 2 can be calculated by shifting to the right.
 
-While the SHR (shift right) opcode only uses 3 gas, the DIV opcode uses 5 gas. Furthermore, Solidity's division operation also includes a division-by-0 prevention which is bypassed using shifting.
+While the SHR (shift right) opcode only uses 3 gas, the DIV opcode uses 5 gas. Furthermore, Solidity's division operation also includes division-by-0 prevention which is bypassed using shifting.
 
 File: `MinipoolManager.sol` [Line 413](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol#L413)
 
-```
-	uint256 avaxHalfRewards = avaxTotalRewardAmt / 2;
+```solidity
+    uint256 avaxHalfRewards = avaxTotalRewardAmt / 2;
 ```
 
 Consider refactoring the above code to:
 
-```
+```solidity
         uint256 avaxHalfRewards = avaxTotalRewardAmt >> 1;
 ```
 
@@ -24,14 +24,14 @@ For example:
 
 File: `ProtocolDAO.sol` [Line 190](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/ProtocolDAO.sol#L190)
 
-```
-	function registerContract(address addr, string memory name) public onlyGuardian {
+```solidity
+    function registerContract(address addr, string memory name) public onlyGuardian {
 ```
 
 Since the above function has the access control `onlyGuardian`, it can be marked `payable` to save gas:
 
-```
-	function registerContract(address addr, string memory name) public payable onlyGuardian {
+```solidity
+    function registerContract(address addr, string memory name) public payable onlyGuardian {
 ```
 
 ## 3. Using `storage` instead of `memory` for structs/arrays saves gas
@@ -56,19 +56,45 @@ File: `BaseAbstract.sol` [Line 74](https://github.com/code-423n4/2022-12-gogopoo
 
 ## 5. Unchecked maths saves gas
 
-Use the `unchecked` keyword to avoid redundant arithmetic checks when an underflow/overflow cannot happen. This will save around 20-30 gas.
+Use the `unchecked` keyword to avoid redundant arithmetic checks when an underflow/overflow cannot happen.
 
 For example:
 
 File: `MultisigManager.sol` [Line 84-89](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MultisigManager.sol#L84-L89)
 
-```
-		for (uint256 i = 0; i < total; i++) {
-			(addr, enabled) = getMultisig(i);
-			if (enabled) {
-				return addr;
-			}
-		}
+```solidity
+        for (uint256 i = 0; i < total; i++) {
+            (addr, enabled) = getMultisig(i);
+            if (enabled) {
+                return addr;
+            }
+        }
 ```
 
 `i++` will never overflow here.
+
+## 6. Unnecessary check
+
+In [`createMinipool()`](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol#L196), [the third if block](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol#L216) is an unnecessary check, as [the second if block](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol#L207-L212) already checks it.
+
+As such, removing the redundant if block will save gas:
+
+File: `MinipoolManager.sol` [Line 216-218](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol#L216-L218)
+
+## 7. `<` costs less gas than `<=`
+
+`<` cost less gas since it requires fewer opcodes than `<=`. This is the same for `>=`
+
+For instance:
+
+File: `MinipoolManager.sol` [Line 394](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol#L394)
+
+```solidity
+        if (endTime <= startTime || endTime > block.timestamp) {
+```
+
+The above could be refactored to:
+
+```solidity
+        if (endTime < startTime + 1 || endTime > block.timestamp) {
+```
