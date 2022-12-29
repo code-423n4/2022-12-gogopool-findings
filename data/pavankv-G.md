@@ -2,6 +2,8 @@
 If a function modifier such as onlyOwner or other modifier  is used, the function will revert if a normal user tries to pay the function. Marking the function as payable will lower the gas cost for legitimate callers because the compiler will not include checks for whether a payment was provided. The extra opcodes avoided are CALLVALUE(2),DUP1(3),ISZERO(3),PUSH2(3),JUMPI(10),PUSH1(3),DUP1(3),REVERT(0),JUMPDEST(1),POP(2), which costs an average of about 21 gas per call to the function, in addition to the extra deployment cost.
 
 code snippet:-
+https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Vault.sol#L108
+https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Vault.sol#L61
 https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/ClaimNodeOp.sol#L56
 https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/ClaimProtocolDAO.sol#L20
 https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MultisigManager.sol#L35
@@ -37,6 +39,7 @@ https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Ocyt
 https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/RewardsPool.sol#L74
 https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/RewardsPool.sol#L215
 https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/RewardsPool.sol#L230
+https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Staking.sol#L428
 
 ## 5 Use named returns for local variables where it is possible:-
 
@@ -77,3 +80,26 @@ function requireNextActiveMultisig() external view returns (address addr) {
 
 code snippet:-
 https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/RewardsPool.sol#L229
+
+## 7. x = x + y is cheaper than x += y  / x = x-y is cheaper than x-=y :-
+code snippet:-
+https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/tokens/TokenggAVAX.sol#L149
+https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/tokens/TokenggAVAX.sol#L160
+https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/tokens/TokenggAVAX.sol#L245
+https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/tokens/TokenggAVAX.sol#L252
+https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/tokens/upgradeable/ERC20Upgradeable.sol#L79
+https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/tokens/upgradeable/ERC20Upgradeable.sol#L101
+https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/tokens/upgradeable/ERC20Upgradeable.sol#L106
+
+
+## 8. Public function that could be declared external :-
+
+Reference :- https://github.com/crytic/slither/wiki/Detector-Documentation#public-function-that-could-be-declared-external
+
+code snippet:-
+https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Staking.sol#L204
+https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Staking.sol#L224
+https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Staking.sol#L231
+https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Staking.sol#L248
+
+
