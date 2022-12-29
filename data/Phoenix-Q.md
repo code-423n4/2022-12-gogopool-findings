@@ -64,22 +64,32 @@ https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Ocyt
 Boolean comparisons can be checked as `true` or `false`directly. There is no need to compare them with a `true` or `false` value. A simplified comparison can reduce gas costs.
 
 [`BaseAbstract.sol#L25`](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/BaseAbstract.sol#L25)
+```solidity
+             if (getBool(keccak256(abi.encodePacked("contract.exists", msg.sender))) == false) {
+			revert InvalidOrOutdatedContract();
+		}
+```
 [`BaseAbstract.sol#L74`](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/BaseAbstract.sol#L74)
+```solidity
+              if (enabled == false) {
+			revert MustBeMultisig();
+		}
+```
 [`Storage.sol#L29`](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Storage.sol#L29)
+```solidity
+              if (booleanStorage[keccak256(abi.encodePacked("contract.exists", msg.sender))] == false && msg.sender != guardian) {
+			revert InvalidOrOutdatedContract();
+		}
+```
 
 *Recommendation:* Consider removing tautology comparisons, for example, refactoring in `BaseAbstract` contract's functions:
 
-```solidity
-if (!getBool(keccak256(abi.encodePacked("contract.exists", msg.sender)))) {
-     revert InvalidOrOutdatedContract();
-}
-
-if (!enabled) {
-     revert MustBeMultisig();
-}
-```
-
-
 ---
 ## `version` state variable can be set as immutable *** >>> BaseAbstract.sol
+The `version` state variable is only changed at the `constructor` on the contracts that inherits `BaseAbstract`. Therefore `version` can be set as immutable
 
+File: [`BaseAbstract.sol#L19`](https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/BaseAbstract.sol#L19)
+
+```solidity
+uint8 public version;
+```
