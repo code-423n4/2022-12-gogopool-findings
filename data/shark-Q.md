@@ -86,7 +86,7 @@ Here a few instances of this issue:
 - File: `Staking.sol` [Line 203](https://github.com/code-423n4/2022-12-gogopool/blob/1c30b320b7105e57c92232408bc795b6d2dfa208/contracts/contract/Staking.sol#L203)
 - File: `MinipoolManager.sol` [Line 412](https://github.com/code-423n4/2022-12-gogopool/blob/1c30b320b7105e57c92232408bc795b6d2dfa208/contracts/contract/MinipoolManager.sol#L412)
 
-## 4. Zero value check on `withdrawAVAX() in TokenggAVAX.sol
+## 4. Missing zero value check in `withdrawAVAX()`
 
 If the parameter `uint256 assets` is accidentally input as zero, a zero value could still be assigned to `shares` even though it is rounded up. As such, a zero value check could be implemented.
 
