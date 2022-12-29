@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "rvierdiiev",
+  "risk": "",
+  "title": "No guarantee that rialto will call ClaimNodeOp.calculateAndDistributeRewards during rewards cycle",
+  "issueId": 245,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/245"
+}
