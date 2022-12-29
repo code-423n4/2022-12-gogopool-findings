@@ -64,3 +64,29 @@ function createMinipool(
 ```
 
 Remidiation: Please avoid loops in your functions or actions that modify large areas of storage (this includes clearing or copying arrays in storage)
+
+## [G-05]
+File: MinipoolManager.sol
+
+URL: https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/MinipoolManager.sol#L273 
+
+Summary: 
+Gas requirement of function MinipoolManager.cancelMinipool is infinite: If the gas requirement of a function is higher than the block gas limit, it cannot be executed. Please avoid loops in your functions or actions that modify large areas of storage (this includes clearing or copying arrays in storage)
+Line: 273
+
+PoC:
+```
+function cancelMinipool(address nodeID) external nonReentrant {
+		Staking staking = Staking(getContractAddress("Staking"));
+		ProtocolDAO dao = ProtocolDAO(getContractAddress("ProtocolDAO"));
+		int256 index = requireValidMinipool(nodeID);
+		onlyOwner(index);
+		// make sure they meet the wait period requirement
+		if (block.timestamp - staking.getRewardsStartTime(msg.sender) < dao.getMinipoolCancelMoratoriumSeconds()) {
+			revert CancellationTooEarly();
+		}
+		_cancelMinipoolAndReturnFunds(nodeID, index);
+	}
+```
+
+Remidiation: Please avoid loops in your functions or actions that modify large areas of storage (this includes clearing or copying arrays in storage)
