@@ -224,3 +224,23 @@ function recordStakingStart(
 ```
 
 Remidiation: Please avoid loops in your functions or actions that modify large areas of storage (this includes clearing or copying arrays in storage)
+
+## [G-10]
+File: MinipoolManager.sol
+
+URL: https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/MinipoolManager.sol#L385 
+
+Summary: 
+Gas requirement of function MinipoolManager.recordStakingEnd is infinite: If the gas requirement of a function is higher than the block gas limit, it cannot be executed. Please avoid loops in your functions or actions that modify large areas of storage (this includes clearing or copying arrays in storage)
+Line: 385
+
+PoC:
+```
+function recordStakingEnd(
+		address nodeID,
+		uint256 endTime,
+		uint256 avaxTotalRewardAmt
+	) external payable {
+```
+
+Remidiation: Please avoid loops in your functions or actions that modify large areas of storage (this includes clearing or copying arrays in storage)
