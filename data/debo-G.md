@@ -179,3 +179,48 @@ function claimAndInitiateStaking(address nodeID) external {
 ```
 
 Remidiation: Please avoid loops in your functions or actions that modify large areas of storage (this includes clearing or copying arrays in storage)
+
+## [G-09]
+File: MinipoolManager.sol
+
+URL: https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/MinipoolManager.sol#L349 
+
+Summary: 
+Gas requirement of function MinipoolManager.recordStakingStart is infinite: If the gas requirement of a function is higher than the block gas limit, it cannot be executed. Please avoid loops in your functions or actions that modify large areas of storage (this includes clearing or copying arrays in storage)
+Line: 349
+
+PoC:
+```
+function recordStakingStart(
+		address nodeID,
+		bytes32 txID,
+		uint256 startTime
+	) external {
+		int256 minipoolIndex = onlyValidMultisig(nodeID);
+		requireValidStateTransition(minipoolIndex, MinipoolStatus.Staking);
+		if (startTime > block.timestamp) {
+			revert InvalidStartTime();
+		}
+
+		setUint(keccak256(abi.encodePacked("minipool.item", minipoolIndex, ".status")), uint256(MinipoolStatus.Staking));
+		setBytes32(keccak256(abi.encodePacked("minipool.item", minipoolIndex, ".txID")), txID);
+		setUint(keccak256(abi.encodePacked("minipool.item", minipoolIndex, ".startTime")), startTime);
+
+		// If this is the first of many cycles, set the initialStartTime
+		uint256 initialStartTime = getUint(keccak256(abi.encodePacked("minipool.item", minipoolIndex, ".initialStartTime")));
+		if (initialStartTime == 0) {
+			setUint(keccak256(abi.encodePacked("minipool.item", minipoolIndex, ".initialStartTime")), startTime);
+		}
+
+		address owner = getAddress(keccak256(abi.encodePacked("minipool.item", minipoolIndex, ".owner")));
+		uint256 avaxLiquidStakerAmt = getUint(keccak256(abi.encodePacked("minipool.item", minipoolIndex, ".avaxLiquidStakerAmt")));
+		Staking staking = Staking(getContractAddress("Staking"));
+		if (staking.getAVAXAssignedHighWater(owner) < staking.getAVAXAssigned(owner)) {
+			staking.increaseAVAXAssignedHighWater(owner, avaxLiquidStakerAmt);
+		}
+
+		emit MinipoolStatusChanged(nodeID, MinipoolStatus.Staking);
+	}
+```
+
+Remidiation: Please avoid loops in your functions or actions that modify large areas of storage (this includes clearing or copying arrays in storage)
