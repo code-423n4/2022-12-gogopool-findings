@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "0Kage",
+  "risk": "",
+  "title": "Disabled multisig can still perform crictical pool management actions such as initiate staking, record staking start, record staking end etc",
+  "issueId": 271,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/271"
+}
