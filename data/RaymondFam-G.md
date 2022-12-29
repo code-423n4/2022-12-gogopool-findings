@@ -96,6 +96,18 @@ Consider removing the unneeded if block to save gas both on contract deployment 
 -			revert InsufficientAVAXForMinipoolCreation();
 -		}
 ```
+In the light of this, the following code line and function may also be removed:
+
+[File: ProtocolDAO.sol](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/ProtocolDAO.sol)
+
+```diff
+- 47:		setUint(keccak256("ProtocolDAO.MinipoolMinAVAXStakingAmt"), 2_000 ether);
+
+- 129:	/// @notice The min AVAX staking amount that is required for creating a minipool
+- 130:	function getMinipoolMinAVAXStakingAmt() public view returns (uint256) {
+- 131:		return getUint(keccak256("ProtocolDAO.MinipoolMinAVAXStakingAmt"));
+- 132:	}
+```
 ## Avoid comparing boolean expressions to boolean literals
 Comparing a boolean value to a boolean literal incurs the `ISZERO` operation and costs more gas than using a boolean expression.
 
