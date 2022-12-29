@@ -127,7 +127,7 @@ Additionally, the function logic of `requireNextActiveMultisig()` seems to be mo
 
 [File: MultisigManager.sol#L80-L91](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MultisigManager.sol#L80-L91)
 
-```
+```solidity
 	function requireNextActiveMultisig() external view returns (address) {
 		uint256 total = getUint(keccak256("multisig.count"));
 		address addr;
@@ -141,20 +141,28 @@ Additionally, the function logic of `requireNextActiveMultisig()` seems to be mo
 		revert NoEnabledMultisigFound();
 	}
 ```
-## Comment mistakes
+## Comment and code mismatch
 The comment lines below said that `2% is 0.2 ether`. It should be `2% is 0.02 ether` or `20% is 0.2 ether`.
 
 [File: MinipoolManager.sol#L35](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol#L35)
 
-```
+```diff
 -	minipool.item<index>.delegationFee = node operator specified fee (must be between 0 and 1 ether) 2% is 0.2 ether
 +	minipool.item<index>.delegationFee = node operator specified fee (must be between 0 and 1 ether) 2% is 0.02 ether
 ```
 [File: MinipoolManager.sol#L194](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol#L194)
 
-```
+```diff
 -	/// @param delegationFee Percentage delegation fee in units of ether (2% is 0.2 ether)
 +	/// @param delegationFee Percentage delegation fee in units of ether (20% is 0.2 ether)
+```
+Similarly, the comment below said that it is looking up multisig index by minipool nodeID when only the multisig address assigned to the minipool is entailed:
+
+[File: MinipoolManager.sol#L124](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol#L124)
+
+```diff
+-	/// @dev Look up multisig index by minipool nodeID
++	/// @dev Look up minipool index via assigned multisig address by minipool nodeID
 ```
 ## GGP token exchange
 GGP is initialized with `TotalGGPCirculatingSupply == 18_000_000 ether`. However, an exchange is needed to at least allow node operators to swap AVAX or ggAVAX into GGP. Devoid of this, no one would be able to secure any GGP to stake prior to creating a minipool.
@@ -206,4 +214,29 @@ Although `previewWithdraw()` does round up, it could still assign a zero value t
 		shares = previewWithdraw(assets); // No need to check for rounding error, previewWithdraw rounds up.
 		beforeWithdraw(assets, shares);
 		_burn(msg.sender, shares);
+```
+## Parameterized custom errors
+Consider parameterizing custom errors where deemed fit to make them more distinct.
+
+For an example, the following custom error instance may be refactored as follows:
+
+[File: BaseAbstract.sol#L17](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/BaseAbstract.sol#L17)
+
+```diff
+-	error MustBeGuardianOrValidContract();
++	error MustBeGuardianOrValidContract(address caller, bool authorization);
+```
+[File: BaseAbstract.sol#L40-L48](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/BaseAbstract.sol#L40-L48)
+
+```diff
+	modifier guardianOrRegisteredContract() {
+		bool isContract = getBool(keccak256(abi.encodePacked("contract.exists", msg.sender)));
+		bool isGuardian = msg.sender == gogoStorage.getGuardian();
+
+		if (!(isGuardian || isContract)) {
+-			revert MustBeGuardianOrValidContract();
++			revert MustBeGuardianOrValidContract(msg.sender, isGuardian);
+		}
+		_;
+	}
 ```
