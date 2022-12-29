@@ -100,3 +100,9 @@ The above could be refactored to:
 ```solidity
         if (endTime < startTime + 1 || endTime > block.timestamp) {
 ```
+
+## 8. Unused `delegationFee` field in struct
+
+In [`MinipoolManager.sol`](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol), the `Minipool` struct has a field that is unused ([Line 87](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol#L87))
+
+Because this will cost extra gas, consider either removing it, or making use of it.
