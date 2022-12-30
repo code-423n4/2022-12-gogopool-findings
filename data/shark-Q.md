@@ -128,3 +128,13 @@ Consider adding the variable `__gap` at the end of the contract:
 ```solidity
 uint256[50] private __gap;
 ```
+
+## 6. Custom errors can be used with parameters
+
+The following custom errors could use some parameters to show what actually went wrong:
+
+- File `MinipoolManager.sol` [Line 64](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol#L64)
+- File: `MinipoolManager.sol` [Line 65](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol#L65)
+- File: `Vault.sol` [Line 23](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Vault.sol#L23)
+- File: `Vault.sol` [Line 24](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Vault.sol#L24)
+- File: `Oracle.sol` [Line 18](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Oracle.sol#L18)
