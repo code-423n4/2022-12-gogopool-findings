@@ -131,7 +131,7 @@ uint256[50] private __gap;
 
 ## 6. Custom errors can be used with parameters
 
-The following custom errors could use some parameters to show what actually went wrong:
+For example, the following custom errors could use some parameters to show what actually went wrong:
 
 - File `MinipoolManager.sol` [Line 64](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol#L64)
 - File: `MinipoolManager.sol` [Line 65](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol#L65)
