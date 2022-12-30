@@ -267,3 +267,40 @@ Similarly, for an example, consider replacing `<=` with the strict counterpart `
 -		return avaxLiquidStakerAmt <= ggAVAX.amountAvailableForStaking();
 +		return avaxLiquidStakerAmt < ggAVAX.amountAvailableForStaking() + 1;
 ```
+## Unused ERC20 instance
+`ggp` is declared as an immutable ERC20 instance in MinipoolManager.sol, but it is not found to be used in the contract. Its associated code excutions, e.g. `slash()`, collateralization ratio of GGP to Assigned AVAX, `calculateGGPSlashAmt()` etc are all externally dependent on ProtocolDAO.sol and Oracle.sol.
+
+Consider having the affected code lines removed to reduce the contract size:
+
+[File: MinipoolManager.sol](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol)
+
+```diff
+- 13: import {TokenGGP} from "./tokens/TokenGGP.sol";
+
+- 78:	ERC20 public immutable ggp;
+
+- 179:		ERC20 ggp_,
+
+-183:		ggp = ggp_;
+```
+## Unneeded cache
+In `recordStakingEnd()` of MinipoolManager.sol, using `totalAvaxAmt` to cache the sum of two local variables has no gas saving benefit on top of it being used only once in the function logic. Because `avaxNodeOpAmt == avaxLiquidStakerAmt` in any validation cycle., the affected code lines may be refactored as follows to save gas both on contract deployment and function calls:
+
+[File: MinipoolManager.sol#L400-L403](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol#L400-L403)
+
+```diff
+-		uint256 totalAvaxAmt = avaxNodeOpAmt + avaxLiquidStakerAmt;
+-		if (msg.value != totalAvaxAmt + avaxTotalRewardAmt) {
++		if (msg.value != avaxNodeOpAmt * 2 + avaxTotalRewardAmt) {
+			revert InvalidAmount();
+		}
+``` 
+Similarly, the code lines below associated with `claimAndInitiateStaking()` may also be refactored as follows:
+
+[File: MinipoolManager.sol#L341-L342](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol#L341-L342)
+
+```diff
+-		uint256 totalAvaxAmt = avaxNodeOpAmt + avaxLiquidStakerAmt;
+-		msg.sender.safeTransferETH(totalAvaxAmt);
++		msg.sender.safeTransferETH(avaxNodeOpAmt + avaxLiquidStakerAmt);
+```
