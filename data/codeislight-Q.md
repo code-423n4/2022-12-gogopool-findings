@@ -13,7 +13,6 @@ File: ProtocolDAO.sol
 
 156: 	function setExpectedAVAXRewardsRate(uint256 rate) public onlyMultisig valueNotGreaterThanOne(rate) {
 157:		setUint(keccak256("ProtocolDAO.ExpectedAVAXRewardsRate"), rate);
-158:	}
 
 ```
 - check contract addresses inputs are contracts by checking code size is greater than zero.
@@ -21,8 +20,10 @@ File: ProtocolDAO.sol
 File: ProtocolDAO.sol
 190: 	function registerContract(address addr, string memory name) public onlyGuardian {
 198:	        function unregisterContract(address addr) public onlyGuardian {
+
 File: Base.sol
 10:	         constructor(Storage _gogoStorageAddress) {
+
 File: Oracle.sol
 28:	function setOneInch(address addr) external onlyGuardian {
 ```
@@ -40,4 +41,15 @@ File: MinipoolManager.sol
 		deleteUint(keccak256(abi.encodePacked("minipool.item", index, ".ggpSlashAmt")));
 		deleteBytes32(keccak256(abi.encodePacked("minipool.item", index, ".errorCode")));
 	}
+```
+- in MiniPoolManager.createMinipool() has payable and avaxAssignmentRequest parameters, which are both must be equal, therefore using only msg.value as a value instead of passing `avaxAssignmentRequest` the extra parameter would be sufficient and better UX.
+
+```
+File: MiniPoolManager.sol
+196:	function createMinipool(
+197:		address nodeID,
+198:		uint256 duration,
+199:		uint256 delegationFee,
+200:		uint256 avaxAssignmentRequest
+201:	) external payable whenNotPaused {
 ```
