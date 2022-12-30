@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "ck",
+  "risk": "",
+  "title": "Some users may be unable to withdraw ggAVAX for an extended period due to an underflow in beforeWithdraw()",
+  "issueId": 289,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/289"
+}
