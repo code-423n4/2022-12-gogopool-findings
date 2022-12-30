@@ -141,7 +141,7 @@ Additionally, the function logic of `requireNextActiveMultisig()` seems to be mo
 		revert NoEnabledMultisigFound();
 	}
 ```
-## Comment and code mismatch
+## Comments and codes mismatch
 The comment lines below said that `2% is 0.2 ether`. It should be `2% is 0.02 ether` or `20% is 0.2 ether`.
 
 [File: MinipoolManager.sol#L35](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol#L35)
@@ -168,6 +168,9 @@ Similarly, the comment below said that it is looking up multisig index by minipo
 GGP is initialized with `TotalGGPCirculatingSupply == 18_000_000 ether`. However, an exchange is needed to at least allow node operators to swap AVAX or ggAVAX into GGP. Devoid of this, no one would be able to secure any GGP to stake prior to creating a minipool. 
 
 Additionally, with an exchange in place, liquid stakers would be able to sell the slashed GGP awarded at their discretion instead of being dictated by Protocol DAO.
+
+## GGP tokens circulated distributions
+It is not absolutely clear where and how GGP tokens are being circulated. Upon having `TokenGGP.sol` deployed, a fixed supply of 22_500_000 tokens were minted to the deployer. The protocol should clearly document when and how the initial 18_000_000 tokens were being distributed, e.g. pre-sales, airdrops, deFi exchange etc. And when the tokens got inflated, it should be transparent how the protocol was going to have proper accounting catered for contracts holding the additional GGP tokens. For instance, upon successfully executing `startRewardsCycle()` in RewardsPool.sol, how would `Vault.sol` GGP contract balance be updated to allow the transfer/withdrawal pertaining to "ClaimMultisig", "ClaimNodeOp", and "ClaimProtocolDAO"?
 
 ## Missing use for `delegationFee` 
 `delegationFee` is introduced in `MinipoolManager.sol`. However, no where in the contract or the protocol could be found any use for this variable that has been included in the struct, `Minipool`. Additionally, there seems to be no boundary control on the input parameter of `delegationFee` in `createMinipool()`. This could impose a problem devoid of a yardstick to determine what percentage delegation fee in units of ether is deemed fair and appropriate on `avaxAssignmentRequest`. If `delegationFee` is not ready to be fully introduced yet, consider elaborating a brief structured plan for it in the NatSpec or the documentations since this constitutes one of the triple incentives to the node operators. 
@@ -252,7 +255,6 @@ Some possibly disorienting situations are possible if `bytes` is used as a funct
 ```solidity
 	function getBytes(bytes32 key) external view returns (bytes memory) {
 ```
-
 ## Empty blocks
 Function with empty block should have a comment explaining why it is empty. For instance, `receiveWithdrawalAVAX()` in MiniPoolManager.sol should be commented as receiving AVAX from TokenggAVAX.sol and Vault.sol to better portray its intended purpose:
 
