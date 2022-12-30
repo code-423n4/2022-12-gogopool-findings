@@ -1,0 +1,3 @@
+ In the initialize function(ProtocolDAO.sol), you are calling setBool, setUint, and setAddress functions, which are all external functions that will increase the gas usage of this contract. Instead, you could use local variables to store the values you want to set and only call the external functions once, after all the values have been set.
+
+Link to contract: https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/ProtocolDAO.sol
