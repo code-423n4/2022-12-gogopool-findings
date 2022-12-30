@@ -165,7 +165,9 @@ Similarly, the comment below said that it is looking up multisig index by minipo
 +	/// @dev Look up minipool index via assigned multisig address by minipool nodeID
 ```
 ## GGP token exchange
-GGP is initialized with `TotalGGPCirculatingSupply == 18_000_000 ether`. However, an exchange is needed to at least allow node operators to swap AVAX or ggAVAX into GGP. Devoid of this, no one would be able to secure any GGP to stake prior to creating a minipool.
+GGP is initialized with `TotalGGPCirculatingSupply == 18_000_000 ether`. However, an exchange is needed to at least allow node operators to swap AVAX or ggAVAX into GGP. Devoid of this, no one would be able to secure any GGP to stake prior to creating a minipool. 
+
+Additionally, with an exchange in place, liquid stakers would be able to sell the slashed GGP awarded at their discretion instead of being dictated by Protocol DAO.
 
 ## Missing use for `delegationFee` 
 `delegationFee` is introduced in `MinipoolManager.sol`. However, no where in the contract or the protocol could be found any use for this variable that has been included in the struct, `Minipool`. Additionally, there seems to be no boundary control on the input parameter of `delegationFee` in `createMinipool()`. This could impose a problem devoid of a yardstick to determine what percentage delegation fee in units of ether is deemed fair and appropriate on `avaxAssignmentRequest`. If `delegationFee` is not ready to be fully introduced yet, consider elaborating a brief structured plan for it in the NatSpec or the documentations since this constitutes one of the triple incentives to the node operators. 
@@ -239,4 +241,24 @@ For an example, the following custom error instance may be refactored as follows
 		}
 		_;
 	}
+```
+## `bytes32` over `bytes`
+`bytes32` typed variables are fixed-sized and can be passed between contracts. `bytes` typed variables, on the contrary, are dynamically sized and special array, i.e. a shorthand for `byte[]` according to [Solidity Documentation](https://docs.soliditylang.org/en/v0.5.10/types.html#bytes-and-strings-as-arrays). They are not value type, but can entail push (append a byte to the end), pop, and length. 
+
+Some possibly disorienting situations are possible if `bytes` is used as a function argument and the contract successfully compiles The instances entailed in the protocol are not at risk, but care will have to be given elsewhere by always using fixed length types for any function that will be called from outside:
+
+[File: Storage.sol#L80](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Storage.sol#L80)
+
+```solidity
+	function getBytes(bytes32 key) external view returns (bytes memory) {
+```
+
+## Empty blocks
+Function with empty block should have a comment explaining why it is empty. For instance, `receiveWithdrawalAVAX()` in MiniPoolManager.sol should be commented as receiving AVAX from TokenggAVAX.sol and Vault.sol to better portray its intended purpose:
+
+[File: MinipoolManager.sol#L106](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol#L106)
+
+```diff
++	/// @notice Receive AVAX from TokenggAVAX.sol and Vault.sol
+	function receiveWithdrawalAVAX() external payable {}
 ```
