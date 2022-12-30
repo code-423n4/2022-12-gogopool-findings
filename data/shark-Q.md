@@ -1,3 +1,9 @@
+## 0. Empty functions
+
+Writing a clear comment for empty functions explaining the purpose of their existence is a good practice, as it can increase readability and lead to less confusion by readers.
+
+- MinipoolManager.sol [Line 106](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol#L106)
+
 ## 1. Typo mistakes
 
 It is recommended to use the proper spelling of words. Typos can make it difficult for readers to decipher the intended meaning, which can lead to confusion.
