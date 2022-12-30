@@ -304,3 +304,26 @@ Similarly, the code lines below associated with `claimAndInitiateStaking()` may 
 -		msg.sender.safeTransferETH(totalAvaxAmt);
 +		msg.sender.safeTransferETH(avaxNodeOpAmt + avaxLiquidStakerAmt);
 ```
+## Additional check to stem erroneous input of function argument
+`getStakers()` in Staking.sol could revert on [line 426](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Staking.sol#L426) if `max - offset` entailed a negative integer due to inputting an `offset` value larger than `totalStakers`.
+
+Consider adding an additional check below that would revert earlier in the the function logic if need be:
+
+[File: Staking.sol#L420-L438](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Staking.sol#L420-L438)
+
+```diff
++	error InvalidParameter();
+
+	function getStakers(uint256 offset, uint256 limit) external view returns (Staker[] memory stakers) {
+		uint256 totalStakers = getStakerCount();
++		if (offset > totalStakers) {
++                      revert InvalidParameter();
++              }
+		uint256 max = offset + limit;
+		if (max > totalStakers || limit == 0) {
+			max = totalStakers;
+		}
+		stakers = new Staker[](max - offset);
+
+                ...
+```
