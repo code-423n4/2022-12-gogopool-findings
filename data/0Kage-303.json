@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "0Kage",
+  "risk": "",
+  "title": "Malicious user can block a honest node operator from withdrawing his staked AVAX after minipool staking ends causing a loss of funds",
+  "issueId": 303,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/303"
+}
