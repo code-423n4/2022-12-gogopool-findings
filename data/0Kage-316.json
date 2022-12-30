@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "0Kage",
+  "risk": "",
+  "title": "Multisig concentration risk - while Rialto rewards are equally distributed among MultiSigs, pool allotment always goes to the first active multisig",
+  "issueId": 316,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/316"
+}
