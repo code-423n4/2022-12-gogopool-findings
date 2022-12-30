@@ -23,5 +23,6 @@ File: ProtocolDAO.sol
 198:	        function unregisterContract(address addr) public onlyGuardian {
 File: Base.sol
 10:	         constructor(Storage _gogoStorageAddress) {
-
+File: Oracle.sol
+28:	function setOneInch(address addr) external onlyGuardian {
 ```
