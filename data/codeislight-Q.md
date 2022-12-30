@@ -26,3 +26,18 @@ File: Base.sol
 File: Oracle.sol
 28:	function setOneInch(address addr) external onlyGuardian {
 ```
+
+- use delete instead of set function in MiniPoolManager.resetMiniPoolData() to save on gas fees and improve on readability.
+```
+File: MinipoolManager.sol
+	function resetMinipoolData(int256 index) private {
+		deleteBytes32(keccak256(abi.encodePacked("minipool.item", index, ".txID")));
+		deleteUint(keccak256(abi.encodePacked("minipool.item", index, ".startTime")));
+		deleteUint(keccak256(abi.encodePacked("minipool.item", index, ".endTime")));
+		deleteUint(keccak256(abi.encodePacked("minipool.item", index, ".avaxTotalRewardAmt")));
+		deleteUint(keccak256(abi.encodePacked("minipool.item", index, ".avaxNodeOpRewardAmt")));
+		deleteUint(keccak256(abi.encodePacked("minipool.item", index, ".avaxLiquidStakerRewardAmt")));
+		deleteUint(keccak256(abi.encodePacked("minipool.item", index, ".ggpSlashAmt")));
+		deleteBytes32(keccak256(abi.encodePacked("minipool.item", index, ".errorCode")));
+	}
+```
