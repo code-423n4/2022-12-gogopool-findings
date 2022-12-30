@@ -6,7 +6,7 @@ Because balance is subtracted from the registered contract prior to the transfer
 
 https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/Vault.sol#L137
 
-`if (tokenBalances[contractKey] < amount) {
+`    if (tokenBalances[contractKey] < amount) {
 			revert InsufficientContractBalance();
 		}
                 // Update balances
