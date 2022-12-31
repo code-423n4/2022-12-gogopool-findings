@@ -308,3 +308,6 @@ Using shifting to save gas
 ```
 nopClaim.calculateAndDistributeRewards(allStakers[i].stakerAddr, (totalEligibleStakedGGP << 1 ));
 ```
+
+G34: https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/ClaimProtocolDAO.sol#L28-L30
+No need to check these conditions since they will be checked in function ``withdrawToken()`` anyway. Deleting them can save gas.
