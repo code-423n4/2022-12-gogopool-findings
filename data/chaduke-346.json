@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "chaduke",
+  "risk": "",
+  "title": "DOS attack to getStakers() and processGGPRewards()",
+  "issueId": 346,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/346"
+}
