@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "btk",
+  "risk": "",
+  "title": "Possible Dos in beforeWithdraw() due to underflow",
+  "issueId": 340,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/340"
+}
