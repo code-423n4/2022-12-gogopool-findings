@@ -9,6 +9,7 @@
 | L-04      | `Staking.restakeGGP` function should have `whenNotPaused` modifier | Staking.sol | 1 |  
 | L-05      | `Staking.getStaker` function does not set `avaxAssignedHighWater` value | Staking.sol | 1 |  
 | L-06      | Function access modifier can be more restrictive | Staking.sol | 2 |  
+| L-07      | It should be possible to assign Minipool to a new Multisig | MinipoolManager.sol | 1 |  
 | N-00      | `amountAvailableForStaking` should return 0 instead of revert due to underflow | TokenggAVAX.sol | 1 |  
 | N-01      | Remove `TODO` comments | - | 3 |  
 | N-02      | Remove unnecessary imports | - | 2 |  
@@ -119,6 +120,14 @@ Both functions are only called in one other contract so they can use a more rest
 `Staking.increaseAVAXAssignedHighWater` should use `onlySpecificRegisteredContract("MinipoolManager", msg.sender)`.  
 
 `Staking.resetAVAXAssignedHighWater` should use `onlySpecificRegisteredContract("ClaimNodeOp", msg.sender)`.  
+
+## [L-07] It should be possible to assign Minipool to a new Multisig
+When a Minipool is created, a Multisig is assigned to it ([https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/MinipoolManager.sol#L236](https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/MinipoolManager.sol#L236)).  
+However there is no possibility to assign a different Multisig to an existing Minipool.  
+
+There can be scenarios that make it necessary to assign a new Multisig to a Minipool. E.g. if something changes about Avalanche Staking such that the old Multisig is not compatible anymore.  
+
+Therefore it should be possible to change Multisigs.  E.g. allow the guardian to change Multisigs.  
 
 ## [N-00] `amountAvailableForStaking` should return 0 instead of revert due to underflow
 The `amountAvailableForStaking` function ([https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/tokens/TokenggAVAX.sol#L132-L140](https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/tokens/TokenggAVAX.sol#L132-L140)) in `TokenggAVAX.sol` calculates:  
