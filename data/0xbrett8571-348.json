@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "0xbrett8571",
+  "risk": "",
+  "title": "Inadequate authorization and error handling in Ocyticus contract expose protocol to potential attacks",
+  "issueId": 348,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/348"
+}
