@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "cccz",
+  "risk": "",
+  "title": "withdrawMinipoolFunds can front-run recreateMinipool, which allows users to create minipools without staking avax",
+  "issueId": 332,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/332"
+}
