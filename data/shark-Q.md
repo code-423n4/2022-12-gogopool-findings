@@ -1,9 +1,3 @@
-## 0. Empty functions
-
-Writing a clear comment for empty functions explaining the purpose of their existence is a good practice, as it can increase readability and lead to less confusion by readers.
-
-- MinipoolManager.sol [Line 106](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol#L106)
-
 ## 1. Typo mistakes
 
 It is recommended to use the proper spelling of words. Typos can make it difficult for readers to decipher the intended meaning, which can lead to confusion.
@@ -144,3 +138,9 @@ For example, the following custom errors could use some parameters to show what 
 - File: `Vault.sol` [Line 23](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Vault.sol#L23)
 - File: `Vault.sol` [Line 24](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Vault.sol#L24)
 - File: `Oracle.sol` [Line 18](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Oracle.sol#L18)
+
+## 7. Unused imports
+
+Unused imports can lead to confusion for a human looking at the code. Also, it's bad practice.
+
+- File: `MinipoolManager.sol` [Line 13](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol#L13)
