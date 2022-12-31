@@ -1,3 +1,13 @@
+## 0. Unused ERC20 `ggp`
+
+In `MinipoolManager.sol`, the `immutable` variable `ggp` is declared at [Line 78](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol#L78). However, it is never utilized anywhere in the contract.
+
+To reduce the contract's size, consider removing `ggp` and all lines referencing it:
+
+- File: `MinipoolManager.sol` [Line 78](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol#L78)
+- File: `MinipoolManager.sol` [Line 179](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol#L179)
+- File: `MinipoolManager.sol` [Line 183](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol#L183)
+
 ## 1. Use `>>` rather than division by 2
 
 A division by 2 can be calculated by shifting to the right.
