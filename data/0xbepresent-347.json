@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "0xbepresent",
+  "risk": "",
+  "title": "MinipoolManager.sol::recreateMinipool() uses a wrong reward for the avaxLiquidStakerAmt causing to re-stake more Avax than it should be",
+  "issueId": 347,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/347"
+}
