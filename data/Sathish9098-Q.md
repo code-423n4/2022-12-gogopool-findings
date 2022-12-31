@@ -199,6 +199,99 @@ pragma solidity >=0.8.0 <0.9.0;
 
 ##
 
+## [N-5] NOT USING THE NAMED RETURN VARIABLES ANYWHERE IN THE FUNCTION IS CONFUSING
+
+Consider changing the variable to be an unnamed one
+
+[FILE: 2022-12-gogopool/contracts/contract/RewardsPool.sol](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/RewardsPool.sol)
+
+       66:  function getInflationAmt() public view returns (uint256 currentTotalSupply, uint256 newTotalSupply) {
+		ProtocolDAO dao = ProtocolDAO(getContractAddress("ProtocolDAO"));
+		uint256 inflationRate = dao.getInflationIntervalRate();
+		uint256 inflationIntervalsElapsed = getInflationIntervalsElapsed();
+		currentTotalSupply = dao.getTotalGGPCirculatingSupply();
+		newTotalSupply = currentTotalSupply;
+
+		// Compute inflation for total inflation intervals elapsed
+		for (uint256 i = 0; i < inflationIntervalsElapsed; i++) {
+			newTotalSupply = newTotalSupply.mulWadDown(inflationRate);
+		}
+		return (currentTotalSupply, newTotalSupply);
+	}
+
+##
+
+## [N-6]  OMISSIONS IN EVENTS
+
+Throughout the codebase, events are generally emitted when sensitive changes are made to the contracts. However, some events are missing important parameters
+
+The events should include the new value and old value where possible.
+
+[FILE: 12-gogopool/contracts/contract/MinipoolManager.sol](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol)
+
+##
+
+## [7] COMMENTED CODE
+
+[File: 2022-12-gogopool/contracts/contract/MinipoolManager.sol](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol)
+
+/*
+	Data Storage Schema
+	NodeIDs are 20 bytes so can use Solidity 'address' as storage type for them
+	NodeIDs can be added, but never removed. If a nodeID submits another validation request,
+		it will overwrite the old one (only allowed for specific statuses).
+
+	MinipoolManager.TotalAVAXLiquidStakerAmt = total for all active minipools (Prelaunch/Launched/Staking)
+
+	minipool.count = Starts at 0 and counts up by 1 after a node is added.
+
+	minipool.index<nodeID> = <index> of nodeID
+	minipool.item<index>.nodeID = nodeID used as primary key (NOT the ascii "Node-123..." but the actual 20 bytes)
+	minipool.item<index>.status = enum
+	minipool.item<index>.duration = requested validation duration in seconds (performed as 14 day cycles)
+	minipool.item<index>.delegationFee = node operator specified fee (must be between 0 and 1 ether) 2% is 0.2 ether
+	minipool.item<index>.owner = owner address
+	minipool.item<index>.multisigAddr = which Rialto multisig is assigned to manage this validation
+	minipool.item<index>.avaxNodeOpAmt = avax deposited by node operator (for this cycle)
+	minipool.item<index>.avaxNodeOpInitialAmt = avax deposited by node operator for the **first** validation cycle
+	minipool.item<index>.avaxLiquidStakerAmt = avax deposited by users and assigned to this nodeID
+
+	// Submitted by the Rialto oracle
+	minipool.item<index>.txID = transaction id of the AddValidatorTx
+	minipool.item<index>.initialStartTime = actual time the **first** validation cycle was started
+	minipool.item<index>.startTime = actual time validation was started
+	minipool.item<index>.endTime = actual time validation was finished
+	minipool.item<index>.avaxTotalRewardAmt = Actual total avax rewards paid by avalanchego to the TSS P-chain addr
+	minipool.item<index>.errorCode = bytes32 that encodes an error msg if something went wrong during launch of minipool
+
+	// Calculated in recordStakingEnd()
+	minipool.item<index>.avaxNodeOpRewardAmt
+	minipool.item<index>.avaxLiquidStakerRewardAmt
+	minipool.item<index>.ggpSlashAmt = amt of ggp bond that was slashed if necessary (expected reward amt = avaxLiquidStakerAmt * x%/yr / ggpPriceInAvax)
+*/
+
+##
+
+## [N-8]  INCONSISTENT SOLIDITY VERSIONS
+
+> Description
+
+Different Solidity compiler versions are used throughout Src repositories. The following contracts mix versions
+
+[2022-12-gogopool/contracts/contract/tokens/upgradeable/ERC20Upgradeable.sol](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/tokens/upgradeable/ERC20Upgradeable.sol)
+
+     2:  pragma solidity >=0.8.0;
+
+[FILE: 2022-12-gogopool/contracts/contract/tokens/upgradeable/ERC4626Upgradeable.sol](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/tokens/upgradeable/ERC4626Upgradeable.sol)
+
+   2:  pragma solidity >=0.8.0;
+
+[FILE: 2022-12-gogopool/contracts/contract/tokens/TokenggAVAX.sol](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/tokens/TokenggAVAX.sol)
+
+     2. pragma solidity 0.8.17;
+
+
+
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ##
@@ -239,6 +332,20 @@ Code Generation: Fix data corruption that affected ABI-encoding of calldata valu
 
 Yul Optimizer: Prevent the incorrect removal of storage writes before calls to Yul functions that conditionally terminate the external EVM call.
 Apart from these, there are several minor bug fixes and improvements
+
+##
+
+## [L2]  USE NAMED IMPORTS INSTEAD OF PLAIN IMPORTS
+
+[FIL: 2022-12-gogopool/contracts/contract/BaseUpgradeable.sol](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/BaseUpgradeable.sol)
+
+  4:  import "./BaseAbstract.sol";
+
+[FILE: 2022-12-gogopool/contracts/contract/ClaimNodeOp.sol](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/ClaimNodeOp.sol)
+
+  4:  import "./Base.sol";
+
+
 
 
 
