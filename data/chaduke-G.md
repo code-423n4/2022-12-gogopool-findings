@@ -301,3 +301,10 @@ No need to call ``staking.getEffectiveGGPStaked(allStakers[i].stakerAddr)`` agai
 ```
   effectiveGGPStaked = effectiveGGPStaked >> 1;
 ```
+
+G33. https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/utils/RialtoSimulator.sol#L118
+Using shifting to save gas
+
+```
+nopClaim.calculateAndDistributeRewards(allStakers[i].stakerAddr, (totalEligibleStakedGGP << 1 ));
+```
