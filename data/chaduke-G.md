@@ -296,3 +296,8 @@ Changing it to a private immutable can save gas
 uint32 private immutable rewardsCycleLength;
 ```
 
+G32: https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/utils/RialtoSimulator.sol#L109
+No need to call ``staking.getEffectiveGGPStaked(allStakers[i].stakerAddr)`` again, and we can use shifting to save gas as well.
+```
+  effectiveGGPStaked = effectiveGGPStaked >> 1;
+```
