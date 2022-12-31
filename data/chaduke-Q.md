@@ -192,4 +192,50 @@ Check ``decimal`` to make sure it is no more than 100% (1e18).
 QA21. https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/ProtocolDAO.sol#L156
 Check ``rate`` to make sure it is no more than 100% (1e18).
 
+QA22. https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/MinipoolManager.sol#L444-L478
+One needs to check If the ``duration`` still has time left to go when calling ``recreateMinipool()``:
+
+```
+function recreateMinipool(address nodeID) external whenNotPaused {
+		int256 minipoolIndex = onlyValidMultisig(nodeID);
+
+               Minipool m = getMinipool(minipoolINdex);
+               if(block.timestamp > m.initialStartTime + m.duration) revert NoLeftTimeforDuration();
+ 
+		requireValidStateTransition(minipoolIndex, MinipoolStatus.Prelaunch);
+		Minipool memory mp = getMinipool(minipoolIndex);
+		// Compound the avax plus rewards
+		// NOTE Assumes a 1:1 nodeOp:liqStaker funds ratio
+		uint256 compoundedAvaxNodeOpAmt = mp.avaxNodeOpAmt + mp.avaxNodeOpRewardAmt;
+		setUint(keccak256(abi.encodePacked("minipool.item", minipoolIndex, ".avaxNodeOpAmt")), compoundedAvaxNodeOpAmt);
+		setUint(keccak256(abi.encodePacked("minipool.item", minipoolIndex, ".avaxLiquidStakerAmt")), compoundedAvaxNodeOpAmt);
+
+		Staking staking = Staking(getContractAddress("Staking"));
+		// Only increase AVAX stake by rewards amount we are compounding
+		// since AVAX stake is only decreased by withdrawMinipool()
+		staking.increaseAVAXStake(mp.owner, mp.avaxNodeOpRewardAmt);
+		staking.increaseAVAXAssigned(mp.owner, compoundedAvaxNodeOpAmt);
+		staking.increaseMinipoolCount(mp.owner);
+
+		if (staking.getRewardsStartTime(mp.owner) == 0) {
+			// Edge case where calculateAndDistributeRewards has reset their rewards time even though they are still cycling
+			// So we re-set it here to their initial start time for this minipool
+			staking.setRewardsStartTime(mp.owner, mp.initialStartTime);
+		}
+
+		ProtocolDAO dao = ProtocolDAO(getContractAddress("ProtocolDAO"));
+		uint256 ratio = staking.getCollateralizationRatio(mp.owner);
+		if (ratio < dao.getMinCollateralizationRatio()) {
+			revert InsufficientGGPCollateralization();
+		}
+
+		resetMinipoolData(minipoolIndex);
+
+		setUint(keccak256(abi.encodePacked("minipool.item", minipoolIndex, ".status")), uint256(MinipoolStatus.Prelaunch));
+
+		emit MinipoolStatusChanged(nodeID, MinipoolStatus.Prelaunch);
+	}
+
+
+```
 
