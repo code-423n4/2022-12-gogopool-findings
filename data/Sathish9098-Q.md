@@ -190,7 +190,20 @@ NatSpec is missing for the following functions , constructor and events:
 	178:  function afterDeposit(uint256 assets, uint256 shares) internal virtual {}
 
 ##
-## [NC-4]  USE SAME SOLIDITY VERSIONS FOR ALL CONTRACTS . SOME CONTRACTS USING LOWER VERSIONS AND OTHER CONTRACTS USING LATEST STABLE VERSION. THIS IS NOT A BEST CODE PRACTICE.
+
+## [NC-4]  NON-LIBRARY/INTERFACE FILES SHOULD USE FIXED COMPILER VERSIONS, NOT FLOATING ONES
+
+INSTANCES(2) :
+
+pragma solidity >=0.8.0 <0.9.0;
+
+##
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+##
+
+## [L-1] MIXING AND OUTDATED COMPILER
 
 [2022-12-gogopool/contracts/contract/tokens/upgradeable/ERC20Upgradeable.sol](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/tokens/upgradeable/ERC20Upgradeable.sol)
 
@@ -204,40 +217,28 @@ NatSpec is missing for the following functions , constructor and events:
 
      2. pragma solidity 0.8.17;
 
-##
+The pragma version used are:
 
-## [NC-5]  NON-LIBRARY/INTERFACE FILES SHOULD USE FIXED COMPILER VERSIONS, NOT FLOATING ONES
+pragma solidity ^0.8.0;
+Note that mixing pragma is not recommended. Because different compiler versions have different meanings and behaviors, it also significantly raises maintenance costs. As a result, depending on the compiler version selected for any given file, deployed contracts may have security issues.
 
-INSTANCES(2) :
+The minimum required version must be 0.8.17; otherwise, contracts will be affected by the following important bug fixes:
 
-pragma solidity >=0.8.0 <0.9.0;
+0.8.14:
 
-##
+ABI Encoder: When ABI-encoding values from calldata that contain nested arrays, correctly validate the nested array length against calldatasize() in all cases.
+Override Checker: Allow changing data location for parameters only when overriding external functions.
+0.8.15
 
-## [L-1]  nodeID is not checked with zero address . Its possible to call the cancelMinipool() function with zero address.
+Code Generation: Avoid writing dirty bytes to storage when copying bytes arrays.
+Yul Optimizer: Keep all memory side-effects of inline assembly blocks.
+0.8.16
 
-[FILE: 2022-12-gogopool/contracts/contract/MinipoolManager.sol](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol)
+Code Generation: Fix data corruption that affected ABI-encoding of calldata values represented by tuples: structs at any nesting level; argument lists of external functions, events and errors; return value lists of external functions. The 32 leading bytes of the first dynamically-encoded value in the tuple would get zeroed when the last component contained a statically-encoded array.
+0.8.17
 
-            function cancelMinipool(address nodeID) external nonReentrant {
-		Staking staking = Staking(getContractAddress("Staking"));
-		ProtocolDAO dao = ProtocolDAO(getContractAddress("ProtocolDAO"));
-		int256 index = requireValidMinipool(nodeID);
-		onlyOwner(index);
-		// make sure they meet the wait period requirement
-		if (block.timestamp - staking.getRewardsStartTime(msg.sender) < dao.getMinipoolCancelMoratoriumSeconds()) {
-			revert CancellationTooEarly();
-		}
-		_cancelMinipoolAndReturnFunds(nodeID, index);
-	     }
-
-Recommended mitigation:
-
-                if (nodeID == address(0)) {
-			revert InvalidNodeID();
-		}
-##
-
-## 
+Yul Optimizer: Prevent the incorrect removal of storage writes before calls to Yul functions that conditionally terminate the external EVM call.
+Apart from these, there are several minor bug fixes and improvements
 
 
 
