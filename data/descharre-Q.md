@@ -1,0 +1,2 @@
+StakingtotalAssets is only called once, so there is no point in writing it to memory. 
+- [TokenggAVAX.sol#L97](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/tokens/TokenggAVAX.sol#L97)
