@@ -67,3 +67,27 @@ Use arguments instead of state variables.
 PoC: emit ClaimNodeOpRewardsTransfered(nopClaimContractAllotment);
 URL: https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/RewardsPool.sol#L192
 Remediation: Use arguments instead of state variables
+
+##[G-11]
+Unsinged integers lower than 32 bytes are more costly because solidity automatically assigns 32 bytes minimum to unsigned integers. 
+PoC:   uint8 public version;
+URL: https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/BaseAbstract.sol#L19
+remediation: use uint256 and then downcast.
+
+##[G-12]
+Unsinged integers lower than 32 bytes are more costly because solidity automatically assigns 32 bytes minimum to unsigned integers. 
+PoC:  uint8 public decimals;
+URL: https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/tokens/upgradeable/ERC20Upgradeable.sol#L27
+remediation: use uint256 and then downcast.
+
+##[G-13]
+Unsinged integers lower than 32 bytes are more costly because solidity automatically assigns 32 bytes minimum to unsigned integers. 
+PoC:  uint8 _decimals
+URL: https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/tokens/upgradeable/ERC20Upgradeable.sol#L56
+remediation: use uint256 and then downcast.
+
+##[G-14]
+Unsinged integers lower than 32 bytes are more costly because solidity automatically assigns 32 bytes minimum to unsigned integers. 
+PoC:  uint8 v,
+URL: https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/tokens/upgradeable/ERC20Upgradeable.sol#L123
+remediation: use uint256 and then downcast.
