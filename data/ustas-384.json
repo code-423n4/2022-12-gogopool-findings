@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "ustas",
+  "risk": "",
+  "title": "A Minipool's funds lock on the Rialto due to the reverting recordStakingEnd()",
+  "issueId": 384,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/384"
+}
