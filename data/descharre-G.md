@@ -28,3 +28,9 @@ x = x +y costs less gas than x += y (12 instances)
 - [ERC20Upgradeable.sol#L196](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/tokens/upgradeable/ERC20Upgradeable.sol#L196)
 - [ERC20Upgradeable.sol#L201](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/tokens/upgradeable/ERC20Upgradeable.sol#L201)
 
+Use custom error instead of require() to save gas (4 instances)
+- [ERC20Upgradeable.sol#L127](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/tokens/upgradeable/ERC20Upgradeable.sol#L127)
+- [ERC20Upgradeable.sol#L154](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/tokens/upgradeable/ERC20Upgradeable.sol#L154)
+- [ERC4626Upgradeable.sol#L44](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/tokens/upgradeable/ERC4626Upgradeable.sol#L44)
+- [ERC4626Upgradeable.sol#L103](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/tokens/upgradeable/ERC4626Upgradeable.sol#L103)
+
