@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "0xSmartContract",
+  "risk": "",
+  "title": "Fee-on-transfer tokens support must be forbidden or allowed with amount update",
+  "issueId": 388,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/388"
+}
