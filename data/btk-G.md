@@ -1,5 +1,7 @@
 ## [GAS-1] ++i should be unchecked{ ++i; }
 
+## Lines of code:
+
 - https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol#L619
 - https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MultisigManager.sol#L84
 - https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/RewardsPool.sol#L74
@@ -24,6 +26,8 @@ Unfortunately, the Solidity optimizer is not smart enough to detect this and rem
 Gas savings: roughly speaking this can save 30-40 gas per loop iteration. For lengthy loops, this can be significant!
 
 ## [GAS-2] wrap ```addAllowedToken``` and ```removeAllowedToken``` into a single function
+
+## Lines of code:
 
 - https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Vault.sol#L204-L210
 
@@ -65,6 +69,8 @@ function setAllowedTokens(address tokenAddress, bool _allowed) external onlyGuar
 
 ## [GAS-3] use require instead of assert
 
+## Lines of code:
+
 - https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/tokens/TokenggAVAX.sol#L83
 
 The bigger difference between the two keyword is that assert when condition is false tend to consume all gas remaining gas and reverts all the changes made. In reverse, require when the condition is false refund all the remaining gas fees we offered to pay beyond reverts all the changes.
@@ -99,15 +105,13 @@ receive() external payable {
 | Deployment Cost                                                | Deployment Size |        |        |        |         |
 | 2845654                                                        | 14383           |        |        |        |         |
 
+## [GAS-4] DON’T COMPARE BOOLEAN EXPRESSIONS TO BOOLEAN LITERALS
 
-
-## [GAS-4] Use !bool instead of bool == false 
+## Lines of code:
 
 - https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/BaseAbstract.sol#L74
 - https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/BaseAbstract.sol#L25
 - https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Storage.sol#L29
-
-It saves a lot of gas especially in this case because it is used in modifiers.
 
 ## Before:
 
@@ -148,3 +152,12 @@ if (!booleanStorage[keccak256(abi.encodePacked("contract.exists", msg.sender))] 
 	revert InvalidOrOutdatedContract();
 }
 ```
+
+## [GAS-5]  Use checks as early as possible
+
+## Lines of code:
+
+- https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol#L424
+- https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/ClaimNodeOp.sol#L82
+
+Use if as early as possible in the function because it returns only unused gas in the case of a failure. This means that if some logic before the if statement is gas-consuming, you will not get the gas for that logic if it fails.
