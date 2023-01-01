@@ -4,9 +4,28 @@ Instead of passing ``asset``as an argument, it is better to define it as a const
 QA2. https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/tokens/upgradeable/ERC4626Upgradeable.sol#L2
 Lock all files with the most recent version of Solidity  0.8.17.
 
-QA3: https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/tokens/TokenggAVAX.sol#L207-L209
-The check of if-paused for ``TokenggAVAX`` should be done for the following important functions as well: 
-``depositAVAX()``, ``withdrawAVAX()``, ``redeemAVAX()``, ``depositFromStaking()``, and ``withdrawForStaking()``, ``deposit()``, ``mint()``, ``withdraw()``, and ``redeem()`` in ``ERC4626Upgradeable.sol``.
+QA3: https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/tokens/TokenggAVAX.sol#L225-L239
+The four preview-X functions need to add ``onlyProxy()`` so that they can only be called through the proxy. Otherwise, 
+functions such as ``depositAVAX()`` and ``withdrawAVAX()`` will not work properly if they are not called via the proxy since they modify the state variable ``totalReleasedAssets``. 
+```
+function previewDeposit(uint256 assets) public view override whenTokenNotPaused(assets) onlyProxy() returns (uint256) {
+		return super.previewDeposit(assets);
+	}
+
+	function previewMint(uint256 shares) public view override whenTokenNotPaused(shares) onlyProxy() returns (uint256) {
+		return super.previewMint(shares);
+	}
+
+	function previewWithdraw(uint256 assets) public view override whenTokenNotPaused(assets) onlyProxy() returns (uint256) {
+		return super.previewWithdraw(assets);
+	}
+
+	function previewRedeem(uint256 shares) public view override whenTokenNotPaused(shares) onlyProxy() returns (uint256) {
+		return super.previewRedeem(shares);
+	}
+
+```
+
 
 QA4: https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/MinipoolManager.sol#L106
 We need to ensure that ``receiveWithdrawalAVAX()`` can only be called by the ``TokenggAVAX`` contract or the ``Vault`` contract.
