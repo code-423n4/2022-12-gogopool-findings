@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "simon135",
+  "risk": "",
+  "title": "When a multisig gets disabled their power of the minipool functions dont change which can cause loss of funds",
+  "issueId": 395,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/395"
+}
