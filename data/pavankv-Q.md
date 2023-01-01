@@ -28,3 +28,13 @@ chnage to :-
 	uint128 public lastRewardsAmt;                             
     
 These four variables will fit two slots saves delpoy and gas Cost .Or use uint256 because  EVM works with 256bit/32byte words (debatable design decision). Every operation is based on these base units. If your data is smaller, further operations are needed to downscale from 256 bits to 32 bits or less than 256bits this operation cost more gas consumption . 
+
+## 2. Access control function should be in top before than other fucntion :-
+
+Summary :-
+In cancelMinipool() first get staking and protocolDAO then access control function onlyOwner(). So rearrange the access control function first in function it's a good practice . 
+
+code snippet:-
+https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol#L276
+https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol#L277
+
