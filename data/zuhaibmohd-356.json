@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "zuhaibmohd",
+  "risk": "",
+  "title": "Missing return value check for price in getGGPPriceInAVAXFromOneInch()",
+  "issueId": 356,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/356"
+}
