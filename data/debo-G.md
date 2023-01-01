@@ -91,3 +91,41 @@ Unsinged integers lower than 32 bytes are more costly because solidity automatic
 PoC:  uint8 v,
 URL: https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/tokens/upgradeable/ERC20Upgradeable.sol#L123
 remediation: use uint256 and then downcast.
+
+## [G-15]
+Multiple address/ID mappings can be combined into a single mapping of an address/ID to a struct, where appropriate
+File: ERC20Upgradeable.sol
+line 35
+mapping(address => uint256) public balanceOf;
+URL: https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/tokens/upgradeable/ERC20Upgradeable.sol#L35
+line 37
+mapping(address => mapping(address => uint256)) public allowance;
+https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/tokens/upgradeable/ERC20Upgradeable.sol#L37
+If both fields are accessed in the same function, can save gas per access due to not having to recalculate the key and calculation's associated stack operations.
+balanceOf and allowance are both being used in the same functions mostly consider making them a struct instead. 
+Both fileds are accessed in the same function as follows:
+URL: https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/tokens/upgradeable/ERC20Upgradeable.sol#L92-L112
+```
+function transferFrom(
+		address from,
+		address to,
+		uint256 amount
+	) public virtual returns (bool) {
+		uint256 allowed = allowance[from][msg.sender]; // Saves gas for limited approvals.
+
+		if (allowed != type(uint256).max) allowance[from][msg.sender] = allowed - amount;
+
+		balanceOf[from] -= amount;
+
+		// Cannot overflow because the sum of all user
+		// balances can't exceed the max uint256 value.
+		unchecked {
+			balanceOf[to] += amount;
+		}
+
+		emit Transfer(from, to, amount);
+
+		return true;
+	}
+```
+Remediation: use struct data type for the two mapping fields.
