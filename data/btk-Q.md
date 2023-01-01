@@ -2,10 +2,10 @@
 
 Add sanity checks to the [`duration`](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol#L198) to prevent users from mistaknly set it to more than 365 days and less than 14 days.
 
-something like this:
+Recommended Mitigation Steps:
 
 ```solidity
-if (duration > 365 days && duration < 14 days) revert();
+if (duration > 365 days || duration < 14 days) revert();
 ```
 
 ## [L-2] Users will still be able to burn tokens
@@ -33,7 +33,7 @@ Constructors don't have zero-checks, which could force a re-deployment, funds ar
 - https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Vault.sol#L41
 - https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/RewardsPool.sol#L30
 
-## [NC-1] Misleading comments
+## [L-4] Misleading comments
 
 - https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MultisigManager.sol#L67
 
@@ -47,7 +47,7 @@ Update the line to:
 // @dev Disable multisig means it would not get any new minipools
 ```
 
-## [NC-2] TYPOS
+## [NC-1] TYPOS
 
 Error1 : fucns ( funds )
 - Line : https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Vault.sol#L82
@@ -64,7 +64,7 @@ Error4 : in a the most recent cycle ( in the most recent cycle )
 Error5 : adhear ( adhere )    /    paramaters ( parameters )
 - Line : https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol#L606
 
-## [NC-3] Open TODO
+## [NC-2] Open TODO
 
 - https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/BaseAbstract.sol#L6-L8
 - https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Staking.sol#L203
