@@ -34,21 +34,6 @@ Recommended Mitigation Steps:
 
 - add a non-zero address check for _to argument in transferFrom and transfer methods.
 
-## [L-4] Lack of Zero Checks for new addresses
-Constructors don't have zero-checks, which could force a re-deployment, funds are not at risk in those cases.
-
-- https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Base.sol#L9
-- https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/ClaimNodeOp.sol#L29
-- https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/ClaimProtocolDAO.sol#L15
-- https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol#L177
-- https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MultisigManager.sol#L29
-- https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Ocyticus.sol#L22
-- https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Oracle.sol#L23
-- https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/ProtocolDAO.sol#L19
-- https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Staking.sol#L60
-- https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Vault.sol#L41
-- https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/RewardsPool.sol#L30
-
 ## [NC-1] TYPOS
 
 Error1 : fucns ( funds )
@@ -71,3 +56,18 @@ Error5 : adhear ( adhere )    /    paramaters ( parameters )
 - https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/BaseAbstract.sol#L6-L8
 - https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Staking.sol#L203
 - https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/MinipoolManager.sol#L412
+
+## [NC-3] Lack of Zero Checks for new addresses
+Constructors don't have zero-checks, which could force a re-deployment, funds are not at risk in those cases.
+
+- https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Base.sol#L9
+- https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/ClaimNodeOp.sol#L29
+- https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/ClaimProtocolDAO.sol#L15
+- https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol#L177
+- https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MultisigManager.sol#L29
+- https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Ocyticus.sol#L22
+- https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Oracle.sol#L23
+- https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/ProtocolDAO.sol#L19
+- https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Staking.sol#L60
+- https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Vault.sol#L41
+- https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/RewardsPool.sol#
