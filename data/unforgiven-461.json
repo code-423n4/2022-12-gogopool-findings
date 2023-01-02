@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "unforgiven",
+  "risk": "",
+  "title": "some users can't withdraw all of their funds because of underflow in beforeWithdraw() because withdrawal amount is based on totalAssets() (deposits+cycle rewards) and the amount is subtracted from totalReleasedAssets which only shows deposits during the cycle",
+  "issueId": 461,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/461"
+}
