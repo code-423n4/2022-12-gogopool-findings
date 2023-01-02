@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "rbitbytes",
+  "risk": "",
+  "title": "The return value of an external call is not stored in a local or state variable.",
+  "issueId": 397,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/397"
+}
