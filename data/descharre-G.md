@@ -34,3 +34,20 @@ Use custom error instead of require() to save gas (4 instances)
 - [ERC4626Upgradeable.sol#L44](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/tokens/upgradeable/ERC4626Upgradeable.sol#L44)
 - [ERC4626Upgradeable.sol#L103](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/tokens/upgradeable/ERC4626Upgradeable.sol#L103)
 
+Use bit shifting for division by 2 (1 instance)
+x = x >> 1 is the same as x = x/2;
+- [MinipoolManager.sol#L413](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol#L413)
+
+StakingtotalAssets is only read once, so there is no point in writing it to memory. It's cheaper to read it directly from storage.
+- [TokenggAVAX.sol#L97](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/tokens/TokenggAVAX.sol#L97)
+
+Functions with a modifier can be marked as payable to save gas for legitimate callers.
+Every function with a modifier in 
+- [Staking.sol](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/tokens/upgradeable/Staking.sol)
+- [Storage.sol](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/tokens/upgradeable/Storage.sol)
+- [ClaimNodeOp.sol](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/tokens/upgradeable/ClaimNodeOp.sol)
+- [ClaimProtocolDAO.sol](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/tokens/upgradeable/ClaimProtocolDAO.sol)
+- [MultisigManager.sol](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/tokens/upgradeable/MultisigManager.sol)
+- [Ocyticus.sol](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/tokens/upgradeable/Ocyticus.sol)
+- [ProtocolDao.sol](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/tokens/upgradeable/ProtocolDao.sol)
+- [Vault.sol](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/tokens/upgradeable/Vault.sol)
