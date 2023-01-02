@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "Dinesh11G",
+  "risk": "",
+  "title": "deposit can be a contract with no onERC721Received method, which may cause the deposit to be frozen and put users' funds at risk",
+  "issueId": 407,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/407"
+}
