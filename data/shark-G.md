@@ -116,3 +116,15 @@ The above could be refactored to:
 In [`MinipoolManager.sol`](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol), the `Minipool` struct has a field that is unused ([Line 87](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol#L87))
 
 Because this will cost extra gas, consider either removing it, or making use of it.
+
+## 9. Redundant `else` block
+
+The following `else` block is redundant as [`isValid`](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol#L155) is already initialized to `false` by default
+
+File: `MinipoolManager.sol` [Line 169](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol#L169)
+
+```solidity
+			isValid = false;
+```
+
+As such, you can remove the `else` block to save gas.
