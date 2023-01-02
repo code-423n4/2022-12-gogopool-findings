@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "koxuan",
+  "risk": "",
+  "title": "nextRewardsCycleEnd can be significantly less than 14 days, potentially distributing rewards unfairly.",
+  "issueId": 445,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/445"
+}
