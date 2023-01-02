@@ -248,6 +248,8 @@ For instance, the code block below may be refactored as follows:
         revert StakerNotFound();
      }
 ```
+Note: No `return` is supposed to be included in a ternary logic. The above instance is only meant for illustration purpose.
+
 ## Non-strict inequalities are cheaper than strict ones
 In the EVM, there is no opcode for non-strict inequalities (>=, <=) and two operations are performed (> + = or < + =).
 
