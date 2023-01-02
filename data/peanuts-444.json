@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "peanuts",
+  "risk": "",
+  "title": "Stakers should be able to withdraw their GGP once their GGP is over the 150% collateraization ratio even when the protocol is paused",
+  "issueId": 444,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/444"
+}
