@@ -107,4 +107,7 @@ Can be done at:
 - [Staking.sol#L309](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Staking.sol#L309)
 - [Staking.sol#L367](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Staking.sol#L367)
 - [Staking.sol#L380](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Staking.sol#L380)
-
+- [Rewardspool.sol#L83](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Rewardspool.sol#L83)
+- [Rewardspool.sol#L135](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Rewardspool.sol#L135)
+- [Vault.sol#L76](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Vault.sol#L76)
+- [Vault.sol#L157](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Vault.sol#L157)
