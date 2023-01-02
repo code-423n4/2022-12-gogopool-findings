@@ -1,13 +1,16 @@
-## [L-1] Add sanity checks to the duration
+## [L-1] Add sanity checks to the `createMinipool()` function
+- https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol#L196
 
-- https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol#L198
-
-Add sanity checks to the [`duration`](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol#L198) to prevent users from mistakenly set it to more than 365 days and less than 14 days which may force them to cancel the minipool and create a new one.
+A sanity checks should be added to the `createMinipool()` function to prevent malicious behavior or mistakes (which may force them to [cancel](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol#L273) the minipool and create new one) from users. 
 
 Recommended Mitigation Steps:
 
 ```solidity
-if (duration > 365 days || duration < 14 days) revert();
+if (duration > 365 days || duration < 14 days) InvalidDuration();
+```
+
+```solidity
+if (delegationFee > 1 ether || delegationFee < 0.1 ether) InvalidDelegationFee();
 ```
 
 ## [L-2] Misleading comments
