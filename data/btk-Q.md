@@ -13,7 +13,54 @@ if (duration > 365 days || duration < 14 days) InvalidDuration();
 if (delegationFee > 1 ether || delegationFee < 0.1 ether) InvalidDelegationFee();
 ```
 
-## [L-2] Misleading comments
+## [L-4] No storage gap for upgradeable contracts
+
+## Impact
+For ERC20Upgradeable and ERC4626Upgradeable, which are upgradeable abstract contracts, inheriting contracts may introduce new variables. In order to be able to add new variables to the upgradeable abstract contract without causing storage collisions, a storage gap should be added to the upgradeable abstract contract.
+
+If no storage gap is added, when the upgradable abstract contract introduces new variables, it may override the variables in the inheriting contract which cause storage collisions.
+
+## Proof of Concept
+- https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/tokens/upgradeable/ERC20Upgradeable.sol#L10
+- https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/tokens/upgradeable/ERC4626Upgradeable.sol
+- 
+## Tools Used
+Manual Review
+
+## Recommended Mitigation Steps
+Consider adding a storage gap at the end of the upgradeable abstract contract:
+```solidity
+uint256[50] private __gap;
+```
+
+## [L-4] Leftover tokens in the `MinipoolManager`
+
+## Impact
+The [`MinipoolManager`](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol#L57) have no mechanism to rescue the trapped tokens, therefore tokens will be stuck in the contract.
+
+## Proof of Concept
+Due the nature of arithmetics and rounding errors :
+
+```solidity
+uint256 avaxLiquidStakerRewardAmt = avaxHalfRewards - avaxHalfRewards.mulWadDown(dao.getMinipoolNodeCommissionFeePct());
+
+Line: https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol#L417
+```
+
+```solidity
+return (avaxAmt.mulWadDown(rate) * duration) / 365 days;
+
+Line: https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol#L560
+```
+Some tokens will be stuck out in the `MinipoolManager` contract, hence lost of funds since there is no mechanism to rescue them.
+
+## Tools Used
+Manual Review
+
+## Recommended Mitigation Steps
+Add a mechanism to rescue the the trapped tokens.
+
+## [L-4] Misleading comments
 
 - https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MultisigManager.sol#L67
 
@@ -27,7 +74,7 @@ Update the line to:
 // @dev Disable multisig means it would not get any new minipools
 ```
 
-## [L-3] Users will still be able to burn tokens
+## [L-5] Users will still be able to burn tokens
 
 - https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/tokens/TokenGGP.sol#L9
 
