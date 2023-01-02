@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "caventa",
+  "risk": "",
+  "title": "Should not allow setGGPPriceInAVAX() again for the same timestamp",
+  "issueId": 438,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/438"
+}
