@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "jesusrod15",
+  "risk": "",
+  "title": "in TokenGGAVAX.sol function function initialize can attack with front-run",
+  "issueId": 474,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/474"
+}
