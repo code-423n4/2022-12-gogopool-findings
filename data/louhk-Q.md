@@ -10,3 +10,13 @@ For example, if the vault.withdrawToken() function fails to transfer the token (
 In TokenggAVAX.sol `https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/tokens/TokenggAVAX.sol#L88-#L109`, 
 there is no error handling for handling cases where nextRewardsAmt overflows a uint192. 
 It may cause unexpected result if the contract is used in a way that causes nextRewardsAmt to exceed the maximum value that can be stored in a uint192.
+
+---
+
+In MinipoolManager.sol `https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol#L324-#L343`
+
+The function transfers funds to msg.sender without any checks on the recipient's address. 
+It might be advisable to add a check to ensure that the recipient is a valid address.
+
+
+
