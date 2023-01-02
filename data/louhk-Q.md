@@ -11,12 +11,4 @@ In TokenggAVAX.sol `https://github.com/code-423n4/2022-12-gogopool/blob/main/con
 there is no error handling for handling cases where nextRewardsAmt overflows a uint192. 
 It may cause unexpected result if the contract is used in a way that causes nextRewardsAmt to exceed the maximum value that can be stored in a uint192.
 
----
-
-In MinipoolManager.sol `https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol#L342`
-
-The function transfers funds to msg.sender without any checks on the recipient's address. 
-It would be great if adding checking to ensure that the recipient is a valid address.
-
-
 
