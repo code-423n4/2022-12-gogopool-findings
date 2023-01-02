@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "Ch_301",
+  "risk": "",
+  "title": "`recreateMinipool()` could lead to losing funds",
+  "issueId": 423,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/423"
+}
