@@ -13,7 +13,7 @@ if (duration > 365 days || duration < 14 days) InvalidDuration();
 if (delegationFee > 1 ether || delegationFee < 0.1 ether) InvalidDelegationFee();
 ```
 
-## [L-4] No storage gap for upgradeable contracts
+## [L-2] No storage gap for upgradeable contracts
 
 ## Impact
 For ERC20Upgradeable and ERC4626Upgradeable, which are upgradeable abstract contracts, inheriting contracts may introduce new variables. In order to be able to add new variables to the upgradeable abstract contract without causing storage collisions, a storage gap should be added to the upgradeable abstract contract.
@@ -33,7 +33,7 @@ Consider adding a storage gap at the end of the upgradeable abstract contract:
 uint256[50] private __gap;
 ```
 
-## [L-4] Leftover tokens in the `MinipoolManager`
+## [L-3] Leftover tokens in the `MinipoolManager`
 
 ## Impact
 The [`MinipoolManager`](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol#L57) have no mechanism to rescue the trapped tokens, therefore tokens will be stuck in the contract.
