@@ -38,7 +38,7 @@ Use bit shifting for division by 2 (1 instance)
 x = x >> 1 is the same as x = x/2;
 - [MinipoolManager.sol#L413](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol#L413)
 
-Memory variable is only read once, so there is no point in writing it to memory. It's cheaper to read it directly from storage.
+Memory variable is only read once, so there is no point in assigning it to a memory variable. It's cheaper to read it directly from storage. In the following lines, the improvement doesn't make the readability worse. I didn't include the lines where the readibility would be worse when reading directly from storage.
 - [TokenggAVAX.sol#L97](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/tokens/TokenggAVAX.sol#L97)
 - [MinipoolManager.sol#L341](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol#L341)
 - [Storage.sol#L81](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Storage.sol#L81)
@@ -62,6 +62,7 @@ Memory variable is only read once, so there is no point in writing it to memory.
 - [Storage.sol#L232](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Storage.sol#L232)
 - [Storage.sol#L241](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Storage.sol#L241)
 - [Storage.sol#L249](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Storage.sol#L249)
+- [ClaimNodeOp.sol#L81)](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/ClaimNodeOp.sol#L81)
 
 Functions with a modifier can be marked as payable to save gas for legitimate callers.
 Every function with a modifier in 
