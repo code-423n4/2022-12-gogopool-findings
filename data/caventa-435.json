@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "caventa",
+  "risk": "",
+  "title": "getGGPPriceInAVAX() may return stale price which may affect the accuracy of several values and ratios",
+  "issueId": 435,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/435"
+}
