@@ -152,3 +152,45 @@ Block timestamps should not be used for entropy or generating random numbers—i
 Time-sensitive logic is sometimes required; e.g., for unlocking contracts (time-locking), completing an ICO after a few weeks, or enforcing expiry dates. 
 It is sometimes recommended to use block.number and an average block time to estimate times; with a 10 second block time, 1 week equates to approximately, 60480 blocks. 
 Thus, specifying a block number at which to change a contract state can be more secure, as miners are unable to easily manipulate the block number.
+
+## [L-08] LOSS OF PRECISION DUE TO ROUNDING
+URL: https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/MinipoolManager.sol#L413
+```
+MinipoolManager.sol:
+	uint256 avaxHalfRewards = avaxTotalRewardAmt / 2;
+```
+
+## [L-09] LOSS OF PRECISION DUE TO ROUNDING
+URL: https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/RewardsPool.sol#L60
+```
+RewardsPool.sol:
+	return (block.timestamp - startTime) / dao.getInflationIntervalSeconds();
+```
+
+## [L-10] LOSS OF PRECISION DUE TO ROUNDING
+URL: https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/RewardsPool.sol#L128
+```
+RewardsPool.sol:
+	return (block.timestamp - startTime) / dao.getRewardsCycleSeconds();
+```
+
+## [L-11] LOSS OF PRECISION DUE TO ROUNDING
+URL: https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/RewardsPool.sol#L229
+```
+RewardsPool.sol:
+	uint256 tokensPerMultisig = allotment / enabledCount;
+```
+
+## [L-12] LOSS OF PRECISION DUE TO ROUNDING
+URL: https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/tokens/TokenggAVAX.sol#L78
+```
+TokenggAVAX.sol:
+	rewardsCycleEnd = (block.timestamp.safeCastTo32() / rewardsCycleLength) * rewardsCycleLength;
+```
+
+## [L-13] LOSS OF PRECISION DUE TO ROUNDING
+URL: https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/tokens/TokenggAVAX.sol#L78
+```
+TokenggAVAX.sol:
+	rewardsCycleEnd = (block.timestamp.safeCastTo32() / rewardsCycleLength) * rewardsCycleLength;
+```
