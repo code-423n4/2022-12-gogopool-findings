@@ -13,10 +13,10 @@ It may cause unexpected result if the contract is used in a way that causes next
 
 ---
 
-In MinipoolManager.sol `https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol#L324-#L343`
+In MinipoolManager.sol `https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol#L342`
 
 The function transfers funds to msg.sender without any checks on the recipient's address. 
-It might be advisable to add a check to ensure that the recipient is a valid address.
+It would be great if adding checking to ensure that the recipient is a valid address.
 
 
 
