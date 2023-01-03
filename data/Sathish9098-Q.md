@@ -308,6 +308,7 @@ Different Solidity compiler versions are used throughout Src repositories. The f
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
 # LOW RISK FINDINGS :
 
+--------------------------------------------------------------------------------------------------------------------------------------------------------
 ##
 
 ## [L-1] MIXING AND OUTDATED COMPILER
@@ -361,7 +362,11 @@ Apart from these, there are several minor bug fixes and improvements
 
   4:  import "./Base.sol";
 
+#
 
+##[ L-3]  LACK OF NO REENTRANT MODIFIER 
+
+The  methods cancelMinipoolByMultisig() and recordStakingStart() do not have the noReentrant modifier and make calls to an external contract that can take advantage of and call these methods again
 
 
 
