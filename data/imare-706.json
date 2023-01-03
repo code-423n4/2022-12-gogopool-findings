@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "imare",
+  "risk": "",
+  "title": "`ProtocolDAO::upgradeExistingContract` is not working as intended and can have bad consequences",
+  "issueId": 706,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/706"
+}
