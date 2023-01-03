@@ -25,3 +25,19 @@ if (nopClaimContractAllotment > 0) {
 }
 
 ```
+
+Findings: Emit Important functions:
+
+Across the codebase important function are essential to be emitted for indexing solutions off-chain and transparency.
+
+e.g. Below (however more function across the codebase)
+
+Code: [https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/MinipoolManager.sol#L302-L303](https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/MinipoolManager.sol#L302-L303)
+
+On the event of a pause, Individual Multsig would required to be re-enabled manually via `resumeEverything`. Failure can lead to price lags in the oracle.
+
+On the event of a pause protocol via `pauseEverything` all multisigs would be disabled. When the contract is resumed the protocol functions such as `setGGPPriceInAVAX` would fail to update leading to price lags / arbitration and in some cases degradation of token value due to outdated oracle. In this scenario a guardian enabled address would require to manually enable the previously registered multisigs.
+
+Code: [https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/Ocyticus.sol#L47-L48](https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/Ocyticus.sol#L47-L48)
+
+Mitigation: Add emits to important setter functions, also add `indexed` within emit address
