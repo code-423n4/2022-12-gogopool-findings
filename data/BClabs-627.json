@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "BClabs",
+  "risk": "",
+  "title": "Actor using front running bot could drain rewards from the protocol",
+  "issueId": 627,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/627"
+}
