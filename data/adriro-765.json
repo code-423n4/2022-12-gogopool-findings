@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "adriro",
+  "risk": "",
+  "title": "Multisig addresses can't be unregistered in the `MultisigManager` contract",
+  "issueId": 765,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/765"
+}
