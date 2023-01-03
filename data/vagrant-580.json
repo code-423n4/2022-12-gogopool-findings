@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "vagrant",
+  "risk": "",
+  "title": "syncRewards() must be called every cycle, otherwise rewards may be miscalculated",
+  "issueId": 580,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/580"
+}
