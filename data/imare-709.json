@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "imare",
+  "risk": "",
+  "title": "duration is not validated for maximal value and can break user slashing",
+  "issueId": 709,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/709"
+}
