@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "PaludoX0",
+  "risk": "",
+  "title": "Defender can pause contract wich affects also withdrawGGP() function and Stakers are not allowed withdraw funds",
+  "issueId": 766,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/766"
+}
