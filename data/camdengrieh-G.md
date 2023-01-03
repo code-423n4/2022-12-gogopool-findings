@@ -1,21 +1,39 @@
-1) Reentrancy attack not possible within withdrawToken(); nonReentrant modifier can be removed
+1) Reentrancy attack not possible within withdrawToken() and withdrawAvax(); nonReentrant modifier can be removed
 
-Gas Saved:  12162 - tested running just test
+2 instances
+
+Gas Saved, reported from each test run:  12162 - Tested running testDepositTokenFromRegisteredContract(), testDepositAvaxFromRegisteredContract()
 
 Because balance is subtracted from the registered contract prior to the transfer of the tokens in the execution flow of the withdrawToken() method. If a reentrancy is made the balance will be checked again and the calling contract will require a greater balance than the amount it's expecting to withdraw.
 
-https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/Vault.sol#L137
+https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/Vault.sol#L139-L162
 
-150: 		// Verify there are enough funds
-151: 		        if (tokenBalances[contractKey] < amount) {
-152: 			revert InsufficientContractBalance();
-153: 		}
-154: 		// Update balances
-155: 		tokenBalances[contractKey] = tokenBalances[contractKey] - amount;
-156: 		// Get the toke ERC20 instance
-157: 		ERC20 tokenContract = ERC20(tokenAddress);
-158: 		// Withdraw to the withdrawal address, , safeTransfer will revert if it fails
-159: 		tokenContract.safeTransfer(withdrawalAddress, amount);
+```solidity
+	function withdrawToken(
+		address withdrawalAddress,
+		ERC20 tokenAddress,
+		uint256 amount
+	) external onlyRegisteredNetworkContract  {
+		// Valid Amount?
+		if (amount == 0) {
+			revert InvalidAmount();
+		}
+		// Get contract key
+		bytes32 contractKey = keccak256(abi.encodePacked(getContractName(msg.sender), tokenAddress));
+		// Emit token withdrawn event
+		emit TokenWithdrawn(contractKey, address(tokenAddress), amount);
+		// Verify there are enough funds
+		if (tokenBalances[contractKey] < amount) {
+			revert InsufficientContractBalance();
+		}
+		// Update balances
+		tokenBalances[contractKey] = tokenBalances[contractKey] - amount;
+		// Get the toke ERC20 instance
+		ERC20 tokenContract = ERC20(tokenAddress);
+		// Withdraw to the withdrawal address, , safeTransfer will revert if it fails
+		tokenContract.safeTransfer(withdrawalAddress, amount);
+	}
+```
 
 
 
