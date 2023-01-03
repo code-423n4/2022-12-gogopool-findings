@@ -329,3 +329,16 @@ Consider adding an additional check below that would revert earlier in the the f
 
                 ...
 ```
+## Early conditional checks
+In `canStartRewardsCycle()` of RewardsPool.sol, `getInflationIntervalsElapsed()` entails a zero value check whether or not `ContractHasNotBeenInitialized()` would revert whereas `getRewardsCyclesElapsed()` does not.
+
+Consider swapping the order of the conditional check on the return statement to save gas on early function revert in case the contract has not been initialized:
+
+[File: RewardsPool.sol#L151-L153](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/RewardsPool.sol#L151-L153)
+
+```diff
+	function canStartRewardsCycle() public view returns (bool) {
+-		return getRewardsCyclesElapsed() > 0 && getInflationIntervalsElapsed() > 0;
++		return getInflationIntervalsElapsed() > 0 && getRewardsCyclesElapsed() > 0;
+	}
+```
