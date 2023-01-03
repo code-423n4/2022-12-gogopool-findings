@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "caventa",
+  "risk": "",
+  "title": "Unable to withdraw or redeem AVAX back if the recipient is an contract address that does not have fallback function",
+  "issueId": 539,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/539"
+}
