@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "nadin",
+  "risk": "",
+  "title": "[H-01] WRONG ACCOUNTING LOGIC WHEN SYNCREWARDS() IS CALLED WITHIN BEFOREWITHDRAW MAKES WITHDRAWALS IMPOSSIBLE",
+  "issueId": 520,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/520"
+}
