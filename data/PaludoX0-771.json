@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "PaludoX0",
+  "risk": "",
+  "title": "withdrawAVAX and redeemAVAX have not nonReentrant modifier",
+  "issueId": 771,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/771"
+}
