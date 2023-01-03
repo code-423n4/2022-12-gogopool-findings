@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "Lirios",
+  "risk": "",
+  "title": "Possible to block withdrawal of staked funds after recordStakingEnd or stakingError",
+  "issueId": 792,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/792"
+}
