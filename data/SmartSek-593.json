@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "SmartSek",
+  "risk": "",
+  "title": "Liquidity of protocol is compromised due to faulty state updating logic",
+  "issueId": 593,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/593"
+}
