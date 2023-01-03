@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "Jeiwan",
+  "risk": "",
+  "title": "Recreated pools receive a wrong AVAX amount due to miscalculated compounded liquid staker amount",
+  "issueId": 620,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/620"
+}
