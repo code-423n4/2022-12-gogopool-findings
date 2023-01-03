@@ -30,7 +30,7 @@ Total: 11 instances over 10 issues
 | [N&#x2011;06] | Misplaced punctuation | 1 | 
 | [N&#x2011;07] | Upgradeable contract is missing a `__gap[50]` storage variable to allow for new storage variables in later versions | 1 | 
 | [N&#x2011;08] | Import declarations should import specific identifiers, rather than the whole file | 13 | 
-| [N&#x2011;09] | Missing `initializer` modifier on constructor | 2 | 
+| [N&#x2011;09] | Missing `initializer` modifier on constructor | 1 | 
 | [N&#x2011;10] | The `nonReentrant` `modifier` should occur before all other modifiers | 2 | 
 | [N&#x2011;11] | `override` function arguments that are unused should have the variable name removed or commented out to avoid compiler warnings | 1 | 
 | [N&#x2011;12] | `constant`s should be defined rather than using magic numbers | 2 | 
@@ -51,7 +51,7 @@ Total: 11 instances over 10 issues
 | [N&#x2011;27] | Function ordering does not follow the Solidity style guide | 15 | 
 | [N&#x2011;28] | Contract does not follow the Solidity style guide's suggested layout ordering | 9 | 
 
-Total: 99 instances over 28 issues
+Total: 98 instances over 28 issues
 
 
 
@@ -436,7 +436,7 @@ https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c3
 ### [N&#x2011;09]  Missing `initializer` modifier on constructor
 OpenZeppelin [recommends](https://forum.openzeppelin.com/t/uupsupgradeable-vulnerability-post-mortem/15680/5) that the `initializer` modifier be applied to constructors in order to avoid potential griefs, [social engineering](https://forum.openzeppelin.com/t/uupsupgradeable-vulnerability-post-mortem/15680/4), or exploits. Ensure that the modifier is applied to the implementation contract. If the default constructor is currently being used, it should be changed to be an explicit one with the modifier applied.
 
-*There are 2 instances of this issue:*
+*There is 1 instance of this issue:*
 
 ```solidity
 File: contracts/contract/BaseUpgradeable.sol
@@ -445,17 +445,6 @@ File: contracts/contract/BaseUpgradeable.sol
 
 ```
 https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/BaseUpgradeable.sol#L9
-
-```solidity
-File: contracts/contract/tokens/TokenggAVAX.sol
-
-66    	constructor() {
-67    		// The constructor is exectued only when creating implementation contract
-68    		// so prevent it's reinitialization
-69:   		_disableInitializers();
-
-```
-https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/tokens/TokenggAVAX.sol#L66-L69
 
 ### [N&#x2011;10]  The `nonReentrant` `modifier` should occur before all other modifiers
 This is a best-practice to protect against reentrancy in other modifiers
