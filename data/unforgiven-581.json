@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "unforgiven",
+  "risk": "",
+  "title": "function `finishFailedMinipoolByMultisig()` won't transfer node runner funds and it changes the state of the Minipool to Finished, so if Multisig calls it then node runner would lose his funds deposited for that Minipool",
+  "issueId": 581,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/581"
+}
