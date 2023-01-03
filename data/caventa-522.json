@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "caventa",
+  "risk": "",
+  "title": "Rewards calculation may include CANCELLED minpool period which is wrong",
+  "issueId": 522,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/522"
+}
