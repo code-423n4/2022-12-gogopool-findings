@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "IllIllI",
+  "risk": "",
+  "title": "Liquid stakers may have their funds locked until the next period due to underflow in `beforeWithdraw()`",
+  "issueId": 732,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/732"
+}
