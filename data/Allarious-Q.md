@@ -32,4 +32,8 @@ L-04, RewardsPool.sol, line 188-230 : The absence of an enabled multisig will st
 L-05, MinipoolManager, lines 196 - 201: There are not checks on the duration and the delegateFee. But according to the documentation, there is a defined range for them.
 
 L-06 MinipoolManager, lines 196 - 201: The duration should be a multiple of 14 days, or should find the closest multiple of 14 that is smaller than the duration. In the current setting, since duration is set by the user input of duration, and is being used in slashing, can cause the slashing function to calculate the outputs wrong. for example, if a user inputs 17 days as a duration and doesn't get any profit, the protocol slashes him for 17 days instead of 14.
-
+---
+N-01 - Storage.sol line 28: change the naming of the modifier to show that guardian is allowed as well, also consistency with BaseAbstract.sol
+N-02 - vault.sol line 139, 168, 201: `tokenAddress` is taken as an input but the type is ERC20, it is not consistent with `depositToken` and the contract is behaved with like an address. This does not lead to bugs but might confuse some.
+N-03 - ProtocolDAO.sol, line 107: Better to set all the three values together, in the edge case that the rewards are being calculated and lead to a problem!
+N-04 - staking.sol, line 46, 56: isEligible() should be checked in calculateAndDistributeRewards unless the eligibility needs to be fully controlled off-chain. In case Rialto wants to only filter some of the eligible stakers, it should be still checked on-chain.
