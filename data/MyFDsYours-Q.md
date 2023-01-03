@@ -9,7 +9,10 @@
 
  ### RewardsPool.sol [L36](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/RewardsPool.sol#L36) 
 
-     In the initialize function I recommend to revert an explicit Error instead of returning nothing. It's a better understanding for the gardian that would like to initialize the rewards pool, and for the developper that want to read an explicit code. 
+     In the initialize function I recommend to revert an explicit Error instead of returning nothing. It's a better understanding for the gardian 
+     that would like to initialize the rewards pool, and for the developper that want to read an explicit code. 
+
+     Even if by using "return ;" we optimize gas consumption
      
 ### Recommandation : create an error, for example RewardsPoolAlreadyInitialised(), and revert it in L36.
 
