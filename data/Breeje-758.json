@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "Breeje",
+  "risk": "",
+  "title": "In TokenggAVAX.sol some users may not be able to withdraw until rewardsCycleEnd the due to underflow in beforeWithdraw()",
+  "issueId": 758,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/758"
+}
