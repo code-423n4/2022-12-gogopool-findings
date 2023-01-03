@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "caventa",
+  "risk": "",
+  "title": "Shouldn't allow processGGPRewards to be executed for stale GGP price",
+  "issueId": 516,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/516"
+}
