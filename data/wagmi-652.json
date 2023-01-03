@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "wagmi",
+  "risk": "",
+  "title": "DOS function `inflate()` if `inflationIntervalsElapsed` is too large",
+  "issueId": 652,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/652"
+}
