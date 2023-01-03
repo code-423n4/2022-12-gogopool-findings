@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "datapunk",
+  "risk": "",
+  "title": "distributeMultisigAllotment() does not take into account time, so changes in multisig may result in unfair distribution among multisigs",
+  "issueId": 822,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/822"
+}
