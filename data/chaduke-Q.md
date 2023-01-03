@@ -123,7 +123,7 @@ function depositFromStaking(uint256 baseAmt, uint256 rewardAmt) public payable o
 ```
 
 QA15. https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/tokens/TokenggAVAX.sol#L211
-We need to consider the ``reservedAsset`` as well when calculating ``maxWithdraw()`` and ``maxRedeem()'':
+We need to consider the ``reservedAsset`` as well when calculating ``maxWithdraw()`` and ``maxRedeem()``:
 ```
 
 function maxWithdraw(address _owner) public view override returns (uint256) {
@@ -253,4 +253,7 @@ function recreateMinipool(address nodeID) external whenNotPaused {
 
 
 ```
+
+QA21: https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/MinipoolManager.sol#L236
+``createMinipool()`` will always use the SAME multisig for ``.multisigAddr`` since the implementation of ``multisigManager.requireNextActiveMultisig()`` always returns the next enabled multisig without considering the assignments. A new implementation is needed for ``multisigManager.requireNextActiveMultisig()`` so that we will not always assign the first enabled multisig to a new minipool for a fair load balancing. 
 
