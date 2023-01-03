@@ -128,3 +128,11 @@ File: `MinipoolManager.sol` [Line 169](https://github.com/code-423n4/2022-12-gog
 ```
 
 As such, you can remove the `else` block to save gas.
+
+## 10. Avoid unnecessary variable cache
+
+You should only cache a variable if it is read multiple times.
+
+In the following instance, the variable cached is only read once:
+
+File: `MinipoolManager.sol` [Line 341-342](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol#L341-L342)
