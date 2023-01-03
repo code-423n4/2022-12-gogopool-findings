@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "SmartSek",
+  "risk": "",
+  "title": "Canceled miniPools that are recreated will drain the contract.",
+  "issueId": 584,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/584"
+}
