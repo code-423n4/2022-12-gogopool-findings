@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "0x5rings",
+  "risk": "",
+  "title": "A Wallet address can be added to the same multisig more than once leading to centralisation.",
+  "issueId": 628,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/628"
+}
