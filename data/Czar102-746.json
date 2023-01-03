@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "Czar102",
+  "risk": "",
+  "title": "Wrong implementation of `upgradeExistingContract` can cause storage corruption",
+  "issueId": 746,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/746"
+}
