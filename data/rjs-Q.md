@@ -1,21 +1,10 @@
 # Introduction
 
-## Low Risk Summary
-
-| ID  | Finding | Instances |
-| --- | ------- | --------- |
-| L-01    |        |     N/A      |
-
 ## Non-critical Summary
 
 | ID  | Finding | Instances |
 | --- | ------- | --------- |
-| N-01    |        | N/A          |
-
-# Low Risk Findings
-
-## \[L-01\] 
-
+| N-01    |  Redundant `return` statement      | 1         |
 
 # Non-critical Findings
 
