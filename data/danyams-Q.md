@@ -51,3 +51,9 @@ There is no input validation for a Minipool's delegation fee.  According to the 
                      ProtocolDAO dao = ProtocolDAO(getContractAddress("ProtocolDAO"));
    
 Referenced Code: https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/MinipoolManager.sol#L196-L269
+
+## startRewardsCycle( ) will emit an event with an incorrect rewards cycle total amount
+
+startRewardsCycle( ) in RewardsPool will emit an event with the rewards cycle total amount from the **prior rewards cycle** rather than **the current rewards cycle**.  This is due to the fact that the state variable, rewardsCycleTotalAmt, is updated in the internal function, inflate( ).  However, the event in startRewardsCycle( ) is emitted prior to inflate( ), meaning that the event will be emitted with the rewardsCycleTotalAmt from the prior cycle.
+
+Referenced Code: https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/RewardsPool.sol#L156-L169
