@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "caventa",
+  "risk": "",
+  "title": "Cancellation of minipool may skip MinipoolCancelMoratoriumSeconds checking if it was cancelled before",
+  "issueId": 519,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/519"
+}
