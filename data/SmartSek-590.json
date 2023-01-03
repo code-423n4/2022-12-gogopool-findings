@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "SmartSek",
+  "risk": "",
+  "title": "Call to `decreaseMinipoolCount()` missing when transitioning to certain Status might lead to DOS and Insolvency",
+  "issueId": 590,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/590"
+}
