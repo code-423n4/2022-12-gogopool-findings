@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "peritoflores",
+  "risk": "",
+  "title": "Parameters `duration` and `delegationFee` have no limit check in `createMiniPool`",
+  "issueId": 690,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/690"
+}
