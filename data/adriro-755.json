@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "adriro",
+  "risk": "",
+  "title": "`upgradeExistingContract` will fail to set the new address for upgrades that keep the same name",
+  "issueId": 755,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/755"
+}
