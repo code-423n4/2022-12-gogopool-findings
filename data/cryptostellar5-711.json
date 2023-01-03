@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "cryptostellar5",
+  "risk": "",
+  "title": "FUNCTION  `restakeGGP` CAN BE CALLED EVEN WHEN THE CONTRACTS ARE PAUSED",
+  "issueId": 711,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/711"
+}
