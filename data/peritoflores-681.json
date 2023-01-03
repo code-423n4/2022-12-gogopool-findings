@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "peritoflores",
+  "risk": "",
+  "title": "Multisign can accidentally finishFailed a pool in withdrawable state",
+  "issueId": 681,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/681"
+}
