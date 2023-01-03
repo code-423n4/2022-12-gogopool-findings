@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "nogo",
+  "risk": "",
+  "title": "Upgradability by storage registration technique is not enforced when updating the `ProtocolDAO` contract.",
+  "issueId": 735,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/735"
+}
