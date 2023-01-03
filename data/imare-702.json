@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "imare",
+  "risk": "",
+  "title": "`requireNextActiveMultisig` will always return the first enabled multisig which increases the probability of stuck minipools",
+  "issueId": 702,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/702"
+}
