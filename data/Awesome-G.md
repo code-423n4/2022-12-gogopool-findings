@@ -64,9 +64,7 @@ For instance the code at [ProtocolDAO.sol#L107](https://github.com/code-423n4/20
 Line 107:    function setClaimingContractPct(string memory claimingContract, uint256 decimal) public payable onlyGuardian valueNotGreaterThanOne(decimal) {
 ```
 
-Note:
-
-- Although this optimization can save gas, it is important to be aware of the security considerations involving Ether held in contracts that it introduces.
+> **Note**: Although this optimization can save gas, it is important to be aware of the security considerations involving Ether held in contracts that it introduces.
   More information on this topic can be found in the [Solidity Compiler Discussion](https://github.com/ethereum/solidity/issues/12539).
 
 Affected line of code:
