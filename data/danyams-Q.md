@@ -82,3 +82,17 @@ Move the emit of the event following the the internal call to inflate( ).
                      uint256 multisigClaimContractAllotment = getClaimingContractDistribution("ClaimMultisig");
                      uint256 nopClaimContractAllotment = getClaimingContractDistribution("ClaimNodeOp");
                      uint256 daoClaimContractAllotment = getClaimingContractDistribution("ClaimProtocolDAO");
+
+## Unnecessary Inheritance
+
+TokenGGAVAX and ERC4626 both unnecessarily inherit Initializable.  TokenGGAVAX inherits both Initializable and ERC4626Upgradeable.  However, ERC4626Upgradeable already inherits Initializable.  ERC4626 inherits both Initializable and ERC20Upgradeable, but ERC20Upgradable already inherits Initializable.
+
+Referenced Code:
+
+https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/tokens/TokenggAVAX.sol#L24
+
+https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/tokens/upgradeable/ERC4626Upgradeable.sol#L11
+
+https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/tokens/upgradeable/ERC20Upgradeable.sol#L10
+
+
