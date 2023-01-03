@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "immeas",
+  "risk": "",
+  "title": "calling `createMiniPool` on an existing minipool in state `Withdrawable` or `Error` locks node operators funds in the vault",
+  "issueId": 692,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/692"
+}
