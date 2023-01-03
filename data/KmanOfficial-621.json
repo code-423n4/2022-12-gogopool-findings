@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "KmanOfficial",
+  "risk": "",
+  "title": "Upgrading existing contract in storage can result in unwanted state",
+  "issueId": 621,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/621"
+}
