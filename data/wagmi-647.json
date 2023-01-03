@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "wagmi",
+  "risk": "",
+  "title": "Owner can front-run `recreateMinipool()` to withdraw funds but minipool is still created.",
+  "issueId": 647,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/647"
+}
