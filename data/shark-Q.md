@@ -144,3 +144,12 @@ For example, the following custom errors could use some parameters to show what 
 Unused imports can lead to confusion for a human looking at the code. Also, it's bad practice.
 
 - File: `MinipoolManager.sol` [Line 13](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol#L13)
+
+## 8. Incorrect Comments
+
+In the following comments, it is stated that "2% is 0.2 ether". However, it should instead be "20% is 0.2 ether". Alternatively, it may also be changed to "2% is 0.02 ether".
+
+Here are the instances:
+
+- File: `MinipoolManager.sol` [Line 35](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol#L35)
+- File: `MinipoolManager.sol` [Line 194](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol#L194)
