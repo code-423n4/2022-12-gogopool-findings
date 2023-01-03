@@ -1,3 +1,7 @@
+# NON-CRITICAL FINDINGS :
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 ## 
 
 ## [NC-1]  INCLUDE RETURN PARAMETERS IN NATSPEC COMMENTS
@@ -9,7 +13,10 @@ If Return parameters are declared, you must prefix them with ”/// @return”.
 Some code analysis programs do analysis by reading NatSpec details, if they can’t see the “@return” tag, they do incomplete analysis.
 
 Recommended Mitigation Steps
+
 Include return parameters in NatSpec comments
+
+> Instances(3) :
 
 [FILE: 12-gogopool/contracts/contract/MinipoolManager.sol](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol)
 
@@ -41,6 +48,8 @@ Include return parameters in NatSpec comments
 
 Description
 NatSpec is missing for the following functions , constructor and events:
+
+> Instances(30):
 
 [FILE: 12-gogopool/contracts/contract/MinipoolManager.sol](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol)
 
@@ -175,6 +184,8 @@ NatSpec is missing for the following functions , constructor and events:
 
 ## [NC-3]  EMPTY BLOCKS SHOULD BE REMOVED OR EMIT SOMETHING
 
+> Instances(4)
+
 [FILE: 12-gogopool/contracts/contract/MinipoolManager.sol](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol)
 
    106:  function receiveWithdrawalAVAX() external payable {}
@@ -199,9 +210,11 @@ pragma solidity >=0.8.0 <0.9.0;
 
 ##
 
-## [N-5] NOT USING THE NAMED RETURN VARIABLES ANYWHERE IN THE FUNCTION IS CONFUSING
+## [NC-5] NOT USING THE NAMED RETURN VARIABLES ANYWHERE IN THE FUNCTION IS CONFUSING
 
 Consider changing the variable to be an unnamed one
+
+> Instances(1) : 
 
 [FILE: 2022-12-gogopool/contracts/contract/RewardsPool.sol](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/RewardsPool.sol)
 
@@ -221,17 +234,17 @@ Consider changing the variable to be an unnamed one
 
 ##
 
-## [N-6]  OMISSIONS IN EVENTS
+## [NC-6]  OMISSIONS IN EVENTS
 
 Throughout the codebase, events are generally emitted when sensitive changes are made to the contracts. However, some events are missing important parameters
 
-The events should include the new value and old value where possible.
+The events should include the new value and old value where possible. In MinipoolManager Contract for imporatant updates no events are emitted for newminipool creations, withdraw operations etc
 
 [FILE: 12-gogopool/contracts/contract/MinipoolManager.sol](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol)
 
 ##
 
-## [7] COMMENTED CODE
+## [NC-7] COMMENTED CODE
 
 [File: 2022-12-gogopool/contracts/contract/MinipoolManager.sol](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol)
 
@@ -272,7 +285,7 @@ The events should include the new value and old value where possible.
 
 ##
 
-## [N-8]  INCONSISTENT SOLIDITY VERSIONS
+## [NC-8]  INCONSISTENT SOLIDITY VERSIONS
 
 > Description
 
@@ -293,6 +306,7 @@ Different Solidity compiler versions are used throughout Src repositories. The f
 
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
+# LOW RISK FINDINGS :
 
 ##
 
@@ -337,6 +351,8 @@ Apart from these, there are several minor bug fixes and improvements
 
 ## [L2]  USE NAMED IMPORTS INSTEAD OF PLAIN IMPORTS
 
+> Instances (10)
+
 [FIL: 2022-12-gogopool/contracts/contract/BaseUpgradeable.sol](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/BaseUpgradeable.sol)
 
   4:  import "./BaseAbstract.sol";
@@ -350,11 +366,3 @@ Apart from these, there are several minor bug fixes and improvements
 
 
 
-
-NC-1	Return values of approve() not checked	2
-NC-2	Event is missing indexed fields	23
-NC-3	Constants should be defined rather than using magic numbers	1
-NC-4	Functions not used internally could be marked external	57
-
-L-1	abi.encodePacked() should not be used with dynamic types when passing the result to a hash function such as keccak256()	157
-L-2	Unsafe ERC20 operation(s)	2
