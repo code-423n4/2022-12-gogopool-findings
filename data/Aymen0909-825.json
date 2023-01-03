@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "Aymen0909",
+  "risk": "",
+  "title": "The function `withdrawGGP` uses `MaxCollateralizationRatio` instead of `MinCollateralizationRatio` when user tries to withdraw GGP",
+  "issueId": 825,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/825"
+}
