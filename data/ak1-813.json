@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "ak1",
+  "risk": "",
+  "title": "MinipoolManager.sol : withdrawMinipoolFunds is not updating the AVAX assigned",
+  "issueId": 813,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/813"
+}
