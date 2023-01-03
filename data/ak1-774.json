@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "ak1",
+  "risk": "",
+  "title": "Staking.sol : relying on aavax based ggp pricing could be dangerous when aavax fall",
+  "issueId": 774,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/774"
+}
