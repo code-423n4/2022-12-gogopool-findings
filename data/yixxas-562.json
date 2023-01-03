@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "yixxas",
+  "risk": "",
+  "title": "`recordStakingError()` can be called even after a minipool has been successfully registered",
+  "issueId": 562,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/562"
+}
