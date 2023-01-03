@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "bin2chen",
+  "risk": "",
+  "title": "recordStakingError() missing execution decreaseMinipoolCount()",
+  "issueId": 511,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/511"
+}
