@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "unforgiven",
+  "risk": "",
+  "title": "Wrong reward distribution because protocol won't reset avaxAssignedHighWater value for a user if calculateAndDistributeRewards() doesn't get called for that user in that cycle",
+  "issueId": 827,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/827"
+}
