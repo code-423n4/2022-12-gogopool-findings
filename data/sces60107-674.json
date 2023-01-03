@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "sces60107",
+  "risk": "",
+  "title": "`RewardPool.inflate` doesn’t set a proper start time of the new inflation interval.",
+  "issueId": 674,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/674"
+}
