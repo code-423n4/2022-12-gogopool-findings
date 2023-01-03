@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "unforgiven",
+  "risk": "",
+  "title": "functions registerContract(), unregisterContract() and upgradeExistingContract() doesn't have any checks which would cause funds loss and wrong storage state if they are called by bad values",
+  "issueId": 747,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/747"
+}
