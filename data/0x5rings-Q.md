@@ -25,6 +25,7 @@ if (nopClaimContractAllotment > 0) {
 }
 
 ```
+----
 
 Findings: Emit Important functions:
 
@@ -41,3 +42,11 @@ On the event of a pause protocol via `pauseEverything` all multisigs would be di
 Code: [https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/Ocyticus.sol#L47-L48](https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/Ocyticus.sol#L47-L48)
 
 Mitigation: Add emits to important setter functions, also add `indexed` within emit address
+
+----
+
+[**Recipient Address can be a contract that calls back leading to reentrancy**](https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/MinipoolManager.sol#L302-L303)
+
+Further, the recipient may be a smart contract that may not support interface ERC20, leading to revert if contract.
+
+Code: [https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/ClaimProtocolDAO.sol#L32-L33](https://github.com/code-423n4/2022-12-gogopool/blob/aec9928d8bdce8a5a4efe45f54c39d4fc7313731/contracts/contract/ClaimProtocolDAO.sol#L32-L33)
