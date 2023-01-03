@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "Aymen0909",
+  "risk": "",
+  "title": "The owner minipool count is not decreased in the case of a staking error",
+  "issueId": 870,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/870"
+}
