@@ -152,12 +152,3 @@ if (!booleanStorage[keccak256(abi.encodePacked("contract.exists", msg.sender))] 
 	revert InvalidOrOutdatedContract();
 }
 ```
-
-## [GAS-5]  Use checks as early as possible
-
-## Lines of code:
-
-- https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol#L424
-- https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/ClaimNodeOp.sol#L82
-
-Use if as early as possible in the function because it returns only unused gas in the case of a failure. This means that if some logic before the if statement is gas-consuming, you will not get the gas for that logic if it fails.
