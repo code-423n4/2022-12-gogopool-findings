@@ -1,8 +1,3 @@
-Put the code directly into the if statement instead of assigning it to a boolean.
-
-- [BaseAbstract.sol#L73](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/BaseAbstract.sol#L73)
-
-
 Instead of using i++ or ++i in the for loops make the incremention unchecked if there is no risk of overflow. In this case there should be no risk of overflow. This will have worse readability because it needs to be a seperate function. However, this will be a big gas saver.
 
 - [RewardsPool.sol#L74](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/RewardsPool.sol#L74)
@@ -38,7 +33,7 @@ Use bit shifting for division by 2 (1 instance)
 x = x >> 1 is the same as x = x/2;
 - [MinipoolManager.sol#L413](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol#L413)
 
-Memory variable is only read once, so there is no point in assigning it to a memory variable. It's cheaper to read it directly from storage. In the following lines, the improvement doesn't make the readability worse. I didn't include the lines where the readibility would be worse when reading directly from storage.
+Memory variable is only read once, so there is no point in assigning it to a memory variable. I didn't include the lines where the readibility would be worse when reading directly from storage.
 - [TokenggAVAX.sol#L97](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/tokens/TokenggAVAX.sol#L97)
 - [MinipoolManager.sol#L341](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MinipoolManager.sol#L341)
 - [Storage.sol#L81](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Storage.sol#L81)
@@ -75,7 +70,7 @@ Every function with a modifier in
 - [ProtocolDao.sol](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/tokens/upgradeable/ProtocolDao.sol)
 - [Vault.sol](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/tokens/upgradeable/Vault.sol)
 
-When contract instance is only used once, don't assign it to a variable, the functions below keep almost the same readability. I didn't include the functions where the readibility will get worse
+When the contract instance is only used once, don't assign it to a variable to save gas. Use it directly, see the example below. I didn't include the functions where the readibility would get worse.
 Instead of:
 ProtocolDAO dao = ProtocolDAO(getContractAddress("ProtocolDAO"));
 uint256 rate = dao.getExpectedAVAXRewardsRate();
@@ -111,3 +106,7 @@ Can be done at:
 - [Rewardspool.sol#L135](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Rewardspool.sol#L135)
 - [Vault.sol#L76](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Vault.sol#L76)
 - [Vault.sol#L157](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Vault.sol#L157)
+
+Put the code directly into the if statement instead of assigning it to a boolean.
+- [BaseAbstract.sol#L73](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/BaseAbstract.sol#L73)
+
