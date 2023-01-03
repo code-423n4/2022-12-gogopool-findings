@@ -12,7 +12,8 @@ File: Vault.sol
 ### 4 - add a function to return only price in Oracle contract
 to keep the code cohesive, in Staking.sol line 296, the return value would only contain the price, that would save on the cost of fetching timestamp and returning it while being unused.
 
-### 5 - no need to use SafeERC20 for GGP, since the token adhere to ERC20 and return a true at all times for successful transfers otherwise it reverts.
+### 5 - no need to use SafeERC20 for GGP
+since the token adhere to ERC20 and return a true at all times for successful transfers otherwise it reverts.
 
 ```
 File: Staking.sol
