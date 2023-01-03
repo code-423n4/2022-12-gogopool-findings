@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "imare",
+  "risk": "",
+  "title": "malicious validator can cancel other minipools and make honest user loose their initial investment and reward",
+  "issueId": 699,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/699"
+}
