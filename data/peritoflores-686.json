@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "peritoflores",
+  "risk": "",
+  "title": "Pool's owner can DoS `cancelMinipoolByMultisig`  -  Lack of withdrawal pattern",
+  "issueId": 686,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/686"
+}
