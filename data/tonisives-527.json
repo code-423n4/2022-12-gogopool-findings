@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "tonisives",
+  "risk": "",
+  "title": "A malicious early user/attacker can manipulate the ggAVAX pricePerShare to take an unfair share of future users' deposits",
+  "issueId": 527,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/527"
+}
