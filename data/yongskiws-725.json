@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "yongskiws",
+  "risk": "",
+  "title": "consider the syncRewards function will occur if you carry out a DoS attack by changing the timestamp value in each transaction",
+  "issueId": 725,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/725"
+}
