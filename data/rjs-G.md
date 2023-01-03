@@ -6,9 +6,18 @@ The codebase was well structured and implemented many common gas optimizations.
 
 # Summary
 
-| ID  | Finding | Instances |
-| --- | ------- | --------- |
-| G-01    |         |           |
+| ID    | Finding                                                            | Instances |
+| ----- | ------------------------------------------------------------------ | --------- |
+| G-01  | Don't compare boolean expressions to boolean literal               | 3         |
+| G-02  | Used named returns instead of temporary return variables           | 8         |
+| G-03  | `x = x + y` is sometimes more efficient than `x += y`              | 2         |
+| G-04  | `x = x - y` is sometimes more efficient than `x -= y`              | 3         |
+| G-05  | Use `unchecked` if possible for increment/decrement                | 3         |
+| !G-01 | NOT RECOMMENDED: Use `external` instead of `public` where possible |           |
+| !G-02      | NOT RECOMMENDED: `x = x - y` is NOT ALWAYS more efficient than `x -= y`                                                                    |           |
+
+
+
 
 # Gas Optimization Findings
 
@@ -130,7 +139,7 @@ BaseAbstract.sol
 93: 			revert ContractNotFound();
 94: 		}
 95: 	}
-```solidity
+```
 
 ### Instance 3
 
@@ -251,7 +260,7 @@ contracts/contract/tokens/TokenggAVAX.sol
 
 ---
 
-## \[G-04\] `x = x - y` is more efficient than `x -= y`
+## \[G-04\] `x = x - y` is sometimes more efficient than `x -= y`
 
 ### Instance 1
 
@@ -398,16 +407,15 @@ After:
 `forge test` overall gas change: -1,089
 
 ```solidity
-contracts/contract/RewardsPool.sol
-215: 		for (uint256 i = 0; i < count; i++) {
-216: 			(address addr, bool enabled) = mm.getMultisig(i);
-217: 			if (enabled) {
-218: 				enabledMultisigs[enabledCount] = addr;
-219: 				unchecked {
-220: 				  enabledCount++;
-221: 				}
-222: 			}
-223: 		}
+contracts/contract/Staking.sol
+427: 		uint256 total = 0;
+428: 		for (uint256 i = offset; i < max; i++) {
+429: 			Staker memory s = getStaker(int256(i));
+430: 			stakers[total] = s;
+431: 			unchecked {
+432: 				total++;
+433: 			}
+434: 		}
 ```
 
 
@@ -417,7 +425,7 @@ contracts/contract/RewardsPool.sol
 
 I have included this section as I have noticed a trend for gas reports to include findings that are not, in fact, quantifiable or valid in all instances.
 
-## \[XG-01\] NOT RECOMMENDED: Use `external` instead of `public` where possible
+## \[!G-01\] NOT RECOMMENDED: Use `external` instead of `public` where possible
 
 For example, `ProtocolDAO` has `pauseContract()` which is only ever used externally. There are other such instances in the codebase.
 
@@ -425,7 +433,7 @@ Changing the function from `public` to `external` yields no benefit, because the
 
 ---
 
-## \[XG-02\] NOT RECOMMENDED: `x = x - y` is NOT ALWAYS more efficient than `x -= y`
+## \[!G-02\] NOT RECOMMENDED: `x = x - y` is NOT ALWAYS more efficient than `x -= y`
 
 ### Instance 1
 
