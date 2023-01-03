@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "datapunk",
+  "risk": "",
+  "title": "in withdrawMinipoolFunds, \".avaxNodeOpAmt\" and \".avaxNodeOpRewardAmt\" should be set to 0, otherwise recreateMinipool() will reuse them even after they were withdrawn",
+  "issueId": 864,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/864"
+}
