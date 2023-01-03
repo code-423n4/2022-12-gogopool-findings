@@ -92,14 +92,5 @@ https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/toke
 https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/tokens/upgradeable/ERC20Upgradeable.sol#L106
 
 
-## 8. Public function that could be declared external :-
-
-Reference :- https://github.com/crytic/slither/wiki/Detector-Documentation#public-function-that-could-be-declared-external
-
-code snippet:-
-https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Staking.sol#L204
-https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Staking.sol#L224
-https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Staking.sol#L231
-https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/Staking.sol#L248
 
 
