@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "caventa",
+  "risk": "",
+  "title": "StartRewardsCycle should update the total supply to maximum total supply of GGP if the new total supply is greater than the maximum total supply of GGP",
+  "issueId": 609,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/609"
+}
