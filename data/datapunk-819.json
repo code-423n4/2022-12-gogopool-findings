@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "datapunk",
+  "risk": "",
+  "title": "Incomplete cleanup after getting into MinipoolStatus.Error through recordStakingError()",
+  "issueId": 819,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/819"
+}
