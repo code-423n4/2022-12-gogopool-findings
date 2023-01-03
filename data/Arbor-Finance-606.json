@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "Arbor-Finance",
+  "risk": "",
+  "title": "Missing storage _gap may result in storage slot collision during upgrades",
+  "issueId": 606,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/606"
+}
