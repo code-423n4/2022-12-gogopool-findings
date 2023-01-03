@@ -1,3 +1,14 @@
+0. Unsure how this works:
+```
+if (staking.getAVAXAssignedHighWater(owner) < staking.getAVAXAssigned(owner)) {
+                 staking.increaseAVAXAssignedHighWater(owner, avaxLiquidStakerAmt);
+        }
+```
+A better and simpler way would be to do:
+```
+staking.setcAVAXAssignedHighWater(owner, staking.getAVAXAssigned(owner));
+```
+
 1. missing __gap variable in ERC20Upgradeable, ERC4626Upgradeable, BaseUpgradeable contracts.
 according to the https://multisiglabs.notion.site/Audit-Parameters-3ad0ab58f96743c1b8087d131413a9bc, these contracts are upgradeable. As such, they should adhere to the recommendation and add storage gaps in order to avoid potential sotrage collisions:
 https://docs.openzeppelin.com/contracts/3.x/upgradeable#storage_gaps
