@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "sces60107",
+  "risk": "",
+  "title": "Early depositors to TokenggAVAX.sol can manipulate the price per share to steal funds from later depositors.",
+  "issueId": 663,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/663"
+}
