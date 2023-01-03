@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "brgltd",
+  "risk": "",
+  "title": "Upgrading contracts or registering new contracts can override existing contracts",
+  "issueId": 850,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/850"
+}
