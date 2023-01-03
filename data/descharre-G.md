@@ -110,3 +110,7 @@ Can be done at:
 Put the code directly into the if statement instead of assigning it to a boolean.
 - [BaseAbstract.sol#L73](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/BaseAbstract.sol#L73)
 
+Version is set everywhere to 1 so it's better to make it constant or immutable and only set it one time
+- [BaseAbstract.sol#L19](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/BaseAbstract.sol#L19)
+
+
