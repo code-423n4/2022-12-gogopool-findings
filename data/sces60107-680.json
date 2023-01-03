@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "sces60107",
+  "risk": "",
+  "title": "`setRewardsCycleTotal` will overwrite the previous value, leading to node operators being unable to claim past rewards cycles",
+  "issueId": 680,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/680"
+}
