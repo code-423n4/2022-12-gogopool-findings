@@ -24,7 +24,7 @@
 ###  RewardsPool.sol : [L74](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/RewardsPool.sol#L74) [L215](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/RewardsPool.sol#L215) [L219](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/RewardsPool.sol#L219)
 		L74  (i <= inflationIntervalsElapsed) 
 		L215 (for incrementation of i)
-		L219 (for incrementation enbledCount); 
+		L219 (for incrementation of enbledCount); 
 
 ###  MiniPoolManager.sol : [L619](https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MiniPoolManager.sol#L619)
 		L619 (for both i and total incrementation variable, because total <= i <= max)
