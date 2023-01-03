@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "0x5rings",
+  "risk": "",
+  "title": "The single guardian can add itself as a multisig address. While still having access over multisig controls leading to centralisation issues. By disabling all other multisigs via `disableMultisig`",
+  "issueId": 625,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/625"
+}
