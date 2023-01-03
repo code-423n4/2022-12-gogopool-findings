@@ -1,23 +1,20 @@
 # Introduction
 
-The codebase was well structured and implemented many common gas optimizations.
+The codebase was well structured and implemented many well-known gas optimizations, making it a challenge to improve on the current state of the codebase.
 
 ⚠ It seems that some of the tests are non-deterministic, which makes it quite challenging to accurately evaluate the effect of changes as re-running even the baseline results in swings of 20% in gas costs for deployments and transactions on some (not all) of the tests. 
 
 # Summary
 
-| ID    | Finding                                                            | Instances |
-| ----- | ------------------------------------------------------------------ | --------- |
-| G-01  | Don't compare boolean expressions to boolean literal               | 3         |
-| G-02  | Used named returns instead of temporary return variables           | 8         |
-| G-03  | `x = x + y` is sometimes more efficient than `x += y`              | 2         |
-| G-04  | `x = x - y` is sometimes more efficient than `x -= y`              | 3         |
-| G-05  | Use `unchecked` if possible for increment/decrement                | 3         |
-| !G-01 | NOT RECOMMENDED: Use `external` instead of `public` where possible |           |
-| !G-02      | NOT RECOMMENDED: `x = x - y` is NOT ALWAYS more efficient than `x -= y`                                                                    |           |
-
-
-
+| ID    | Finding                                                                 | Instances |
+| ----- | ----------------------------------------------------------------------- | --------- |
+| G-01  | Don't compare boolean expressions to boolean literal                    | 3         |
+| G-02  | Used named returns instead of temporary return variables                | 8         |
+| G-03  | Use `unchecked` if possible for increment/decrement                | 3         |
+| G-04  | `x = x + y` is sometimes more efficient than `x += y`                   | 2         |
+| G-05  | `x = x - y` is sometimes more efficient than `x -= y`                   | 3         |
+| !G-01 | NOT RECOMMENDED: Use `external` instead of `public` where possible      |           |
+| !G-02 | NOT RECOMMENDED: `x = x - y` is NOT ALWAYS more efficient than `x -= y` |           |
 
 # Gas Optimization Findings
 
@@ -218,107 +215,7 @@ contracts/contract/RewardsPool.sol
 
 ---
 
-## \[G-03\] `x = x + y` is sometimes more efficient than `x += y`
-
-Note that this is only true when not `unchecked`, and also depends on call patterns. Every change should be carefully evaluated.
-
-### Instance 1
-
-Before:
-
-```solidity
-contracts/contract/tokens/TokenggAVAX.sol
-252: 		totalReleasedAssets += amount;
-```
-
-After:
-
-`forge test` overall gas change: -2,296
-
-```solidity
-contracts/contract/tokens/TokenggAVAX.sol
-252: 		totalReleasedAssets = totalReleasedAssets + amount;
-```
-
-### Instance 2
-
-Before:
-
-```solidity
-contracts/contract/tokens/TokenggAVAX.sol
-160: 		stakingTotalAssets += assets;
-```
-
-After:
-
-`forge test` overall gas change: -589
-
-```solidity
-contracts/contract/tokens/TokenggAVAX.sol
-160: 		stakingTotalAssets = stakingTotalAssets + assets;
-```
-
----
-
-## \[G-04\] `x = x - y` is sometimes more efficient than `x -= y`
-
-### Instance 1
-
-Before:
-
-```solidity
-contracts/contract/tokens/TokenggAVAX.sol
-149: 		stakingTotalAssets -= baseAmt;
-```
-
-After:
-
-`forge test` overall gas change: -384
-
-```solidity
-contracts/contract/tokens/TokenggAVAX.sol
-149: 		stakingTotalAssets = stakingTotalAssets - baseAmt;
-```
-
-### Instance 2
-
-Before:
-
-```solidity
-contracts/contract/tokens/TokenggAVAX.sol
-245: 		totalReleasedAssets -= amount;
-```
-
-After:
-
-`forge test` overall gas change: -305
-
-```solidity
-contracts/contract/tokens/TokenggAVAX.sol
-245: 		totalReleasedAssets = totalReleasedAssets- amount;
-```
-
-### Instance 3
-
-Before:
-
-```solidity
-contracts/contract/tokens/upgradeable/ERC20Upgradeable.sol
-79: 		balanceOf[msg.sender] -= amount;
-```
-
-After:
-
-`forge test` overall gas change: -159 (with some smaller increases for some tests)
-
-```solidity
-contracts/contract/tokens/upgradeable/ERC20Upgradeable.sol
-79: 		balanceOf[msg.sender] = balanceOf[msg.sender] - amount;
-```
-
----
-
-## \[G-05\] Use `unchecked` if possible for increment/decrement
+## \[G-03\] Use `unchecked` if possible for increment/decrement
 
 ### Instance 1
 
@@ -418,6 +315,105 @@ contracts/contract/Staking.sol
 434: 		}
 ```
 
+---
+
+## \[G-04\] `x = x + y` is sometimes more efficient than `x += y`
+
+Note that this is only true when not `unchecked`, and also depends on call patterns. Every change should be carefully evaluated.
+
+### Instance 1
+
+Before:
+
+```solidity
+contracts/contract/tokens/TokenggAVAX.sol
+252: 		totalReleasedAssets += amount;
+```
+
+After:
+
+`forge test` overall gas change: -2,296
+
+```solidity
+contracts/contract/tokens/TokenggAVAX.sol
+252: 		totalReleasedAssets = totalReleasedAssets + amount;
+```
+
+### Instance 2
+
+Before:
+
+```solidity
+contracts/contract/tokens/TokenggAVAX.sol
+160: 		stakingTotalAssets += assets;
+```
+
+After:
+
+`forge test` overall gas change: -589
+
+```solidity
+contracts/contract/tokens/TokenggAVAX.sol
+160: 		stakingTotalAssets = stakingTotalAssets + assets;
+```
+
+---
+
+## \[G-05\] `x = x - y` is sometimes more efficient than `x -= y`
+
+### Instance 1
+
+Before:
+
+```solidity
+contracts/contract/tokens/TokenggAVAX.sol
+149: 		stakingTotalAssets -= baseAmt;
+```
+
+After:
+
+`forge test` overall gas change: -384
+
+```solidity
+contracts/contract/tokens/TokenggAVAX.sol
+149: 		stakingTotalAssets = stakingTotalAssets - baseAmt;
+```
+
+### Instance 2
+
+Before:
+
+```solidity
+contracts/contract/tokens/TokenggAVAX.sol
+245: 		totalReleasedAssets -= amount;
+```
+
+After:
+
+`forge test` overall gas change: -305
+
+```solidity
+contracts/contract/tokens/TokenggAVAX.sol
+245: 		totalReleasedAssets = totalReleasedAssets- amount;
+```
+
+### Instance 3
+
+Before:
+
+```solidity
+contracts/contract/tokens/upgradeable/ERC20Upgradeable.sol
+79: 		balanceOf[msg.sender] -= amount;
+```
+
+After:
+
+`forge test` overall gas change: -159 (with some smaller increases for some tests)
+
+```solidity
+contracts/contract/tokens/upgradeable/ERC20Upgradeable.sol
+79: 		balanceOf[msg.sender] = balanceOf[msg.sender] - amount;
+```
 
 --
 
