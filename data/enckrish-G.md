@@ -5,7 +5,7 @@ The total gas saved presented here is the change in median gas usage obtained of
 | Issue | Instances | Total Gas Saved |
 | -------- | -------- | -------- |
 | **[G-01]** Remove redundant `contractAddress` argument from modifiers | 2     | 190     |
-| **[G-02]** Remove redundant zero address check from `onlyMultisig` modifier | 1 | 5819
+| **[G-02]** Remove redundant zero address check from `onlyMultisig` modifier | 2 | 5819
 | **[G-03]** Cache result of keccak256(...) | 1     | 173     |
 | **[G-04]** Divide revert checks into separate `if` statements | 1     | 8     |
 
@@ -44,6 +44,9 @@ A multisig is only enabled through `MultisigManager.enableMultisig`, and zero ad
 
 ```
 https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/BaseAbstract.sol#L69
+
+The same can also be done in `MultisigManager.getMultisig`.
+https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/MultisigManager.sol#L109
 
 ### [G-03] Cache result of keccak256(...)
 In `MinipoolManager.recordStakingStart`, initial start time key is computed two times, and can be cached.
