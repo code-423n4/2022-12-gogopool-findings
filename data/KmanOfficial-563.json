@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "KmanOfficial",
+  "risk": "",
+  "title": "Missing modifier when checking if reward cycle can be started",
+  "issueId": 563,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/563"
+}
