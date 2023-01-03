@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "adriro",
+  "risk": "",
+  "title": "Recreate Minipool can be frontrunned by node operator and lead to stealing funds",
+  "issueId": 753,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/753"
+}
