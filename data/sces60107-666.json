@@ -1,0 +1,8 @@
+{
+  "contest": 194,
+  "handle": "sces60107",
+  "risk": "",
+  "title": "A node operator’s `minipoolCount` could go wrong when the state is ERROR",
+  "issueId": 666,
+  "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/666"
+}
