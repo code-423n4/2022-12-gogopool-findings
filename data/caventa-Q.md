@@ -19,7 +19,7 @@ fucns should be funcs
 
 2.
 
-Unnecessary casting for the following variables. We could have more than 256 variables and lastRewardsAmt that larger than 6.2771017e+57
+Unnecessary casting for the following variables. We could have more than 256 versions and lastRewardsAmt that larger than 6.2771017e+57
 
 (See https://github.com/code-423n4/2022-12-gogopool/blob/main/contracts/contract/BaseAbstract.sol)
 
