@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "0xbepresent",
-  "risk": "",
+  "risk": "2",
   "title": "The minipools creation could be compromised if is not possible to register more multisigs and all of them are disabled",
   "issueId": 349,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/349"
