@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "ladboy233",
-  "risk": "",
+  "risk": "2",
   "title": "Incorrect validation of node status when handling existing id when creating MiniPool",
   "issueId": 123,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/123"
