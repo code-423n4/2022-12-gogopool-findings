@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "HollaDieWaldfee",
-  "risk": "",
+  "risk": "2",
   "title": "TokenggAVAX: actual reward streaming period can be as small as 1 second due to rounding",
   "issueId": 154,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/154"
