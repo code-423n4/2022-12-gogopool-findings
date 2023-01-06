@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "Franfran",
-  "risk": "",
+  "risk": "2",
   "title": "[Medium - 2] The query to the oracle price can be outdated and return a old and disadventageous price",
   "issueId": 486,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/486"
