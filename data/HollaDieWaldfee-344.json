@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "HollaDieWaldfee",
-  "risk": "",
+  "risk": "2",
   "title": "MinipoolManager: amount to be slashed is too big since it is based on whole duration not one staking period",
   "issueId": 344,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/344"
