@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "0xbepresent",
-  "risk": "",
+  "risk": "2",
   "title": "The timestamp from Oracle.sol::getGGPPriceInAVAX() is not used",
   "issueId": 472,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/472"
