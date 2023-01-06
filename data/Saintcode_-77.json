@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "Saintcode_",
-  "risk": "",
+  "risk": "3",
   "title": "SIGNATURE MALLEABILITY OF EVM’S `ECRECOVER` IN ERC-20 `PERMIT()`",
   "issueId": 77,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/77"
