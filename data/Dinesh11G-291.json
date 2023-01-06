@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "Dinesh11G",
-  "risk": "",
+  "risk": "2",
   "title": "dangerous payable function and Loss the msg.value",
   "issueId": 291,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/291"
