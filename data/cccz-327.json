@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "cccz",
-  "risk": "",
+  "risk": "2",
   "title": "Even if NodeOps does not have an active minipool, it can still get GGP rewards",
   "issueId": 327,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/327"
