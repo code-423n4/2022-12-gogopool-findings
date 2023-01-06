@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "0xhacksmithh",
-  "risk": "",
+  "risk": "2",
   "title": "Native Token(AVAX) can be locked inside contract for forever",
   "issueId": 787,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/787"
