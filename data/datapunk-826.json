@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "datapunk",
-  "risk": "",
+  "risk": "3",
   "title": "slash will fail if vault does not have enough ggp to cover calculated GGPSlashAmt",
   "issueId": 826,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/826"
