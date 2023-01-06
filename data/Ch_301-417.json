@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "Ch_301",
-  "risk": "",
+  "risk": "2",
   "title": "Userscan stake lower than the minimum",
   "issueId": 417,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/417"
