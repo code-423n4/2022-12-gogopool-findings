@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "Kiep",
-  "risk": "",
+  "risk": "2",
   "title": "Potentially Stealing Funds",
   "issueId": 229,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/229"
