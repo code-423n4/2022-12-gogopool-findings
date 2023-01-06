@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "HE1M",
-  "risk": "",
+  "risk": "2",
   "title": "DoS attack during distributing rewards",
   "issueId": 553,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/553"
