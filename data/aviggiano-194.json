@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "aviggiano",
-  "risk": "",
+  "risk": "2",
   "title": "`Staking.slashGGP` might be frontrun by `Staking.withdrawGGP`, effectively running away from slashing",
   "issueId": 194,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/194"
