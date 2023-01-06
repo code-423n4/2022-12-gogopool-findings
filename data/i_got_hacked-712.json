@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "i_got_hacked",
-  "risk": "",
+  "risk": "Q",
   "title": "QA Report",
   "issueId": 712,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/712"
