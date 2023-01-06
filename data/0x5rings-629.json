@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "0x5rings",
-  "risk": "",
+  "risk": "3",
   "title": "Any caller who is a registered and enabled multisig can call any call `onlyMultisig` making the multisig centralised (and possibly redundant).",
   "issueId": 629,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/629"
