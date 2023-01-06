@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "gerdusx",
-  "risk": "",
+  "risk": "2",
   "title": "Malicious Gaurdian can register any contract to the network to manipulate all storage variables and steal all user funds.",
   "issueId": 467,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/467"
