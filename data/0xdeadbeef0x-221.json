@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "0xdeadbeef0x",
-  "risk": "",
+  "risk": "2",
   "title": "Underflow when slashing a node operator",
   "issueId": 221,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/221"
