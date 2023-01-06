@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "ladboy233",
-  "risk": "",
+  "risk": "2",
   "title": " Node operator can frontrun the slash function and withdraw the staked GGP token to avoid the slash",
   "issueId": 129,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/129"
