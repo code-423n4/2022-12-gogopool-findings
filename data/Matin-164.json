@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "Matin",
-  "risk": "",
+  "risk": "2",
   "title": "Storage gap is missing for upgradeable contract",
   "issueId": 164,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/164"
