@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "2997ms",
-  "risk": "",
+  "risk": "2",
   "title": "Arithmetic over/underflow when calling ```getStakers```  if limit == 0 && offset > totalStakers",
   "issueId": 237,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/237"
