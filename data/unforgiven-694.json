@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "unforgiven",
-  "risk": "",
+  "risk": "3",
   "title": "the lack of checks for Minipool duration which can cause multiple issues like penalty bypass or fund loss",
   "issueId": 694,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/694"
