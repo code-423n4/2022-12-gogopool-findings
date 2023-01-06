@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "cccz",
-  "risk": "",
+  "risk": "2",
   "title": "restakeGGP does not have the whenNotPaused modifier",
   "issueId": 334,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/334"
