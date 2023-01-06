@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "ladboy233",
-  "risk": "",
+  "risk": "2",
   "title": "GGP Token should inflate 5% per year but the total minted amount is hardcoded to 22_500_000 ether for GGP token",
   "issueId": 117,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/117"
