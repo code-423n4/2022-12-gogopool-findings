@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "amaechieth",
-  "risk": "",
+  "risk": "2",
   "title": "Protocol DOS in `syncRewards()`",
   "issueId": 307,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/307"
