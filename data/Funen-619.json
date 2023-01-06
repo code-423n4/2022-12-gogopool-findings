@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "Funen",
-  "risk": "",
+  "risk": "2",
   "title": "`transferAVAX` fn not having the nonReentrant modifier ",
   "issueId": 619,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/619"
