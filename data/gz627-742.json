@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "gz627",
-  "risk": "",
+  "risk": "3",
   "title": "Coding logic of the contract upgrading renders upgrading contracts impractical",
   "issueId": 742,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/742"
