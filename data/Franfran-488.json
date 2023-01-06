@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "Franfran",
-  "risk": "",
+  "risk": "2",
   "title": "[Medium-1] The multisig minipool cancellation can be bypassed",
   "issueId": 488,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/488"
