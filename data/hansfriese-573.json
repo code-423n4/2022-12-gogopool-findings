@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "hansfriese",
-  "risk": "",
+  "risk": "2",
   "title": "TokenggAVAX: ERC4626 first depositor can manipulate the share price",
   "issueId": 573,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/573"
