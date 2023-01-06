@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "cozzetti",
-  "risk": "",
+  "risk": "3",
   "title": "Takeover of nodes in Withdrawable or Error state leads to loss of funds",
   "issueId": 181,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/181"
