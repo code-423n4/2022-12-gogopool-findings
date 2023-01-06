@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "Franfran",
-  "risk": "",
+  "risk": "2",
   "title": "[Medium-3] AVAX yield bearing token stakers will never be able to claim their compounded shares",
   "issueId": 778,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/778"
