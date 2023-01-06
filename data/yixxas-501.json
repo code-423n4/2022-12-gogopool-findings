@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "yixxas",
-  "risk": "",
+  "risk": "3",
   "title": "`recreateMinipool()` sets avaxLiquidStakerAmt to more than exists for liquid stakers when there are node operator commission fees",
   "issueId": 501,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/501"
