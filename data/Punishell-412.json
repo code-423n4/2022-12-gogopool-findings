@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "Punishell",
-  "risk": "",
+  "risk": "2",
   "title": "Providing wrong `duration` time can lead to unexpected behavior.",
   "issueId": 412,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/412"
