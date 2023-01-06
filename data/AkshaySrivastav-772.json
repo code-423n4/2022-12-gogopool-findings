@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "AkshaySrivastav",
-  "risk": "",
+  "risk": "3",
   "title": "Funds of Node Operators can be nullified by any attacker",
   "issueId": 772,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/772"
