@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "SEVEN",
-  "risk": "",
+  "risk": "3",
   "title": "A malicious early user/attacker can manipulate the LToken's pricePerShare to take an unfair share of future users' deposits",
   "issueId": 37,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/37"
