@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "vagrant",
-  "risk": "",
+  "risk": "2",
   "title": "RewardsPool.inflate() might run out of gas after some amount of time causing inability to start further Rewardcycles",
   "issueId": 848,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/848"
