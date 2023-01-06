@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "peanuts",
-  "risk": "",
+  "risk": "2",
   "title": "Users should be able to withdraw their ggAVAX and convert them to AVAX when protocol is paused.",
   "issueId": 450,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/450"
