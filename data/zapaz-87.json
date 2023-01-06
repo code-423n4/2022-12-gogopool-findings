@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "zapaz",
-  "risk": "",
+  "risk": "2",
   "title": "Funds lost to zero address",
   "issueId": 87,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/87"
