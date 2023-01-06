@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "rvierdiiev",
-  "risk": "",
+  "risk": "2",
   "title": "TokenggAVAX doesn't have gap fields in it's parent contracts",
   "issueId": 72,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/72"
