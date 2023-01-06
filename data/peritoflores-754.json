@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "peritoflores",
-  "risk": "",
+  "risk": "2",
   "title": "`onlyspecifiedregisteredContract` modifier can be bypassed easilt",
   "issueId": 754,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/754"
