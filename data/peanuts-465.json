@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "peanuts",
-  "risk": "",
+  "risk": "2",
   "title": "Lack of sanity check in ProtocolDAO.upgradeExistingContract may cause the guardian to delete a contract instead of upgrading it",
   "issueId": 465,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/465"
