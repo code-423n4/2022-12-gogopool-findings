@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "fatherOfBlocks",
-  "risk": "",
+  "risk": "2",
   "title": "Possible wrong status due to transfers to address(0) without updating totalSupply",
   "issueId": 64,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/64"
