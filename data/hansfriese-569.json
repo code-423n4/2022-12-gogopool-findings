@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "hansfriese",
-  "risk": "",
+  "risk": "3",
   "title": "State Transition: Minipools can be created using other operator's AVAX deposit via recreateMinipool",
   "issueId": 569,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/569"
