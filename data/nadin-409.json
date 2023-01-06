@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "nadin",
-  "risk": "",
+  "risk": "2",
   "title": "Unnecessary precision loss in syncRewards()",
   "issueId": 409,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/409"
