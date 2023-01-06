@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "0xhacksmithh",
-  "risk": "",
+  "risk": "2",
   "title": "withdrawForStaking() can be re-entered and cause fund stealing",
   "issueId": 790,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/790"
