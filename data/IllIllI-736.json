@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "IllIllI",
-  "risk": "",
+  "risk": "3",
   "title": "First depositor can break the minting of shares",
   "issueId": 736,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/736"
