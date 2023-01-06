@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "0x5rings",
-  "risk": "",
+  "risk": "3",
   "title": "Non Zero Address Check for Guardian can lead to a frozen guardian during transfer of guardian.",
   "issueId": 624,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/624"
