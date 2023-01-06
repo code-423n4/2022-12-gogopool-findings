@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "yixxas",
-  "risk": "",
+  "risk": "2",
   "title": "`MinipoolMaxAVAXAssignment` may not be respected as this amount is not verified in `recreateMinipool`",
   "issueId": 564,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/564"
