@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "0xbepresent",
-  "risk": "",
+  "risk": "3",
   "title": "NodeOp funds may be trapped by a invalid state transition",
   "issueId": 723,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/723"
