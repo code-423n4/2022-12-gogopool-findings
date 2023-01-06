@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "yellowBirdy",
-  "risk": "",
+  "risk": "2",
   "title": "Multisig rewards do not check min time for eligibility, makes it prone to sybil attack",
   "issueId": 637,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/637"
