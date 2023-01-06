@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "0xbrett8571",
-  "risk": "",
+  "risk": "3",
   "title": "Multiple security flaws found in Vault.sol contract. Reentrancy vulnerabilities, insufficient AVAX and token validation, high Potential for exploitation.",
   "issueId": 341,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/341"
