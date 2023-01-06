@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "debo",
-  "risk": "",
+  "risk": "2",
   "title": "Title: SWC-110 A user-provided assertion failed.  Invalid input is successfully being parsed.",
   "issueId": 299,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/299"
