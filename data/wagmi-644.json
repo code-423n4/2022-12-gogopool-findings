@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "wagmi",
-  "risk": "",
+  "risk": "3",
   "title": "Wrong accouting of `minipoolCount` when minipool has error",
   "issueId": 644,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/644"
