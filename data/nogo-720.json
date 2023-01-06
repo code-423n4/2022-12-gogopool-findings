@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "nogo",
-  "risk": "",
+  "risk": "2",
   "title": "Node operators won't be slashed if the rewards are not fully received",
   "issueId": 720,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/720"
