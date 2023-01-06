@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "Manboy",
-  "risk": "",
+  "risk": "2",
   "title": "If the `finishFailedMinipoolByMultisig` function is called on a minipool, the node operator can not withdraw",
   "issueId": 85,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/85"
