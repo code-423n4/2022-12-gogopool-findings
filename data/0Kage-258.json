@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "0Kage",
-  "risk": "",
+  "risk": "3",
   "title": "Malicious staker can manipulate `EffectiveRewardsRatio` to go >150% (max limit) and claim higher rewards in first reward cycle after pool creation",
   "issueId": 258,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/258"
