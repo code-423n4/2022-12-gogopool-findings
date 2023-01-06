@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "chaduke",
-  "risk": "",
+  "risk": "3",
   "title": "The new RewardsPool.RewardsCycleStartTime is set wrongly",
   "issueId": 124,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/124"
