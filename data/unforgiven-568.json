@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "unforgiven",
-  "risk": "",
+  "risk": "3",
   "title": "attacker can call createMinipool() for other user's minipools and reset minipool information when minipools are in Withdrawable or Error states and node runners would lose their staked AVAX and rewards",
   "issueId": 568,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/568"
