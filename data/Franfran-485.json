@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "Franfran",
-  "risk": "",
+  "risk": "3",
   "title": "[High - 2] A minipool creator can overwrite the old minipool while it still has a stake and rewards",
   "issueId": 485,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/485"
