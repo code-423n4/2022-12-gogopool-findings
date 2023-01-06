@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "0xbrett8571",
-  "risk": "",
+  "risk": "2",
   "title": "Vulnerabilities in GGP rewards pool smart contract put assets at risk.",
   "issueId": 163,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/163"
