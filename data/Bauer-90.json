@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "Bauer",
-  "risk": "",
+  "risk": "G",
   "title": "Gas Optimizations",
   "issueId": 90,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/90"
