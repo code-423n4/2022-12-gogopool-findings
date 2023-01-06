@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "rvierdiiev",
-  "risk": "",
+  "risk": "2",
   "title": "RewardsPool.startRewardsCycle function will revert when there is no enabled multisig because of division by 0",
   "issueId": 240,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/240"
