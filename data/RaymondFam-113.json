@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "RaymondFam",
-  "risk": "",
+  "risk": "2",
   "title": "No exit plan when GGP has been fully inflated",
   "issueId": 113,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/113"
