@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "0xNazgul",
-  "risk": "",
+  "risk": "2",
   "title": "[NAZ-M3] Guardians Can Add Themselves To Defender List",
   "issueId": 816,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/816"
