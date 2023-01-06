@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "unforgiven",
-  "risk": "",
+  "risk": "3",
   "title": "Function calculateAndDistributeRewards() can only distribute current cycle rewards and if Multisig won't call it for staker in a cycle then staker rewards would be lost for that cycle",
   "issueId": 803,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/803"
