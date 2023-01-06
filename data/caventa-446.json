@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "caventa",
-  "risk": "",
+  "risk": "2",
   "title": "Missing UUPSUpgradeable initializers in the upgradable TokenggAVAX contract",
   "issueId": 446,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/446"
