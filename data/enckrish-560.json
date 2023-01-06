@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "enckrish",
-  "risk": "",
+  "risk": "2",
   "title": "Single Multisig is assigned all pools and cannot be changed",
   "issueId": 560,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/560"
