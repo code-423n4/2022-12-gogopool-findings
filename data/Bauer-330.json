@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "Bauer",
-  "risk": "",
+  "risk": "2",
   "title": "If the owner does not implement safeTransferETH(), or if it is an EOA, then safeTransferETH() will fail",
   "issueId": 330,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/330"
