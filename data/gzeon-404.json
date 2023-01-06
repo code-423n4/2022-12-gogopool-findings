@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "gzeon",
-  "risk": "",
+  "risk": "2",
   "title": "Defender may not be able to call disableAllMultisigs",
   "issueId": 404,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/404"
