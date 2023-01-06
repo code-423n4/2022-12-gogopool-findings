@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "imare",
-  "risk": "",
+  "risk": "2",
   "title": "calling `createMinipool` with same `nodeID` can result in lost of funds",
   "issueId": 703,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/703"
