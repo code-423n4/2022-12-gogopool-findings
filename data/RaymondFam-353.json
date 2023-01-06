@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "RaymondFam",
-  "risk": "",
+  "risk": "2",
   "title": "Enum leak that could have `recreateMinipool()` lead to accounting mess up",
   "issueId": 353,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/353"
