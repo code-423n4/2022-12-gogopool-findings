@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "louhk",
-  "risk": "",
+  "risk": "2",
   "title": "Lack of Access Control in RewardsPool.sol",
   "issueId": 21,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/21"
