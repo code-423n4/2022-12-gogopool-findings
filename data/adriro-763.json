@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "adriro",
-  "risk": "",
+  "risk": "2",
   "title": "Minipool state inconsistency during error transition",
   "issueId": 763,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/763"
