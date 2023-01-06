@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "SamGMK",
-  "risk": "",
+  "risk": "2",
   "title": "LACK OF STORAGE GAP FOR UPGRADEABLE CONTRACTS.",
   "issueId": 773,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/773"
