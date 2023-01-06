@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "kiki_dev",
-  "risk": "",
+  "risk": "2",
   "title": "Malicious owner can steal funds and change state of the project",
   "issueId": 517,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/517"
