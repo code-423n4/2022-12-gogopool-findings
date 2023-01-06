@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "Phenomana",
-  "risk": "",
+  "risk": "3",
   "title": "ERC4626Upgradeable.sol - Several High Risk Vulnerabilities Found ",
   "issueId": 282,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/282"
