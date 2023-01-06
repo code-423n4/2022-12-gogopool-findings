@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "yixxas",
-  "risk": "",
+  "risk": "2",
   "title": "`createMinipool()` can be frontrun on a particular nodeID",
   "issueId": 551,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/551"
