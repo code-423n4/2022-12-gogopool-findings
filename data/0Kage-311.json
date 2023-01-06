@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "0Kage",
-  "risk": "",
+  "risk": "3",
   "title": "Multisig accidentally or maliciously closes a pool in a `withdrawable` state and locks out a node operator from withdrawing funds (causing loss of funds)",
   "issueId": 311,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/311"
