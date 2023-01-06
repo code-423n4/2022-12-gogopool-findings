@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "RaymondFam",
-  "risk": "",
+  "risk": "2",
   "title": "GGP rewards manipulation before distribution can also be taken advantage of when signing up for 3-12 month validation periods",
   "issueId": 779,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/779"
