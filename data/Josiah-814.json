@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "Josiah",
-  "risk": "",
+  "risk": "2",
   "title": "150% COLLATERALIZATION RULE COULD BE EXPLOITED",
   "issueId": 814,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/814"
