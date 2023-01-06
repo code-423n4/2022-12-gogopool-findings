@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "chaduke",
-  "risk": "",
+  "risk": "3",
   "title": "A malicous user might steal the ownership from a minipool owner",
   "issueId": 83,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/83"
