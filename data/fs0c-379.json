@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "fs0c",
-  "risk": "",
+  "risk": "2",
   "title": "Deploying vaults without seeding liquidity can lead to share price manipulation attacks.",
   "issueId": 379,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/379"
