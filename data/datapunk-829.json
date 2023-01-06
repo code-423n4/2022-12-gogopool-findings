@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "datapunk",
-  "risk": "",
+  "risk": "2",
   "title": "The state of MinipoolStatus.Error should only be transitioned to from MinipoolStatus.Launched",
   "issueId": 829,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/829"
