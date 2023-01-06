@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "0Kage",
-  "risk": "",
+  "risk": "3",
   "title": "Multisig can accidentally (or maliciously) make a dead pool alive and allow node operator to exploit the vault by executing free withdrawals",
   "issueId": 324,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/324"
