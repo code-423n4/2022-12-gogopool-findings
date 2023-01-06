@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "0xdeadbeef0x",
-  "risk": "",
+  "risk": "3",
   "title": "Slashing mechanism can be manipulated",
   "issueId": 215,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/215"
