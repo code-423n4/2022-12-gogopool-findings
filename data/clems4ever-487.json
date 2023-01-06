@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "clems4ever",
-  "risk": "",
+  "risk": "2",
   "title": "RewardsPool can be DoS if interval between two calls to inflate is too big",
   "issueId": 487,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/487"
