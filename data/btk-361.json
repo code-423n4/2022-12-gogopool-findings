@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "btk",
-  "risk": "",
+  "risk": "2",
   "title": "Rewards delay release could cause yields steal and loss",
   "issueId": 361,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/361"
