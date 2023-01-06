@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "Dinesh11G",
-  "risk": "",
+  "risk": "2",
   "title": "UNHANDLED RETURN VALUES OF transferToken",
   "issueId": 54,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/54"
