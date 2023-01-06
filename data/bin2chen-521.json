@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "bin2chen",
-  "risk": "",
+  "risk": "2",
   "title": "MultisigManager may not be able to add a valid Multisig",
   "issueId": 521,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/521"
