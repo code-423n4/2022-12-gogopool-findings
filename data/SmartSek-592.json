@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "SmartSek",
-  "risk": "",
+  "risk": "3",
   "title": "ggpStaked might not be enough to cover slashing",
   "issueId": 592,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/592"
