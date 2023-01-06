@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "Matin",
-  "risk": "",
+  "risk": "2",
   "title": "Some users may not be able to withdraw tokens until ```rewardsCycleEnd``` due to underflow in ```beforeWithdraw()``` hook (ERC4626)",
   "issueId": 598,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/598"
