@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "Allarious",
-  "risk": "",
+  "risk": "3",
   "title": "Attacker can fake boost AVAXAssignedHighWater on each pool creation",
   "issueId": 401,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/401"
