@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "kaliberpoziomka8552",
-  "risk": "",
+  "risk": "3",
   "title": "Multiple withdrawals of the same AVAX deposit",
   "issueId": 269,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/269"
