@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "unforgiven",
-  "risk": "",
+  "risk": "2",
   "title": "startRewardsCycle() would fail if number of enabled Multisigs were zero because of the division by zero error, the issue can wrong reward distribution",
   "issueId": 839,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/839"
