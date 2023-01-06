@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "__141345__",
-  "risk": "",
+  "risk": "2",
   "title": "Rewards delay release could cause unfair rewards distribution",
   "issueId": 655,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/655"
