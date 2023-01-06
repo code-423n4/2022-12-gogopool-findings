@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "aviggiano",
-  "risk": "",
+  "risk": "2",
   "title": "Funds mistakenly sent to `MinipoolManager` via `receiveWithdrawalAVAX` will be locked forever",
   "issueId": 267,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/267"
