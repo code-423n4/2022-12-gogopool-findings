@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "Raiders",
-  "risk": "",
+  "risk": "3",
   "title": "DELETING A MAPPING WITHIN A STRUCT",
   "issueId": 359,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/359"
