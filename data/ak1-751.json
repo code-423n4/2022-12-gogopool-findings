@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "ak1",
-  "risk": "",
+  "risk": "2",
   "title": "MinipoolManager.sol : createMinipool does not check the owner of node when overwriting",
   "issueId": 751,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/751"
