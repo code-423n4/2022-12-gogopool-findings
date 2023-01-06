@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "nameruse",
-  "risk": "",
+  "risk": "2",
   "title": "Users (assigned avax stakers) can potentially not get compensated for failed validator or at least failed validator may not get penalized",
   "issueId": 278,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/278"
