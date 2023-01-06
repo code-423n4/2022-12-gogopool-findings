@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "sk8erboy",
-  "risk": "",
+  "risk": "2",
   "title": "Wrong encoding of numbers and indices",
   "issueId": 596,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/596"
