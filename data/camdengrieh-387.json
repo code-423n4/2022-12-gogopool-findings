@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "camdengrieh",
-  "risk": "",
+  "risk": "3",
   "title": "No checks for large price changes in the Oracle",
   "issueId": 387,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/387"
