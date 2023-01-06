@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "mookimgo",
-  "risk": "",
+  "risk": "2",
   "title": "call upgradeExistingContract in ProtocolDAO.sol with the same name cause inaccurate storage \"contract.address\"+name ",
   "issueId": 358,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/358"
