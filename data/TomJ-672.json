@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "TomJ",
-  "risk": "",
+  "risk": "3",
   "title": "An early user can manipulate asset per share price to take an unfair share of future users",
   "issueId": 672,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/672"
