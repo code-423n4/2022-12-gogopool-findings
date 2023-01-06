@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "Faith",
-  "risk": "",
+  "risk": "3",
   "title": "Disabled multisig addresses cannot be removed from a minipool",
   "issueId": 141,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/141"
