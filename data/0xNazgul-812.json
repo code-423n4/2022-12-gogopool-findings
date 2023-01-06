@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "0xNazgul",
-  "risk": "",
+  "risk": "2",
   "title": "[NAZ-M1] Rewards Delay Release Could Cause Yields Steal And Loss",
   "issueId": 812,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/812"
