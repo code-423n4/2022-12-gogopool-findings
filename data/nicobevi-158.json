@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "nicobevi",
-  "risk": "",
+  "risk": "G",
   "title": "Gas Optimizations",
   "issueId": 158,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/158"
