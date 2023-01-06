@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "shark",
-  "risk": "",
+  "risk": "2",
   "title": "Slashed `ggp` could get stuck in `ProtocolDAO.sol`",
   "issueId": 507,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/507"
