@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "rvierdiiev",
-  "risk": "",
+  "risk": "2",
   "title": "Rialto can call `finishFailedMinipoolByMultisig` when minipool is not in Error state",
   "issueId": 175,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/175"
