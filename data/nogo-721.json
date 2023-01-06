@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "nogo",
-  "risk": "",
+  "risk": "2",
   "title": "`requireNextActiveMultisig` will always return the same multisig",
   "issueId": 721,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/721"
