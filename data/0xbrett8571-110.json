@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "0xbrett8571",
-  "risk": "",
+  "risk": "2",
   "title": "ClaimNodeOp: In this report, I've examined the smart contract code for the \"ClaimNodeOp\" contract, which Node Operators use to claim GGP rewards. I have found a number of potential vulnerabilities in the contract that might allow external actors to manipulate the distribution of rewards, claim prizes they are not entitled to, or reroute incentives to their own address. The lack of contract caller verification, staked GGP verification, total eligible GGP staked verification, rewards amount staked verification, and staker address verification are some of these problems. It is advised to integrate extra checks and measures to safeguards as necessary to eliminate these vulnerabilities and guarantee the proper operation of the smart contract.",
   "issueId": 110,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/110"
