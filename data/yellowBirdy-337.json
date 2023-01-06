@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "yellowBirdy",
-  "risk": "",
+  "risk": "3",
   "title": "Any \"Multisig\" may arbitrarily reduce or enlarge rewards of any node op, also producing inconsistent state due to insufficient checks on TOTALELIGIBLEGGPSTAKED param toCLAIMNODEOP.SOLCALCULATEANDDISTRIBUTEREWARDS",
   "issueId": 337,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/337"
