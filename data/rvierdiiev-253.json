@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "rvierdiiev",
-  "risk": "",
+  "risk": "3",
   "title": "MinipoolManager.recordStakingError doesn't decrease staker's minipool count which allows staker to receive ggp rewards",
   "issueId": 253,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/253"
