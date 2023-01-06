@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "clems4ever",
-  "risk": "",
+  "risk": "3",
   "title": "Loss of node operator and stakers rewards",
   "issueId": 482,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/482"
