@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "unforgiven",
-  "risk": "",
+  "risk": "3",
   "title": "wrong reward distribution between early and late depositors because of the late syncRewards() call in the cycle, syncReward() logic should be executed in each withdraw or deposits (without reverting)",
   "issueId": 478,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/478"
