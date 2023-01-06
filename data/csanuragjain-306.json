@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "csanuragjain",
-  "risk": "",
+  "risk": "2",
   "title": "Slashed funds are stuck",
   "issueId": 306,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/306"
