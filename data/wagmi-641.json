@@ -1,7 +1,7 @@
 {
   "contest": 194,
   "handle": "wagmi",
-  "risk": "",
+  "risk": "3",
   "title": "Wrong logic when recording value of `AVAXAssignedHighWater` variable",
   "issueId": 641,
   "issueUrl": "https://github.com/code-423n4/2022-12-gogopool-findings/issues/641"
