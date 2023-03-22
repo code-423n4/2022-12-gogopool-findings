@@ -3958,7 +3958,7 @@ Note the reward calculation formula:
 
 However, in the current ExpectedRewardAVA, the implementation is just:
 
-AVAX reward rate \* avax amount \* duration / 365 days.
+AVAX reward rate &ast; avax amount &ast; duration / 365 days.
 
 ```solidity
 ProtocolDAO dao = ProtocolDAO(getContractAddress("ProtocolDAO"));
